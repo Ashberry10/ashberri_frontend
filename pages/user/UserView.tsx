@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 // import { useSelector, useDispatch } from 'react-redux'
 import { fetchUsers } from './userSlice'
-import { useAppDispatch,useAppSelector } from '../app/hooks'
+import { useAppDispatch,useAppSelector } from '../../app/hooks'
 
 
 

@@ -6,7 +6,7 @@ import { UserView } from './user/UserView';
 // import { decrement, increment } from '../slices/counterSlice';
 // import type { RootState } from '../store'
 // import { selectValue } from '../slices/counterSlice';
-
+import Header from '../components/Header';
 
 
 const Home: NextPage = () => {
@@ -16,8 +16,9 @@ const Home: NextPage = () => {
   return (
     <>
     
-    <UserView/>
-    <h1>sdfsdfsd</h1>
+    {/* <h1>index</h1> */}
+    <Header/>
+    {/* <UserView/> */}
     </>
 //     <div className="flex min-h-screen flex-col items-center justify-center py-2">
 //       <Head>

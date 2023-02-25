@@ -28,8 +28,8 @@ const initialState:InitialState = {
 // CreateAsyncThunk only avalible in redux toolkit
 export const fetchUsers = createAsyncThunk('user/fetchUsers', () => {
   return axios
-    .get('https://jsonplaceholder.typicode.com/users')
-    // .get('http://127.0.0.1:8000/api/user/getallusers/')
+    // .get('https://jsonplaceholder.typicode.com/users')
+    .get('http://127.0.0.1:8000/api/user/getallusers/')
 
     
     // .then(response => response.data.map((user) => user.id)) //for only fetching the id
