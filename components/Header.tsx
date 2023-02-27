@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import Link from 'next/link';
 import { useRouter } from "next/router";
  import { UserView }  from '../pages/user/UserView';
-
+// import SignUp from "../pages/SignUp";
 
 
 function Header() {
@@ -56,7 +55,7 @@ function Header() {
                  
 
                      
-                     <a onClick={() => router.push("/LoginSignUp")}
+                     <a onClick={() => router.push("/Login")}
                       className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">
                      <svg className="h-8 w-8"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M20 12h-13l3 -3m0 6l-3 -3" /></svg>
                     </a>
@@ -172,7 +171,7 @@ function Header() {
 
                      </a>
 
-                     <Link  href="/LoginSignUp"
+                     <Link  href="/Login"
                   
                   className="text-sky-400 block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">
                        
@@ -252,5 +251,3 @@ export default Header ;
 // }
 
 // export default Header
-
-
