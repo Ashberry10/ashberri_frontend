@@ -83,6 +83,15 @@ type User ={
   name:string
   date_of_birth:string
   email:string
+  tc:boolean
+  Dfirst:number
+  Cfirst:number
+  password:string
+  password2:string
+
+
+
+
 }
 // It is used to define our endpoints and allow to create the API slice
 export const userApi = createApi({
@@ -97,23 +106,54 @@ export const userApi = createApi({
 
  // The set of operations that we want to perform against the server.
  endpoints: (builder) => ({
+
+
   getAllUser: builder.query<User[], void>({
    query: () => ({
     url: 'getallusers/',
+    // providesTags: [{ data: "Todos", id: "LIST" }],
     method: 'GET'
    })
   }),
 
+
+  // getAllUser: builder.mutation({
+  //  query: (body: { email: string;  Dfirst:number
+  //   Cfirst:number,name:string}) => ({
+  //   url: 'getallusers/',
+  //   method: 'GET'
+  //  })
+  // }),
+
+
+  signinUser: builder.mutation({
+    query: (body: { email: string; password: string }) => {
+      return {
+        url: "login/",
+        method: "post",
+        body,
+      };
+    },
+  }),
+
 // user signup
   signupUser: builder.mutation({
-    query: (body: { name: string; email: string; password: string }) => {
+    query: (body: { name: string;email:string,password:string,Dfirst:string,Cfirst:string  }) => {
+    // query: (body: { name: string; email: string; password: string; password2: string;  tc:string;   Dfirst:number; Cfirst:number; date_of_birth:string; }) => {
+
+    // query: (body:  User ) => {
+
       return {
         url: "register/",
         method: "post",
         body,
       };
     },
+
   }),
+
+
+
 
 
   // getuserById: builder.query({
@@ -180,4 +220,4 @@ export const userApi = createApi({
 })
 
 // Export hooks for usage in functional components, which are auto-generated based on the defined endpoints
-export const { useGetAllUserQuery,useSignupUserMutation,  } = userApi
+export const { useGetAllUserQuery,useSignupUserMutation, useSigninUserMutation  } = userApi

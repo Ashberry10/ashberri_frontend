@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 // import { useSelector, useDispatch } from 'react-redux'
 // import { fetchUsers } from './userSlice'
 // import { useAppDispatch,useAppSelector } from '../../app/hooks'
-import { useGetAllUserQuery } from './userSlice'
+// import { useGetAllUserQuery } from './userSlice'
 
 
 export const UserView = () => {
@@ -10,9 +10,9 @@ export const UserView = () => {
   //   we will use use useAppDispatch,useAppSelector,useeffect intead of useselecter and usedispatch
   // const user = useAppSelector(state => state.user)
   // const responseInfo  = useGetAllUserQuery()
-  const data  = useGetAllUserQuery()
+  // const data  = useGetAllUserQuery()
 
-  console.log(data);
+  // console.log(data);
   // const dispatch = useAppDispatch()
   // useEffect(() => {
   //   dispatch(fetchUsers())

@@ -5,11 +5,41 @@ import Login from './Login';
 import { useRouter } from "next/router";
 import { useSignupUserMutation } from "../pages/user/userSlice";
 import { Form, Formik } from "formik";
+import { useFormik } from "formik";
+
+
 
 function SignUp() {
   const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
- const [signupUser, { data, isLoading }] = useSignupUserMutation();
+  const [signupUser, { data, isLoading }] = useSignupUserMutation();
+  
+  console.log(data);
+  // const initialValues:number={
+  //   name:"",  
+  //   date_of_birth:"",
+  //   email:"",
+  //   tc:"",
+  //   Dfirst:"",
+  //   Cfirst:"",
+  //   password:"",
+  //   password2:""
+  
+  
+  // }
+
+
+
+
+  // const formik = useFormik({
+  //   initialValues: {
+  //     email: '',
+  //   },
+  //   onSubmit: (values) => {
+  //     signupUser({ ...values });
+  //   },
+  // })
+ 
 
   return (
       <>
@@ -46,30 +76,105 @@ function SignUp() {
                     </span> */}
                       </button>
                     </div>
+
                     {/*body*/}
 
+
+                   <Formik
+      initialValues={{ name: "",email:"",password:"",Dfirst:"",Cfirst:""}}
+      onSubmit={(values) => {
+        signupUser({ ...values });
+      }}
+    >
+
+
+
+              <Form>
+        
                     <p className="my-2 p-4 text-blueGray-500 text-sm leading-relaxed ">
-                      <input className="px-2 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" type="text" placeholder="First name" />&nbsp;&nbsp;
-                      <input className="px-2 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" type="text" placeholder="Last name" /><br />
-                      <input className="px-2 h-10 mb-2 w-full border border-2 outline-violet-300 border-gray-200 rounded-lg" type="text" placeholder="Mobile number or email address" />
-                      <input className="px-2 h-10 mb-6 w-full border border-2 outline-violet-300 border-gray-200 rounded-lg" type="password" placeholder="Password" />
+                      {/* <input className="px-2 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" type="name"  id="name" placeholder="Fullname"   />&nbsp;&nbsp;
+                      <input className="px-2 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" type="text" placeholder="email" /><br />
+                      <input className="px-2 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" type="text" placeholder="email address" />&nbsp;&nbsp;
+                     
+                      <input className="px-2 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" type="text" placeholder="First name" />&nbsp;&nbsp;<br/>
+                      <input className="px-2 h-10 border border-2 outline-violet-300 border-gray-200 rounded-lg" type="password" placeholder="Password" />&nbsp;&nbsp;
+                      <input className="px-2 h-10 border border-2 outline-violet-300 border-gray-200 rounded-lg" type="password" placeholder="Password" /><br/>
+                      <input className="px-2 h-10 border border-2 outline-violet-300 border-gray-200 rounded-lg" type="password" placeholder="Password" />&nbsp;&nbsp;
+                      <input className="px-2 h-10 border border-2 outline-violet-300 border-gray-200 rounded-lg" type="password" placeholder="Password" />
+ */}
 
 
-                  
-                      {/* <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0"> */}
-                      <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
+
+{/* 
+<input
+        id='email'
+        name='email'
+        type='email'
+        onChange={formik.handleChange}
+        value={formik.values.email}
+      /> */}
+
+
+<InputControl
+              name="name"
+              label="Name"
+              inputProps={{
+                placeholder: "Enter Name...",
+              }}
+            />
+            <InputControl
+              name="email"
+              label="Email"
+              inputProps={{
+                type: "email",
+                placeholder: "Enter Email...",
+              }}
+            />
+
+<InputControl
+              name="password"
+              label="Password"
+              inputProps={{
+                placeholder: "Enter Password...",
+                type: "password",
+              }}
+            />   
+
+              <InputControl
+                name="Dfirst"
+                label="Dfirst"
+                inputProps={{
+                  placeholder: "Enter Dfirst...",
+                 
+                }}
+              />   
+
+
+
+<InputControl
+                name="Cfirst"
+                label="Cfirst"
+                inputProps={{
+                  placeholder: "Enter Cfirst...",
+                 
+                }}
+              />  
+
+
+                      
+                      {/* <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
                         Date of Birth (Provide correct DOB for your better future)
                       </label>
 
 
                       <div className="flex  flex-row space-x-2  mb-2  ">
 
-                        {/* space-x-3 */}
+                       
                         <div className=" relative  h-10 ">
-                          {/* <input className="px-2 h-10 mb-2  border border-1 outline-violet-300 border-gray-200 rounded-lg" type="text" placeholder="Last name"/> */}
+                          
                           <select
                             className="block appearance-none bg-white  border-gray-200  border-2 outline-violet-300 border-gray-200 hover:border-violet-300  px-1 py-2 pr-12  rounded shadow leading-tight focus:outline-none focus:shadow-outline"  placeholder="dLast name">
-                            {/* className="block appearance-none bg-white  border-gray-200  border-2 outline-violet-300 border-gray-200 hover:border-violet-300  px-1 py-2 pr-12  rounded shadow leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="dLast name"> */}
+
 
                             <option className="hidden" value="" >DD</option>
                             <option>1</option>
@@ -170,11 +275,7 @@ function SignUp() {
                           <input type="radio" className="form-radio" name="accountType" value="busines" />
                           <span className="ml-2">Other</span>
                         </label>
-                      </div>
-
-
-
-
+                      </div> */}
 
                     </p>
 
@@ -196,14 +297,20 @@ function SignUp() {
                       >
                         Close
                       </button>
-                      <button
+                      
+                      
+                      <SubmitButton  isLoading={isLoading}>Signup</SubmitButton>
+                      
+                      {/* <button
                         className="bg-green-600 hover:bg-green-700 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                        onClick={() => setShowModal(false)}
+                        type="submit"
+                       
                       >
                         Sign UP
-                      </button>
+                      </button> */}
                     </div>
+                    </Form>
+                    </Formik>
                   </div>
                 </div>
               </div>
