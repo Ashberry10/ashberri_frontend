@@ -1,55 +1,61 @@
 // maybe tailwind css error in this page that why is throwing aligning errror
 
-
+import { getCookie } from 'cookies-next';
 
 import { Flex, Grid, Heading, Stack, Text } from "@chakra-ui/layout";
-import { useToast } from "@chakra-ui/react";
+import { effect, useToast } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import { InputControl, SubmitButton } from "formik-chakra-ui";
 // import { useState } from "react";
-// import { useNavigate } from "react-router";
+
 // import { Link } from "react-router-dom";
-import { useSigninUserMutation } from "../pages/user/userSlice";
+import Link from 'next/link';
+import { useSigninUserMutation } from "./api/authApi";
 import { useAppDispatch } from "../app/hooks";
-import { setUser } from "./user/authSlice";
+import { setUser } from "./state/authSlice";
 import { useRouter } from 'next/router'
-import { useSignupUserMutation } from "./user/userSlice";
+import { useSignupUserMutation } from "./api/authApi";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import Profile from "./Profile";
+// import { recoilPersist } from "recoil-persist";
 // import SignUp from '../pages/SignUp';
 // import axios from "axios";
-
+import { setCookie } from 'cookies-next';
 
 
 
 
 const Login = () => {
-
+  
   // const [credentials, setcredentials] = useState({ email: " ", password: " " });
+  // const {persistAtom} = recoilPersist()
   const [email, setEmail] = useState<string>();
  const router = useRouter();
  const dispatch = useAppDispatch();
 
-
  const [signinUser, { data, isLoading, error, isError, isSuccess }] =
  useSigninUserMutation();
 
-
-
-
   const [showModal, setShowModal] = React.useState(true);
 
-  
+  // console.log(data);
   if (isSuccess) {
-    dispatch(setUser({ token: data.token, name: data.name  }));
-    // navigate("/");
-    localStorage.setItem("token", data.token);
-    console.log(data.token);
+    // dispatch(setUser({ token: data.token, name: data.name,Dfirst:data.Dfirst,Cfirst:data.Cfirst  }));
+    localStorage.setItem("token",JSON.stringify(data.token) );
+    localStorage.setItem("name",JSON.stringify(data.name) );
+    dispatch(setUser({ token: data.token, name: data.name }));
+
+    // <Link href="/Profile"></Link>
+    router.push('/Profile')
+    // Cookie.set('token',data.token )
+    // setCookie('kesdy','data.token')
+    // console.log(data.token);
     // console.log(data.name);
+    // getCookie('data.token');
     
   }
-  console.log(isSuccess);
-  
+ 
   
   // const json = await response.json();
   // console.log(json);
@@ -68,12 +74,8 @@ const Login = () => {
 
 
 
-  useEffect(() => {
 
-    // dispatch(getAllUsers());
 
-    console.log(data);
-  }, []);
   
 
 
@@ -180,6 +182,8 @@ const Login = () => {
         </div>
       </div>
  
+{/* <Profile/> */}
+
     </body>
 
 
@@ -198,44 +202,3 @@ export default Login
 
 
 
-// import React from 'react'
-
-// function Login() {
-//   return (
-//     <div>Login</div>
-//   )
-// }
-
-// export default Login
-
-
-
-// <Grid h="100vh" placeItems="center">
-// <Stack p="4" boxShadow="xl" borderRadius="md">
-
-//   <InputControl
-//     name="name"
-//     label="Name"
-//     inputProps={{
-//       placeholder: "Enter Name...",
-//     }}
-//   />
-//   <InputControl
-//     name="email"
-//     label="Email"
-//     inputProps={{
-//       type: "email",
-//       placeholder: "Enter Email...",
-//     }}
-//   />
-//   <InputControl
-//     name="password"
-//     label="Password"
-//     inputProps={{
-//       placeholder: "Enter Password...",
-//       type: "password",
-//     }}
-//   />
-//   <SubmitButton isLoading={isLoading}>Signup</SubmitButton>
-// </Stack>
-// </Grid>

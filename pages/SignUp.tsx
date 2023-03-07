@@ -3,7 +3,7 @@ import { InputControl, SubmitButton } from "formik-chakra-ui";
 import React from 'react'
 import Login from './Login';
 import { useRouter } from "next/router";
-import { useSignupUserMutation } from "../pages/user/userSlice";
+import { useSignupUserMutation } from "./api/authApi";
 import { Form, Formik } from "formik";
 import { useFormik } from "formik";
 

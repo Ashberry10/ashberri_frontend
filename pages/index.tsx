@@ -12,12 +12,13 @@ import Header from '../components/Header';
 const Home: NextPage = () => {
   // const count = useSelector(selectValue);
   // const dispatch = useDispatch();
-
+  // const token = localStorage.getItem("token");
   return (
     <>
     
     {/* <h1>index</h1> */}
     <Header/>
+   
     {/* <UserView/> */}
     </>
 //     <div className="flex min-h-screen flex-col items-center justify-center py-2">
