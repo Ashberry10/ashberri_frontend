@@ -171,7 +171,7 @@ export const authApi = createApi({
 
 // user signup
   signupUser: builder.mutation({
-    query: (body: { name: string;email:string,password:string,Dfirst:string,Cfirst:string  }) => {
+    query: (body: { name: string;email:string,password:string,day:string,year:string,month:string;  }) => {
     // query: (body: { name: string; email: string; password: string; password2: string;  tc:string;   Dfirst:number; Cfirst:number; date_of_birth:string; }) => {
 
     // query: (body:  User ) => {

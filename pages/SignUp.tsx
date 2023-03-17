@@ -6,15 +6,52 @@ import { useRouter } from "next/router";
 import { useSignupUserMutation } from "./api/authApi";
 import { Form, Formik } from "formik";
 import { useFormik } from "formik";
-
+// import DatePicker from "react-datepicker";
+// import DatePicker from 'react-datepicker/dist/react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+// import Datepicker from "tailwind-datepicker-react";
+import { SingleDatepicker } from "chakra-dayzed-datepicker";
+import { useState } from "react";
+// import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 function SignUp() {
+
   const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
-  const [signupUser, { data, isLoading }] = useSignupUserMutation();
   
-  console.log(data);
+  const [signupUser, { data, isLoading }] = useSignupUserMutation();
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+
+  const [year, setYear] = useState("");
+
+
+  console.log(day);
+  console.log(month);
+  console.log(year);
+
+  
+
+  // const [date_of_birth, setdate_of_birth] = useState(new Date());
+ 
+  // const [family, setFamily] = useState("")
+
+  // console.log(family);
+
+
+	// const [show, setShow] = useState < boolean > false
+
+	// const handleChange = (selectedDate: Date) => {
+	// 	console.log(selectedDate)
+	// }
+	// const handleClose = (state: boolean) => {
+	// 	setShow(state)
+	// }
+
+
+  // console.log(data);
   // const initialValues:number={
   //   name:"",  
   //   date_of_birth:"",
@@ -81,7 +118,7 @@ function SignUp() {
 
 
                    <Formik
-      initialValues={{ name: "",email:"",password:"",Dfirst:"",Cfirst:""}}
+      initialValues={{ name: "",email:"",password:"",day:"",month:"",year:""}}
       onSubmit={(values) => {
         signupUser({ ...values });
       }}
@@ -105,26 +142,26 @@ function SignUp() {
 
 
 
-{/* 
-<input
+
+{/* <input
         id='email'
         name='email'
         type='email'
         onChange={formik.handleChange}
         value={formik.values.email}
-      /> */}
+      />  */}
 
 
 <InputControl
               name="name"
-              label="Name"
+              label="NAME"
               inputProps={{
                 placeholder: "Enter Name...",
               }}
             />
             <InputControl
               name="email"
-              label="Email"
+              label="EMAIL"
               inputProps={{
                 type: "email",
                 placeholder: "Enter Email...",
@@ -132,37 +169,49 @@ function SignUp() {
             />
 
 <InputControl
+
               name="password"
-              label="Password"
+              label="PASSWORD"
               inputProps={{
                 placeholder: "Enter Password...",
                 type: "password",
               }}
             />   
 
-              <InputControl
-                name="Dfirst"
-                label="Dfirst"
-                inputProps={{
-                  placeholder: "Enter Dfirst...",
-                 
-                }}
-              />   
 
 
-
+{/* 
 <InputControl
-                name="Cfirst"
-                label="Cfirst"
-                inputProps={{
-                  placeholder: "Enter Cfirst...",
-                 
-                }}
-              />  
+              name="date_of_birth"
+              label="date_of_birth"
+              inputProps={{
+                placeholder: "Enter date_of_birth..",
+                type: "date_of_birth",
+              }}
+            />  */}
+                       
+                      {/* <label className="pl-1 pb-2 pt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
+                        Date of Birth (Provide correct DOB for your better future)
+                        <input type="text" value={date_of_birth} onChange={(event) => setdate_of_birth(event.target.value)}/>
+                      </label>
+ */}
 
 
-                      
-                      {/* <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
+
+            {/* <SingleDatepicker
+         
+    name="date-input"
+    date={date_of_birth}
+    onDateChange={setdate_of_birth}
+  /> */}
+
+
+{/* <DatePicker selected={date_of_birth} dateFormat="dd-MM-yyyy" onChange={(date:Date) => setdate_of_birth(date)} /> */}
+
+
+
+
+                       <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
                         Date of Birth (Provide correct DOB for your better future)
                       </label>
 
@@ -173,12 +222,12 @@ function SignUp() {
                         <div className=" relative  h-10 ">
                           
                           <select
-                            className="block appearance-none bg-white  border-gray-200  border-2 outline-violet-300 border-gray-200 hover:border-violet-300  px-1 py-2 pr-12  rounded shadow leading-tight focus:outline-none focus:shadow-outline"  placeholder="dLast name">
+                            className="block appearance-none bg-white  border-gray-200  border-2 outline-violet-300 border-gray-200 hover:border-violet-300  px-1 py-2 pr-12  rounded shadow leading-tight focus:outline-none focus:shadow-outline"  value={day}  onChange={(event) => setDay(event.target.value)} >
 
 
-                            <option className="hidden" value="" >DD</option>
-                            <option>1</option>
-                            <option>2</option>
+                            <option className="hidden"  >DD</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
@@ -218,7 +267,7 @@ function SignUp() {
                         </div>
 
                         <div className=" relative   h-10 ">
-                          <select className="block appearance-none bg-white  border-gray-200  border-2 outline-violet-300 border-gray-200 hover:border-violet-300 px-1 py-2 pr-12  rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                          <select className="block appearance-none bg-white  border-gray-200  border-2 outline-violet-300 border-gray-200 hover:border-violet-300 px-1 py-2 pr-12  rounded shadow leading-tight focus:outline-none focus:shadow-outline"   value={month}  onChange={(event) => setMonth(event.target.value)}  placeholder="dLast name">
                             <option className="hidden" value="">MM</option>
                             <option>1</option>
                             <option>2</option>
@@ -240,13 +289,22 @@ function SignUp() {
 
 
                         <div className="relative mb-3  h-10">
-                          <select className="block appearance-none bg-white  border-gray-200  border-2 outline-violet-300 border-gray-200 hover:border-violet-300 2px-1 py-2 pr-14  rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                          <select className="block appearance-none bg-white  border-gray-200  border-2 outline-violet-300 border-gray-200 hover:border-violet-300 2px-1 py-2 pr-14  rounded shadow leading-tight focus:outline-none focus:shadow-outline" value={year}  onChange={(event) => setYear(event.target.value)}  placeholder="dLast name" >
                             <option className="hidden" value="">YYYY</option>
-
+                            <option>1994</option>
+                            <option>1995</option>
+                            <option>1996</option>
+                            <option>1997</option>
+                            <option>1998</option>
                             <option>1999</option>
                             <option>2000</option>
                             <option>2001</option>
-
+                            <option>2002</option>
+                            <option>2003</option>
+                            <option>2004</option>
+                            <option>2005</option>
+                            <option>2006</option>
+                            <option>2007</option>
                           </select>
                           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg className="fill-current h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
@@ -256,7 +314,7 @@ function SignUp() {
 
                       </div>
 
-                      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="grid-state">
+                      {/* <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="grid-state">
                         gender
                       </label>
 
@@ -275,7 +333,7 @@ function SignUp() {
                           <input type="radio" className="form-radio" name="accountType" value="busines" />
                           <span className="ml-2">Other</span>
                         </label>
-                      </div> */}
+                      </div>  */}
 
                     </p>
 
