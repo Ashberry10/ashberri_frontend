@@ -44,7 +44,9 @@ const Login = () => {
     // dispatch(setUser({ token: data.token, name: data.name,Dfirst:data.Dfirst,Cfirst:data.Cfirst  }));
     localStorage.setItem("token",JSON.stringify(data.token) );
     localStorage.setItem("name",JSON.stringify(data.name) );
-    dispatch(setUser({ token: data.token, name: data.name }));
+    localStorage.setItem("date_of_birth",JSON.stringify(data.date_of_birth) );
+
+    dispatch(setUser({ token: data.token, name: data.name, date_of_birth:data.date_of_birth}));
 
     // <Link href="/Profile"></Link>
     router.push('/Profile')

@@ -8,6 +8,7 @@ import { redirect } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/router'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import da from 'date-fns/esm/locale/da/index.js';
 
 // import  { getToken }  from "./LocalStorage";
 // import { setUserInfo, unsetUserInfo } from '../pages/user/setUserInfoSlice';
@@ -18,6 +19,9 @@ function Profile() {
   const dispatch = useAppDispatch();
 
   const [cart,setCart] = useState()
+  const [date_of_birth,setdate_of_birth] = useState()
+  console.log(date_of_birth);
+
   const router = useRouter();
   const  {name}  = useAppSelector((state) => state.auth);
   // const  {name,token,Dfirst,Cfirst}  = useAppSelector((state) => state.auth);
@@ -83,7 +87,11 @@ function Profile() {
        setCart(JSON.parse(localStorage.getItem("name") || " ") )
       // const pl = (localStorage.getItem("name"));
     }
-  
+    if (localStorage.getItem("date_of_birth")) {
+      
+      setdate_of_birth(JSON.parse(localStorage.getItem("date_of_birth") || " ") )
+     // const pl = (localStorage.getItem("name"));
+   }
     }, []) 
 
 
@@ -132,6 +140,8 @@ function Profile() {
           ))} */}
 <h1>
           Your Name: {cart} <br/>
+          Your dateofbirth: {date_of_birth} <br/>
+
 
           {/* Your Dfirst: {Dfirst}<br/>
           Your Cfirst:  {Cfirst}<br/> */}

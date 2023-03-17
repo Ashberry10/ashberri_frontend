@@ -4,7 +4,7 @@ import React from 'react'
 import Login from './Login';
 import { useRouter } from "next/router";
 import { useSignupUserMutation } from "./api/authApi";
-import { Form, Formik } from "formik";
+import { Form, Formik,Field } from "formik";
 import { useFormik } from "formik";
 // import DatePicker from "react-datepicker";
 // import DatePicker from 'react-datepicker/dist/react-datepicker';
@@ -18,19 +18,29 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function SignUp() {
 
+
+
+  interface MyFormValues {
+    name: string;
+    email: string;
+    password: string;
+  }
+  
+
   const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
   
   const [signupUser, { data, isLoading }] = useSignupUserMutation();
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
+  const initialValues: MyFormValues ={ name: "amna",email:"",password:""}
+  // const [day, setDay] = useState("");
+  // const [month, setMonth] = useState("");
 
-  const [year, setYear] = useState("");
+  // const [year, setYear] = useState("");
 
 
-  console.log(day);
-  console.log(month);
-  console.log(year);
+  // console.log(day);
+  // console.log(month);
+  // console.log(year);
 
   
 
@@ -118,15 +128,37 @@ function SignUp() {
 
 
                    <Formik
-      initialValues={{ name: "",email:"",password:"",day:"",month:"",year:""}}
+      initialValues={initialValues}
       onSubmit={(values) => {
-        signupUser({ ...values });
+        // signupUser({ ...values });
+        console.log('Form data',values);
       }}
+      // validate={values => {
+      //   //  values.name values.email values.password
+      //   //  errors.name values.email values.password
+      //   // error.name = 'This field is required'
+
+      //   let errors = {}
+
+      //   if (!values.name) {
+      //     errors.name = 'Required'
+          
+      //   }
+      //   if (!values.email) {
+      //     errors.email = 'Required'
+          
+      //   }
+        
+        
+        
+      //   return errors
+      // }}
     >
+      {({handleSubmit,values,handleChange,})=> (
 
 
 
-              <Form>
+              <Form onSubmit={handleSubmit}>
         
                     <p className="my-2 p-4 text-blueGray-500 text-sm leading-relaxed ">
                       {/* <input className="px-2 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" type="name"  id="name" placeholder="Fullname"   />&nbsp;&nbsp;
@@ -141,54 +173,43 @@ function SignUp() {
  */}
 
 
+<label  htmlFor="name">Name</label>&nbsp;&nbsp;
+<input  
+type='text'
+ id='name'
+ name='name'
+ value={values.name}
+ onChange={handleChange}
+ 
+ /><br />
+
+<label  htmlFor="email">E-mail</label>
+<input type='email' id='email' name='email'   value={values.email}
+ onChange={handleChange}
+  /><br />
 
 
-{/* <input
-        id='email'
-        name='email'
-        type='email'
-        onChange={formik.handleChange}
-        value={formik.values.email}
-      />  */}
-
-
-<InputControl
-              name="name"
-              label="NAME"
-              inputProps={{
-                placeholder: "Enter Name...",
-              }}
-            />
-            <InputControl
-              name="email"
-              label="EMAIL"
-              inputProps={{
-                type: "email",
-                placeholder: "Enter Email...",
-              }}
-            />
-
-<InputControl
-
-              name="password"
-              label="PASSWORD"
-              inputProps={{
-                placeholder: "Enter Password...",
-                type: "password",
-              }}
-            />   
+<label htmlFor="password">Password</label>
+<input type='password' id='password' name='password'  value={values.password}
+ onChange={handleChange}
+  />
 
 
 
-{/* 
-<InputControl
-              name="date_of_birth"
-              label="date_of_birth"
-              inputProps={{
-                placeholder: "Enter date_of_birth..",
-                type: "date_of_birth",
-              }}
-            />  */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                        
                       {/* <label className="pl-1 pb-2 pt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
                         Date of Birth (Provide correct DOB for your better future)
@@ -211,7 +232,7 @@ function SignUp() {
 
 
 
-                       <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
+                       {/* <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
                         Date of Birth (Provide correct DOB for your better future)
                       </label>
 
@@ -312,7 +333,7 @@ function SignUp() {
                         </div>
 
 
-                      </div>
+                      </div> */}
 
                       {/* <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold " htmlFor="grid-state">
                         gender
@@ -356,8 +377,8 @@ function SignUp() {
                         Close
                       </button>
                       
-                      
-                      <SubmitButton  isLoading={isLoading}>Signup</SubmitButton>
+                      <button>Submit</button>
+                      {/* <SubmitButton  isLoading={isLoading}>Signup</SubmitButton> */}
                       
                       {/* <button
                         className="bg-green-600 hover:bg-green-700 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -368,7 +389,10 @@ function SignUp() {
                       </button> */}
                     </div>
                     </Form>
+      )}
                     </Formik>
+                    
+                  
                   </div>
                 </div>
               </div>
