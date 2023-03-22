@@ -7,9 +7,18 @@ import { UserView } from './user/UserView';
 // import type { RootState } from '../store'
 // import { selectValue } from '../slices/counterSlice';
 import Header from '../components/Header';
+import { ReactNode } from 'react';
+import {SessionProvider} from "next-auth/react";
 
 
-const Home: NextPage = () => {
+
+interface IProps {
+  children : ReactNode;
+  session : any;
+}
+
+
+const Home = ({children,session} :IProps) => {
   // const count = useSelector(selectValue);
   // const dispatch = useDispatch();
   // const token = localStorage.getItem("token");
@@ -17,8 +26,11 @@ const Home: NextPage = () => {
     <>
     
     {/* <h1>index</h1> */}
+
+    
+    <SessionProvider session={session}>
     <Header/>
-   
+    </SessionProvider>
     {/* <UserView/> */}
     </>
 //     <div className="flex min-h-screen flex-col items-center justify-center py-2">

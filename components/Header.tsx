@@ -4,13 +4,15 @@ import Link from 'next/link';
 import { useRouter } from "next/router";
  import { UserView }  from '../pages/user/UserView';
 // import SignUp from "../pages/SignUp";
+import { signIn, signOut, useSession } from "next-auth/react";
+
 
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-
+  const {data:session} = useSession()
   
   return (
     <div>
@@ -56,12 +58,27 @@ function Header() {
                  
 
                      
-                     <a onClick={() => router.push("/Login")}
+                     {/* <a onClick={() => router.push("/Login")}
                       className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">
                      <svg className="h-8 w-8"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M20 12h-13l3 -3m0 6l-3 -3" /></svg>
                     </a>
-                 
+                  */}
 
+
+<div className="ml-auto flex gap-2">
+        {session?.user ? (
+          <>
+            <p className="text-sky-600"> {session.user.name}</p>
+            <button className="text-red-500" onClick={() => signOut()}>
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <button className="text-green-600" onClick={() => signIn()}>
+            Sign In
+          </button>
+        )}
+      </div>
 
 
                 </div>

@@ -49,12 +49,13 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { authApi } from '../pages/api/authApi';
 import  authReducer  from "../pages/state/authSlice";
-
+import  userReducer  from "../pages/state/userSlice";
 
 export const store = configureStore({
   // reducerPath and reducer are created for us, which we can pass straight into the reducer parameter of configureStore.
   reducer: {
     auth: authReducer,
+    user: userReducer,
     [authApi.reducerPath]: authApi.reducer
   },
 

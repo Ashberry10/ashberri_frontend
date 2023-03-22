@@ -1,7 +1,10 @@
 // maybe tailwind css error in this page that why is throwing aligning errror
 
-import { getCookie } from 'cookies-next';
+"use client";
+// import Button from "@elements/Button";
 
+import { getCookie } from 'cookies-next';
+import { Textarea } from '@chakra-ui/react'
 import { Flex, Grid, Heading, Stack, Text } from "@chakra-ui/layout";
 import { effect, useToast } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
@@ -22,41 +25,61 @@ import Profile from "./Profile";
 // import SignUp from '../pages/SignUp';
 // import axios from "axios";
 import { setCookie } from 'cookies-next';
+import { useRef } from 'react';
+import { signIn } from 'next-auth/react';
+import { redirect } from 'next/dist/server/api-utils';
+
+
+interface IProps {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+const Login = ({ searchParams }: IProps) => {
 
 
 
-
-const Login = () => {
   
   // const [credentials, setcredentials] = useState({ email: " ", password: " " });
   // const {persistAtom} = recoilPersist()
   const [email, setEmail] = useState<string>();
  const router = useRouter();
  const dispatch = useAppDispatch();
+ const Username = useRef("")
 
+ const pass = useRef("")
  const [signinUser, { data, isLoading, error, isError, isSuccess }] =
  useSigninUserMutation();
 
   const [showModal, setShowModal] = React.useState(true);
 
-  // console.log(data);
-  if (isSuccess) {
-    // dispatch(setUser({ token: data.token, name: data.name,Dfirst:data.Dfirst,Cfirst:data.Cfirst  }));
-    localStorage.setItem("token",JSON.stringify(data.token) );
-    localStorage.setItem("name",JSON.stringify(data.name) );
-    localStorage.setItem("date_of_birth",JSON.stringify(data.date_of_birth) );
 
-    dispatch(setUser({ token: data.token, name: data.name, date_of_birth:data.date_of_birth}));
 
-    // <Link href="/Profile"></Link>
-    router.push('/Profile')
-    // Cookie.set('token',data.token )
-    // setCookie('kesdy','data.token')
-    // console.log(data.token);
-    // console.log(data.name);
-    // getCookie('data.token');
-    
+  const onSubmit = async () => {
+    const result = await signIn("credentials", {
+      Username: Username.current,
+      password: pass.current,
+      redirect: true,
+      callbackUrl: "/",
+    });
   }
+  // console.log(data);
+  // if (isSuccess) {
+  //   // dispatch(setUser({ token: data.token, Username: data.Username,Dfirst:data.Dfirst,Cfirst:data.Cfirst  }));
+  //   localStorage.setItem("token",JSON.stringify(data.token) );
+  //   localStorage.setItem("Username",JSON.stringify(data.Username) );
+  //   localStorage.setItem("date_of_birth",JSON.stringify(data.date_of_birth) );
+
+  //   dispatch(setUser({ token: data.token, Username: data.Username, date_of_birth:data.date_of_birth}));
+
+  //   // <Link href="/Profile"></Link>
+  //   router.push('/Profile')
+  //   // Cookie.set('token',data.token )
+  //   // setCookie('kesdy','data.token')
+  //   // console.log(data.token);
+  //   // console.log(data.Username);
+  //   // getCookie('data.token');
+    
+  // }
  
   
   // const json = await response.json();
@@ -78,8 +101,6 @@ const Login = () => {
 
 
 
-  
-
 
 
   return (
@@ -98,40 +119,18 @@ const Login = () => {
 
         <div className="justify-center flex ">
         <div className="shadow-2xl  flex  flex-col bg-white p-8 rounded-xl w-96  justify-center   text-lg relative">
-        <Formik
-      initialValues={{ email: "", password: "" }}
-      onSubmit={(values) => {
-        setEmail(values.email);
-        signinUser({ ...values });
-      }}
-    >
-      <Form>
-
-      <InputControl
-              name="email"
-              label="Email"
-              inputProps={{
-                type: "email",
-                placeholder: "Enter Email...",
-              }}
-            />
+        <div className={"flex flex-col justify-center items-center  h-screen bg-gradient-to-br gap-1 from-cyan-300 to-sky-600"}>
 
 
 
-<InputControl
-              name="password"
-              label="Password"
-              inputProps={{
-                placeholder: "Enter Password...",
-                type: "password",
-              }}
-            />    
-<SubmitButton isLoading={isLoading}>Signin</SubmitButton>
 
-      </Form>
-
-
-      </Formik>
+        {searchParams?.message && <p className="text-red-700 bg-red-100 py-2 px-5 rounded-md">{searchParams?.message}</p>}
+      <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
+        <input  placeholder="username" type="text" onChange={(e) => (Username.current = e.target.value)} ></input>
+        <input  placeholder="Password" type="password"   onChange={(e) => (pass.current = e.target.value)} ></input>
+        <button onClick={onSubmit}>Login</button>
+      </div>
+    </div>
           {/* <input className="px-4 h-12   my-2 border border-1 outline-violet-300 border-gray-200 rounded-lg" type="text" placeholder="Email address or phone number" />
           <input className="px-4 h-12 my-2 border border-1 outline-violet-300 border-gray-200 rounded-lg" type="password" placeholder="Password" /> */}
           {/* <button className="bg-violet-300 hover:bg-violet-400 text-white my-2 py-3 rounded-md font-bold">Log In</button> */}

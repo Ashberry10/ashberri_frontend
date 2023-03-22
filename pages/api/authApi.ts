@@ -80,7 +80,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 type User ={
   id:number
-  name:string
+  username:string
   token:string
   email:string
   Dfirst:number
@@ -172,7 +172,7 @@ export const authApi = createApi({
 // user signup
   signupUser: builder.mutation({
     // query: (body: { name: string;email:string,password:string,day:string,year:string,month:string;  }) => {
-    query: (body: { name: string; email: string; password: string; day:string; month:string; year:string;  }) => {
+    query: (body: { username: string; email: string; password: string; day:string; month:string; year:string;  }) => {
 
     // query: (body:  User ) => {
 
