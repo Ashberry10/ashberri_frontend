@@ -13,14 +13,14 @@ import { InputControl, SubmitButton } from "formik-chakra-ui";
 
 // import { Link } from "react-router-dom";
 import Link from 'next/link';
-import { useSigninUserMutation } from "./api/authApi";
+import { useSigninUserMutation } from "../pages/api/authApi"
 import { useAppDispatch } from "../app/hooks";
-import { setUser } from "./state/authSlice";
+
 import { useRouter } from 'next/router'
-import { useSignupUserMutation } from "./api/authApi";
+import { useSignupUserMutation } from "../pages/api/authApi"
 import React, { useState } from "react";
 import { useEffect } from "react";
-import Profile from "./Profile";
+// import Profile from "./Profile";
 // import { recoilPersist } from "recoil-persist";
 // import SignUp from '../pages/SignUp';
 // import axios from "axios";
@@ -41,10 +41,10 @@ const Login = ({ searchParams }: IProps) => {
   
   // const [credentials, setcredentials] = useState({ email: " ", password: " " });
   // const {persistAtom} = recoilPersist()
-  const [email, setEmail] = useState<string>();
+  // const [email, setEmail] = useState<string>();
  const router = useRouter();
  const dispatch = useAppDispatch();
- const Username = useRef("")
+ const email = useRef("")
 
  const pass = useRef("")
  const [signinUser, { data, isLoading, error, isError, isSuccess }] =
@@ -56,7 +56,7 @@ const Login = ({ searchParams }: IProps) => {
 
   const onSubmit = async () => {
     const result = await signIn("credentials", {
-      Username: Username.current,
+      email: email.current,
       password: pass.current,
       redirect: true,
       callbackUrl: "/",
@@ -126,7 +126,9 @@ const Login = ({ searchParams }: IProps) => {
 
         {searchParams?.message && <p className="text-red-700 bg-red-100 py-2 px-5 rounded-md">{searchParams?.message}</p>}
       <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
-        <input  placeholder="username" type="text" onChange={(e) => (Username.current = e.target.value)} ></input>
+        {/* <input  placeholder="username" type="text" onChange={(e) => (Username.current = e.target.value)} ></input> */}
+        <input  placeholder="email" type="email" onChange={(e) => (email.current = e.target.value)} ></input>
+
         <input  placeholder="Password" type="password"   onChange={(e) => (pass.current = e.target.value)} ></input>
         <button onClick={onSubmit}>Login</button>
       </div>

@@ -3,7 +3,7 @@ import { InputControl, SubmitButton } from "formik-chakra-ui";
 import React from 'react'
 import Login from './Login';
 import { useRouter } from "next/router";
-import { useSignupUserMutation } from "./api/authApi";
+import { useSignupUserMutation } from "../pages/api/authApi";
 import { Form, Formik,Field } from "formik";
 import { useFormik } from "formik";
 
@@ -20,7 +20,7 @@ function SignUp() {
 
 
   interface MyFormValues {
-    username: string;
+    name: string;
     email: string;
     password: string;
     day:string;
@@ -33,7 +33,7 @@ function SignUp() {
   const router = useRouter();
   
   const [signupUser, { data, isLoading }] = useSignupUserMutation();
-  const initialValues: MyFormValues ={ username: "",email:"",password:"",day:"",month:"",year:""}
+  const initialValues: MyFormValues ={ name: "",email:"",password:"",day:"",month:"",year:""}
 
 
 
@@ -93,7 +93,7 @@ function SignUp() {
     <Field  className="px-2 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" 
 
      type="text"
-    name='username'
+    name='name'
     placeholder="Fullname"
 
  

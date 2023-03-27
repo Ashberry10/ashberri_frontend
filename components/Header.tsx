@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import Link from 'next/link';
 import { useRouter } from "next/router";
- import { UserView }  from '../pages/user/UserView';
+//  import { UserView }  from '../pages/user/UserView';
 // import SignUp from "../pages/SignUp";
 import { signIn, signOut, useSession } from "next-auth/react";
 
@@ -215,7 +215,7 @@ function Header() {
             <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
 
 
-        <UserView/>
+        {/* <UserView/> */}
 
             </div>
 
