@@ -73,6 +73,7 @@
 
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { access } from 'fs';
 
 
 
@@ -87,7 +88,7 @@ type User ={
   Cfirst:number
   password:string
   access_token:string
-
+  access:string
 
 
 
@@ -119,12 +120,12 @@ export const authApi = createApi({
 
 //PROFILE VIEW
   profile: builder.query({
-   query: (access_token) => ({
+   query: (access) => ({
     //  if (localStorage.getItem('token')) {
     url: 'profile/',
     method: 'GET',
     headers: {
-      'authorization': `Bearer ${access_token}`,
+      'authorization': `Bearer ${access}`,
     }
   //  }
    })
