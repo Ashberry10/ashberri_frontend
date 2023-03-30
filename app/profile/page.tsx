@@ -36,7 +36,7 @@ function Profile({children}:IProps) {
   // const [cart,setCart] = useState()
   const {data:session} = useSession();
   console.log({data:session});
-  const token = session?.user.token.access;
+  const token = session?.user.accessToken;
 
   console.log("token",token);
   const router = useRouter();
@@ -234,7 +234,7 @@ console.log("email", userData.email);
           </h1>
        {/* <h1>  Email: {userData.email}</h1>  */}
            <h5 className='text-lg'>Friends</h5>
-           <h1> {userData.email}</h1>
+           <h1>{userData.email}</h1>
            {/* <div className={"  min-h-screen "}>{children}</div> */}
            
            

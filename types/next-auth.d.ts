@@ -12,6 +12,7 @@ declare module "next-auth" {
       accessToken: string;
       access:string;
       token:string;
+      // ff:string;
     };
   }
 }

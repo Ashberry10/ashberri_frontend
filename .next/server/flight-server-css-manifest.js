@@ -1,33 +1,16 @@
 self.__RSC_CSS_MANIFEST={
   "__entry_css_mods__": {
-    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\auth\\login\\page": [
-      "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
-    ],
     "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\page": [
       "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
     ],
     "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page": [
       "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
     ],
-    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\signup\\page": [
-      "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css",
-      "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\node_modules\\react-datepicker\\dist\\react-datepicker.css"
-    ],
-    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\auth\\signup\\page": [
-      "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\node_modules\\react-datepicker\\dist\\react-datepicker.css",
-      "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
-    ],
-    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\protect\\page": [
+    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\auth\\login\\page": [
       "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
     ]
   },
   "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\layout.tsx": [
     "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
-  ],
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\signup\\page.tsx": [
-    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\node_modules\\react-datepicker\\dist\\react-datepicker.css"
-  ],
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\auth\\signup\\page.tsx": [
-    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\node_modules\\react-datepicker\\dist\\react-datepicker.css"
   ]
 }
