@@ -48,10 +48,10 @@ function Header() {
                      </a>
                     
                   
-                     <a onClick={() => router.push("/protect")}
+                     <a onClick={() => router.push("/alluser")}
                         className="text-sky-400 block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">
                      <svg className="h-8 w-8 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3" />   <h6 className="text-black">Home</h6> </svg>
-                     <h6 >Protected</h6>
+                     <h6 >Alluser</h6>
                      </a>
                    
                     
@@ -186,8 +186,8 @@ function Header() {
                      <h6 >Protected</h6>
                      </a>
                     */}
-                     <Link className="text-sky-600 hover:text-sky-700" href={"/protect"}>
-        Protect
+                     <Link className="text-sky-600 hover:text-sky-700" href={"/alluser"}>
+        Alluser
       </Link>
 
                      <a onClick={() => router.push("/profile")}
@@ -215,6 +215,8 @@ function Header() {
           <>
             <p className="text-sky-600"> {session.user.name}</p>
             <button className="text-red-500" onClick={() => signOut()}>
+            {/* <button className="text-red-500" onClick={() => signOut()  , router.push("/")}> */}
+
               Sign Out
             </button>
           </>

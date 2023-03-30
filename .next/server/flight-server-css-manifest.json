@@ -1,12 +1,18 @@
 {
   "__entry_css_mods__": {
-    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\page": [
-      "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
-    ],
     "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page": [
       "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
     ],
+    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\page": [
+      "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
+    ],
+    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\protect\\page": [
+      "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
+    ],
     "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\auth\\login\\page": [
+      "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
+    ],
+    "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page": [
       "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\styles\\globals.css"
     ]
   },

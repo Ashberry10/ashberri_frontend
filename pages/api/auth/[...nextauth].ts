@@ -1,4 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
+import { signOut } from 'next-auth/react';
 import NextAuth,{NextAuthOptions} from "next-auth"
 
 export const authOptions:NextAuthOptions = {
@@ -83,7 +84,8 @@ export const authOptions:NextAuthOptions = {
           
         },
         pages:{
-          signIn:"/auth/login"
+          signIn:"/auth/login",
+          signOut:"/"
       }
       };
 

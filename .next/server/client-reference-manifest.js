@@ -104,6 +104,32 @@ self.__RSC_MANIFEST={
         "async": false
       }
     },
+    "(app-client)/./app/profile/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./app/profile/page.tsx",
+        "chunks": [
+          "app/profile/page:app/profile/page"
+        ],
+        "name": "*",
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./app/profile/page.tsx",
+        "chunks": [
+          "app/profile/page:app/profile/page"
+        ],
+        "name": "",
+        "async": false
+      },
+      "default": {
+        "id": "(sc_client)/./app/profile/page.tsx",
+        "chunks": [
+          "app/profile/page:app/profile/page"
+        ],
+        "name": "default",
+        "async": false
+      }
+    },
     "(app-client)/./app/layout.tsx": {
       "*": {
         "id": "(sc_client)/./app/layout.tsx",
@@ -130,27 +156,27 @@ self.__RSC_MANIFEST={
         "async": false
       }
     },
-    "(app-client)/./app/profile/page.tsx": {
+    "(app-client)/./app/protect/page.tsx": {
       "*": {
-        "id": "(sc_client)/./app/profile/page.tsx",
+        "id": "(sc_client)/./app/protect/page.tsx",
         "chunks": [
-          "app/profile/page:app/profile/page"
+          "app/protect/page:app/protect/page"
         ],
         "name": "*",
         "async": false
       },
       "": {
-        "id": "(sc_client)/./app/profile/page.tsx",
+        "id": "(sc_client)/./app/protect/page.tsx",
         "chunks": [
-          "app/profile/page:app/profile/page"
+          "app/protect/page:app/protect/page"
         ],
         "name": "",
         "async": false
       },
       "default": {
-        "id": "(sc_client)/./app/profile/page.tsx",
+        "id": "(sc_client)/./app/protect/page.tsx",
         "chunks": [
-          "app/profile/page:app/profile/page"
+          "app/protect/page:app/protect/page"
         ],
         "name": "default",
         "async": false
@@ -388,6 +414,30 @@ self.__RSC_MANIFEST={
     "name": "default",
     "async": false
   },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page.tsx": {
+    "id": "(app-client)/./app/profile/page.tsx",
+    "chunks": [
+      "app/profile/page:app/profile/page"
+    ],
+    "name": "*",
+    "async": false
+  },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page.tsx#": {
+    "id": "(app-client)/./app/profile/page.tsx",
+    "chunks": [
+      "app/profile/page:app/profile/page"
+    ],
+    "name": "",
+    "async": false
+  },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page.tsx#default": {
+    "id": "(app-client)/./app/profile/page.tsx",
+    "chunks": [
+      "app/profile/page:app/profile/page"
+    ],
+    "name": "default",
+    "async": false
+  },
   "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\layout.tsx": {
     "id": "(app-client)/./app/layout.tsx",
     "chunks": [
@@ -412,26 +462,26 @@ self.__RSC_MANIFEST={
     "name": "default",
     "async": false
   },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page.tsx": {
-    "id": "(app-client)/./app/profile/page.tsx",
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\protect\\page.tsx": {
+    "id": "(app-client)/./app/protect/page.tsx",
     "chunks": [
-      "app/profile/page:app/profile/page"
+      "app/protect/page:app/protect/page"
     ],
     "name": "*",
     "async": false
   },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page.tsx#": {
-    "id": "(app-client)/./app/profile/page.tsx",
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\protect\\page.tsx#": {
+    "id": "(app-client)/./app/protect/page.tsx",
     "chunks": [
-      "app/profile/page:app/profile/page"
+      "app/protect/page:app/protect/page"
     ],
     "name": "",
     "async": false
   },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page.tsx#default": {
-    "id": "(app-client)/./app/profile/page.tsx",
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\protect\\page.tsx#default": {
+    "id": "(app-client)/./app/protect/page.tsx",
     "chunks": [
-      "app/profile/page:app/profile/page"
+      "app/protect/page:app/protect/page"
     ],
     "name": "default",
     "async": false
