@@ -19,24 +19,19 @@ import da from 'date-fns/esm/locale/da/index.js';
 // import { useSession } from 'next-auth/react';
 import { signIn, signOut, useSession } from "next-auth/react";
 // import Provider from '../Provider';
-import { ReactNode } from 'react';
+
 import { setUserInfo, unsetUserInfo } from '../../pages/state/userSlice';
 
 
-interface IProps {
-  children : ReactNode;
-  session : any;
-  
-}
 
 
-function Profile({children}:IProps) {
+function Profile() {
   const dispatch = useAppDispatch();
   // const tok = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMjc4Nzk2LCJpYXQiOjE2ODAxMDU5OTYsImp0aSI6Ijk1YWY2NzdkMDVhMTQ5YzJhZWE1MjgyYTIwNjgyNDg1IiwidXNlcl9pZCI6NDV9.QjC3ItmiCQiTtx_5qWpwofS_n2xtITZ2mDayELxtlXk"
   // const [cart,setCart] = useState()
   const {data:session} = useSession();
   console.log({data:session});
-  const token = session?.user.accessToken;
+  const token:any = session?.user.accessToken;
 
   console.log("token",token);
   const router = useRouter();
@@ -46,16 +41,15 @@ function Profile({children}:IProps) {
   // console.log(token);
   const { data, isSuccess } =  useProfileQuery(token)
 
-  // const [userData, setUserData] = useState({
-  //   email: "",
-  //   name: ""
-  // })
+
   const [userData, setUserData] = useState({
     email: "",
     name: ""
   })
   console.log("profile data",data);
 console.log("email", userData.email);
+
+
   // Store User Data in Local State
   useEffect(() => {
     if (data && isSuccess) {
@@ -69,10 +63,11 @@ console.log("email", userData.email);
   // Store User Data in Redux Store
   useEffect(() => {
     if (data && isSuccess) {
+     
       dispatch(setUserInfo({
         email: data.email,
         name: data.name
-      }))
+        }))
     }
   }, [data, isSuccess, dispatch])
 
@@ -82,114 +77,6 @@ console.log("email", userData.email);
 
 
 
-
-
-  // const  {name,token,Dfirst,Cfirst}  = useAppSelector((state) => state.auth);
-  // const token = localStorage.getItem("token");
-  // console.log(name,Dfirst,Cfirst);
-  //  const {data:data} = useGetAllUserQuery();
-
-
-//  const names = localStorage.getItem("name");
-
-
-
-
-// if (isSuccess) {
-//   dispatch(setUser({ token: data.token, name: data.name  }));
-  
-//   localStorage.setItem("token", data.token);
-//   console.log(data.token);
-// }
-
-
-
-
-
-// const  access_token = getToken()
-
-// const {data, isSuccess} = useProfileQuery(access_token);
-
-
-    // console.log(data.name);
-    // if (isSuccess) {
-    //     dispatch(setUser({ token: data.token, name: data.name }));
-        // navigate("/");
-    // const token =    localStorage.setItem("token", data.token);
-        // console.log(data.token);
-        // const token = localStorage.getItem("token");
-        
-        // if(!token){
-        //     return{
-        //     redirect:{
-        //         destination: '/login' 
-        //     }
-        // }
-        // }
-    //   }
-// console.log(name);
-    // console.log(data);
-    
-
-        
-        // console.log(data.name);
-        // Perform localStorage action
-      
-      
-      // Store User Data in Local State
-  //  useEffect(() => {
-
-  //   if (!localStorage.getItem('token')) {
-  //     router.push("/Login")
-  // }
-  //   if (localStorage.getItem("name")) {
-      
-  //      setCart(JSON.parse(localStorage.getItem("name") || " ") )
-  //     // const pl = (localStorage.getItem("name"));
-  //   }
-  //   if (localStorage.getItem("date_of_birth")) {
-      
-  //     setdate_of_birth(JSON.parse(localStorage.getItem("date_of_birth") || " ") )
-  //    // const pl = (localStorage.getItem("name"));
-  //  }
-  //   }, []) 
-
-
-
-
-        // Store User Data in Redux Store
-  // useEffect(() => {
-  //   if (data && isSuccess) {
-  //     dispatch(setUserInfo({
-  //       email: data.email,
-  //       name: data.name
-  //     }))
-  //   }
-  // }, [data, isSuccess, dispatch])
-
-
-
-
-
-
-  // useEffect(() => {
-  //   if (data && isSuccess) {
-  //     setUserData({
-  //       email: data.email,
-  //       name: data.name,
-  //     })
-  //   }
-  // }, [data, isSuccess])
-
-  // // Store User Data in Redux Store
-  // useEffect(() => {
-  //   if (data && isSuccess) {
-  //     dispatch(setUserInfo({
-  //       email: data.email,
-  //       name: data.name
-  //     }))
-  //   }
-  // }, [data, isSuccess, dispatch])
   return (
   
     <div>

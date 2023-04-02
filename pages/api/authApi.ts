@@ -89,6 +89,8 @@ type User ={
   password:string
   access_token:string
   access:string
+  FriendName:string
+  data:string
 
 
 
@@ -118,18 +120,39 @@ export const authApi = createApi({
 
 
 
+
+    // AllUserPredict
+    AllUserPredict: builder.query<User[], void>({
+      query: (access) => ({
+       //  if (localStorage.getItem('token')) {
+       url: 'Modelapi/',
+       method: 'GET',
+       headers: {
+         'authorization': `Bearer ${access}`,
+       }
+     //  }
+      })
+     }),
+  
+
+
 //PROFILE VIEW
-  profile: builder.query({
-   query: (access) => ({
-    //  if (localStorage.getItem('token')) {
-    url: 'profile/',
-    method: 'GET',
-    headers: {
-      'authorization': `Bearer ${access}`,
-    }
-  //  }
-   })
-  }),
+profile: builder.query({
+  query: (access) => ({
+   //  if (localStorage.getItem('token')) {
+   url: 'profile/',
+   method: 'GET',
+   headers: {
+     'authorization': `Bearer ${access}`,
+   }
+ //  }
+  })
+ }),
+
+
+
+
+
 
   // signinUser: builder.mutation({
   //   const token:string = localStorage.getItem('token')
@@ -254,4 +277,4 @@ export const authApi = createApi({
 })
 
 // Export hooks for usage in functional components, which are auto-generated based on the defined endpoints
-export const { useGetAllUserQuery,useProfileQuery,useSignupUserMutation, useSigninUserMutation  } = authApi
+export const { useGetAllUserQuery,useProfileQuery,useAllUserPredictQuery, useSignupUserMutation, useSigninUserMutation  } = authApi
