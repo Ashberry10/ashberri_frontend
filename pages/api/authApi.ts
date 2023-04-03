@@ -72,6 +72,7 @@
 
 
 
+import { Id } from '@reduxjs/toolkit/dist/tsHelpers';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { access } from 'fs';
 
@@ -91,7 +92,8 @@ type User ={
   access:string
   FriendName:string
   data:string
-
+  Compatiblity:string
+  
 
 
 }
@@ -104,6 +106,7 @@ export const authApi = createApi({
  // RTK Query ships with fetchBaseQuery, which is a lightweight fetch wrapper that automatically handles request headers and response parsing in a manner similar to common libraries like axios.
  baseQuery: fetchBaseQuery({
   baseUrl: 'http://127.0.0.1:8000/api/user/',
+  // baseUrl:'https://jsonplaceholder.typicode.com/'
  }),
 
  // The set of operations that we want to perform against the server.
@@ -113,6 +116,7 @@ export const authApi = createApi({
   getAllUser: builder.query<User[], void>({
    query: () => ({
     url: 'getallusers/',
+    // url: 'posts',
     // providesTags: [{ data: "Todos", id: "LIST" }],
     method: 'GET'
    })
@@ -120,34 +124,64 @@ export const authApi = createApi({
 
 
 
+   //GETALLUSERById
+   getAllUserId: builder.query({
+    query: (id) => {
+     console.log("ID:", id)
+     return {
+      url: `getallusers/?id=${id}`,
+      // url: `posts/${id}`,
+      method: 'GET'
+     }
+    }
+   }),
 
-    // AllUserPredict
-    AllUserPredict: builder.query<User[], void>({
-      query: (access) => ({
-       //  if (localStorage.getItem('token')) {
-       url: 'Modelapi/',
-       method: 'GET',
-       headers: {
-         'authorization': `Bearer ${access}`,
-       }
-     //  }
-      })
-     }),
+
+  // AllUserPredict
+  AllUserPredict: builder.query<User[], void>({
+    query: (access) => ({
+      //  if (localStorage.getItem('token')) {
+      url: 'Modelapi/',
+      method: 'GET',
+      headers: {
+        'authorization': `Bearer ${access}`,
+      }
+   
+    })
+    }),
   
 
 
+
+
+ // AllUserPredictbyid
+  profileById: builder.query({
+     query: ({ access,id } ) => {
+      return {url:`Modelapi/?id=${id}`,
+        method: 'GET',
+        headers: {
+        'authorization': `Bearer ${access}`,
+       }}
+      }
+     }), 
+
+
 //PROFILE VIEW
-profile: builder.query({
-  query: (access) => ({
-   //  if (localStorage.getItem('token')) {
-   url: 'profile/',
-   method: 'GET',
-   headers: {
+ profile: builder.query({
+   query: (access) => ({
+    //  if (localStorage.getItem('token')) {
+    url: 'profile/',
+    method: 'GET',
+    headers: {
      'authorization': `Bearer ${access}`,
-   }
- //  }
-  })
- }),
+    }
+ 
+    })
+   }),
+
+
+
+
 
 
 
@@ -277,4 +311,4 @@ profile: builder.query({
 })
 
 // Export hooks for usage in functional components, which are auto-generated based on the defined endpoints
-export const { useGetAllUserQuery,useProfileQuery,useAllUserPredictQuery, useSignupUserMutation, useSigninUserMutation  } = authApi
+export const { useGetAllUserQuery,useProfileQuery,useAllUserPredictQuery, useSignupUserMutation,useGetAllUserIdQuery, useSigninUserMutation,useProfileByIdQuery  } = authApi

@@ -53,7 +53,10 @@ function Header() {
                      <svg className="h-8 w-8 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3" />   <h6 className="text-black">Home</h6> </svg>
                      <h6 >Alluser</h6>
                      </a>
-                   
+
+                     <Link className="text-sky-600 hover:text-sky-700" href={"/userprofile"}>
+        UserProfile
+      </Link>
                     
 
                      <a  onClick={() => router.push("/profile")}
@@ -188,6 +191,12 @@ function Header() {
                     */}
                      <Link className="text-sky-600 hover:text-sky-700" href={"/alluser"}>
         Alluser
+      </Link>
+      <br/>
+
+
+      <Link className="text-sky-600 hover:text-sky-700" href={"/userprofile"}>
+        UserProfile
       </Link>
 
                      <a onClick={() => router.push("/profile")}

@@ -104,6 +104,32 @@
         "async": false
       }
     },
+    "(app-client)/./app/userprofile/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./app/userprofile/page.tsx",
+        "chunks": [
+          "app/userprofile/page:app/userprofile/page"
+        ],
+        "name": "*",
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./app/userprofile/page.tsx",
+        "chunks": [
+          "app/userprofile/page:app/userprofile/page"
+        ],
+        "name": "",
+        "async": false
+      },
+      "default": {
+        "id": "(sc_client)/./app/userprofile/page.tsx",
+        "chunks": [
+          "app/userprofile/page:app/userprofile/page"
+        ],
+        "name": "default",
+        "async": false
+      }
+    },
     "(app-client)/./app/layout.tsx": {
       "*": {
         "id": "(sc_client)/./app/layout.tsx",
@@ -130,58 +156,6 @@
         "async": false
       }
     },
-    "(app-client)/./app/alluser/page.tsx": {
-      "*": {
-        "id": "(sc_client)/./app/alluser/page.tsx",
-        "chunks": [
-          "app/alluser/page:app/alluser/page"
-        ],
-        "name": "*",
-        "async": false
-      },
-      "": {
-        "id": "(sc_client)/./app/alluser/page.tsx",
-        "chunks": [
-          "app/alluser/page:app/alluser/page"
-        ],
-        "name": "",
-        "async": false
-      },
-      "default": {
-        "id": "(sc_client)/./app/alluser/page.tsx",
-        "chunks": [
-          "app/alluser/page:app/alluser/page"
-        ],
-        "name": "default",
-        "async": false
-      }
-    },
-    "(app-client)/./app/profile/page.tsx": {
-      "*": {
-        "id": "(sc_client)/./app/profile/page.tsx",
-        "chunks": [
-          "app/profile/page:app/profile/page"
-        ],
-        "name": "*",
-        "async": false
-      },
-      "": {
-        "id": "(sc_client)/./app/profile/page.tsx",
-        "chunks": [
-          "app/profile/page:app/profile/page"
-        ],
-        "name": "",
-        "async": false
-      },
-      "default": {
-        "id": "(sc_client)/./app/profile/page.tsx",
-        "chunks": [
-          "app/profile/page:app/profile/page"
-        ],
-        "name": "default",
-        "async": false
-      }
-    },
     "(app-client)/./app/auth/login/page.tsx": {
       "*": {
         "id": "(sc_client)/./app/auth/login/page.tsx",
@@ -203,6 +177,32 @@
         "id": "(sc_client)/./app/auth/login/page.tsx",
         "chunks": [
           "app/auth/login/page:app/auth/login/page"
+        ],
+        "name": "default",
+        "async": false
+      }
+    },
+    "(app-client)/./app/alluser/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./app/alluser/page.tsx",
+        "chunks": [
+          "app/alluser/page:app/alluser/page"
+        ],
+        "name": "*",
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./app/alluser/page.tsx",
+        "chunks": [
+          "app/alluser/page:app/alluser/page"
+        ],
+        "name": "",
+        "async": false
+      },
+      "default": {
+        "id": "(sc_client)/./app/alluser/page.tsx",
+        "chunks": [
+          "app/alluser/page:app/alluser/page"
         ],
         "name": "default",
         "async": false
@@ -414,6 +414,30 @@
     "name": "default",
     "async": false
   },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\userprofile\\page.tsx": {
+    "id": "(app-client)/./app/userprofile/page.tsx",
+    "chunks": [
+      "app/userprofile/page:app/userprofile/page"
+    ],
+    "name": "*",
+    "async": false
+  },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\userprofile\\page.tsx#": {
+    "id": "(app-client)/./app/userprofile/page.tsx",
+    "chunks": [
+      "app/userprofile/page:app/userprofile/page"
+    ],
+    "name": "",
+    "async": false
+  },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\userprofile\\page.tsx#default": {
+    "id": "(app-client)/./app/userprofile/page.tsx",
+    "chunks": [
+      "app/userprofile/page:app/userprofile/page"
+    ],
+    "name": "default",
+    "async": false
+  },
   "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\layout.tsx": {
     "id": "(app-client)/./app/layout.tsx",
     "chunks": [
@@ -438,54 +462,6 @@
     "name": "default",
     "async": false
   },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx": {
-    "id": "(app-client)/./app/alluser/page.tsx",
-    "chunks": [
-      "app/alluser/page:app/alluser/page"
-    ],
-    "name": "*",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx#": {
-    "id": "(app-client)/./app/alluser/page.tsx",
-    "chunks": [
-      "app/alluser/page:app/alluser/page"
-    ],
-    "name": "",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx#default": {
-    "id": "(app-client)/./app/alluser/page.tsx",
-    "chunks": [
-      "app/alluser/page:app/alluser/page"
-    ],
-    "name": "default",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page.tsx": {
-    "id": "(app-client)/./app/profile/page.tsx",
-    "chunks": [
-      "app/profile/page:app/profile/page"
-    ],
-    "name": "*",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page.tsx#": {
-    "id": "(app-client)/./app/profile/page.tsx",
-    "chunks": [
-      "app/profile/page:app/profile/page"
-    ],
-    "name": "",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\profile\\page.tsx#default": {
-    "id": "(app-client)/./app/profile/page.tsx",
-    "chunks": [
-      "app/profile/page:app/profile/page"
-    ],
-    "name": "default",
-    "async": false
-  },
   "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\auth\\login\\page.tsx": {
     "id": "(app-client)/./app/auth/login/page.tsx",
     "chunks": [
@@ -506,6 +482,30 @@
     "id": "(app-client)/./app/auth/login/page.tsx",
     "chunks": [
       "app/auth/login/page:app/auth/login/page"
+    ],
+    "name": "default",
+    "async": false
+  },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx": {
+    "id": "(app-client)/./app/alluser/page.tsx",
+    "chunks": [
+      "app/alluser/page:app/alluser/page"
+    ],
+    "name": "*",
+    "async": false
+  },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx#": {
+    "id": "(app-client)/./app/alluser/page.tsx",
+    "chunks": [
+      "app/alluser/page:app/alluser/page"
+    ],
+    "name": "",
+    "async": false
+  },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx#default": {
+    "id": "(app-client)/./app/alluser/page.tsx",
+    "chunks": [
+      "app/alluser/page:app/alluser/page"
     ],
     "name": "default",
     "async": false

@@ -11,7 +11,7 @@ import  {useEffect}  from 'react';
 import  {useState}  from 'react';
 
 import { signIn, signOut, useSession } from "next-auth/react";
-import { setUserInfo, unsetUserInfo,setalluserPredict } from '../../pages/state/userSlice';
+import { setalluserPredict } from '../../pages/state/modelSlice';
 
 
 function alluser() {
@@ -26,7 +26,7 @@ function alluser() {
   // const {data:alluser} =  useGetAllUserQuery()
   
 
-  // console.log("alluse:",data.Prediction);
+
   // const [userData, setUserData] = useState({
   
   //   FriendName:""
@@ -36,7 +36,17 @@ function alluser() {
 //  console.log(data.FriendName);
 
 
-  
+
+  // Store User Data in Redux Store
+
+  // if (isSuccess) {
+  //   dispatch(setalluserPredict({ FriendName: data.FriendName, Compatiblity: data.Compatiblity }));
+
+  // }
+
+
+
+
   // Store User Data in Local State
   //   useEffect(() => {
   //   if (data && isSuccess) {
@@ -48,7 +58,7 @@ function alluser() {
   //   }
   // }, [data, isSuccess])
 
-  // // // Store User Data in Redux Store
+  // // Store User Data in Redux Store
   // useEffect(() => {
   //   if (data && isSuccess) {
      
@@ -66,8 +76,8 @@ function alluser() {
           <React.Fragment key={user.id}>
             <div>
         
-              <span>{user.FriendName}</span>
-              <span>{user.Compatiblity}</span>
+              <span>{user.FriendName}={user.Compatiblity}</span>
+              {/* <span>{user.Compatiblity}</span> */}
 
             </div>
           

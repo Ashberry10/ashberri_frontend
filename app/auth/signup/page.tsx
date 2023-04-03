@@ -286,7 +286,7 @@ export default signup;
 // } from '@material-ui/core'
 // import { Formik, Form, FormikProps } from 'formik'
 // import * as Yup from 'yup'
-import { signIn } from 'next-auth/react';
+
 
 // const useStyles = makeStyles((theme: Theme) =>
 //     createStyles({
