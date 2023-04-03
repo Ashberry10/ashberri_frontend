@@ -155,58 +155,6 @@ self.__RSC_MANIFEST={
         "name": "default",
         "async": false
       }
-    },
-    "(app-client)/./app/auth/login/page.tsx": {
-      "*": {
-        "id": "(sc_client)/./app/auth/login/page.tsx",
-        "chunks": [
-          "app/auth/login/page:app/auth/login/page"
-        ],
-        "name": "*",
-        "async": false
-      },
-      "": {
-        "id": "(sc_client)/./app/auth/login/page.tsx",
-        "chunks": [
-          "app/auth/login/page:app/auth/login/page"
-        ],
-        "name": "",
-        "async": false
-      },
-      "default": {
-        "id": "(sc_client)/./app/auth/login/page.tsx",
-        "chunks": [
-          "app/auth/login/page:app/auth/login/page"
-        ],
-        "name": "default",
-        "async": false
-      }
-    },
-    "(app-client)/./app/alluser/page.tsx": {
-      "*": {
-        "id": "(sc_client)/./app/alluser/page.tsx",
-        "chunks": [
-          "app/alluser/page:app/alluser/page"
-        ],
-        "name": "*",
-        "async": false
-      },
-      "": {
-        "id": "(sc_client)/./app/alluser/page.tsx",
-        "chunks": [
-          "app/alluser/page:app/alluser/page"
-        ],
-        "name": "",
-        "async": false
-      },
-      "default": {
-        "id": "(sc_client)/./app/alluser/page.tsx",
-        "chunks": [
-          "app/alluser/page:app/alluser/page"
-        ],
-        "name": "default",
-        "async": false
-      }
     }
   },
   "__edge_ssr_module_mapping__": {},
@@ -458,54 +406,6 @@ self.__RSC_MANIFEST={
     "id": "(app-client)/./app/layout.tsx",
     "chunks": [
       "app/layout:app/layout"
-    ],
-    "name": "default",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\auth\\login\\page.tsx": {
-    "id": "(app-client)/./app/auth/login/page.tsx",
-    "chunks": [
-      "app/auth/login/page:app/auth/login/page"
-    ],
-    "name": "*",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\auth\\login\\page.tsx#": {
-    "id": "(app-client)/./app/auth/login/page.tsx",
-    "chunks": [
-      "app/auth/login/page:app/auth/login/page"
-    ],
-    "name": "",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\auth\\login\\page.tsx#default": {
-    "id": "(app-client)/./app/auth/login/page.tsx",
-    "chunks": [
-      "app/auth/login/page:app/auth/login/page"
-    ],
-    "name": "default",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx": {
-    "id": "(app-client)/./app/alluser/page.tsx",
-    "chunks": [
-      "app/alluser/page:app/alluser/page"
-    ],
-    "name": "*",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx#": {
-    "id": "(app-client)/./app/alluser/page.tsx",
-    "chunks": [
-      "app/alluser/page:app/alluser/page"
-    ],
-    "name": "",
-    "async": false
-  },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx#default": {
-    "id": "(app-client)/./app/alluser/page.tsx",
-    "chunks": [
-      "app/alluser/page:app/alluser/page"
     ],
     "name": "default",
     "async": false
