@@ -104,29 +104,37 @@ self.__RSC_MANIFEST={
         "async": false
       }
     },
-    "(app-client)/./app/userprofile/page.tsx": {
+    "(app-client)/./app/alluser/page.tsx": {
       "*": {
-        "id": "(sc_client)/./app/userprofile/page.tsx",
+        "id": "(sc_client)/./app/alluser/page.tsx",
         "chunks": [
-          "app/userprofile/page:app/userprofile/page"
+          "app/alluser/page:app/alluser/page"
         ],
         "name": "*",
         "async": false
       },
       "": {
-        "id": "(sc_client)/./app/userprofile/page.tsx",
+        "id": "(sc_client)/./app/alluser/page.tsx",
         "chunks": [
-          "app/userprofile/page:app/userprofile/page"
+          "app/alluser/page:app/alluser/page"
         ],
         "name": "",
         "async": false
       },
       "default": {
-        "id": "(sc_client)/./app/userprofile/page.tsx",
+        "id": "(sc_client)/./app/alluser/page.tsx",
         "chunks": [
-          "app/userprofile/page:app/userprofile/page"
+          "app/alluser/page:app/alluser/page"
         ],
         "name": "default",
+        "async": false
+      },
+      "getStaticProps": {
+        "id": "(sc_client)/./app/alluser/page.tsx",
+        "chunks": [
+          "app/alluser/page:app/alluser/page"
+        ],
+        "name": "getStaticProps",
         "async": false
       }
     },
@@ -362,28 +370,36 @@ self.__RSC_MANIFEST={
     "name": "default",
     "async": false
   },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\userprofile\\page.tsx": {
-    "id": "(app-client)/./app/userprofile/page.tsx",
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx": {
+    "id": "(app-client)/./app/alluser/page.tsx",
     "chunks": [
-      "app/userprofile/page:app/userprofile/page"
+      "app/alluser/page:app/alluser/page"
     ],
     "name": "*",
     "async": false
   },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\userprofile\\page.tsx#": {
-    "id": "(app-client)/./app/userprofile/page.tsx",
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx#": {
+    "id": "(app-client)/./app/alluser/page.tsx",
     "chunks": [
-      "app/userprofile/page:app/userprofile/page"
+      "app/alluser/page:app/alluser/page"
     ],
     "name": "",
     "async": false
   },
-  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\userprofile\\page.tsx#default": {
-    "id": "(app-client)/./app/userprofile/page.tsx",
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx#default": {
+    "id": "(app-client)/./app/alluser/page.tsx",
     "chunks": [
-      "app/userprofile/page:app/userprofile/page"
+      "app/alluser/page:app/alluser/page"
     ],
     "name": "default",
+    "async": false
+  },
+  "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\alluser\\page.tsx#getStaticProps": {
+    "id": "(app-client)/./app/alluser/page.tsx",
+    "chunks": [
+      "app/alluser/page:app/alluser/page"
+    ],
+    "name": "getStaticProps",
     "async": false
   },
   "F:\\SIDEPROJECT\\ASHBERRI\\ashberri_frontend\\app\\layout.tsx": {

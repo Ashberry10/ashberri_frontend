@@ -91,7 +91,7 @@ type User ={
   access_token:string
   access:string
   FriendName:string
-  data:string
+  data:any
   Compatiblity:string
   
 
