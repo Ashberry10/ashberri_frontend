@@ -154,7 +154,7 @@ export const authApi = createApi({
 
 
 
- // AllUserPredictbyid
+ // UserPredictbyid
   profileById: builder.query({
      query: ({ access,id } ) => {
       return {url:`Modelapi/?id=${id}`,

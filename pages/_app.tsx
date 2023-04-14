@@ -1,4 +1,4 @@
-// import '../styles/globals.css'
+// import '@/styles/globals.css'
 // import type { AppProps } from 'next/app'
 
 // export default function App({ Component, pageProps }: AppProps) {
@@ -7,25 +7,39 @@
 
 
 
+import {SessionProvider} from "next-auth/react";
 
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import {store} from '../store/store'
+import {store} from './store/store'
 import { ChakraProvider } from "@chakra-ui/react";
 import {Provider} from 'react-redux'
+import Header from '../components/Header'
+import { ReactNode } from 'react';
 
-function MyApp({ Component, pageProps }: AppProps) {
+
+interface IProps {
+  children : ReactNode;
+  session : any;
+}
+function MyApp({ Component, pageProps}: AppProps) {
   return (
-
+<SessionProvider session={pageProps.session} >
     <Provider store={store}>
       <ChakraProvider>
 
 
-
+      <Header/>
      <Component {...pageProps} />
       </ChakraProvider>
      </Provider>
+     </SessionProvider>
   )
 }
 
 export default MyApp
+
+
+
+
+
