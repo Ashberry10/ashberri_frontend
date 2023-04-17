@@ -44,10 +44,14 @@ function Profile() {
 
   const [userData, setUserData] = useState({
     email: "",
-    name: ""
+    name: "",
+    C_second:"",
+    D_second:"",
+    date_of_birth:""
+
   })
   console.log("profile data",data);
-console.log("email", userData.email);
+// console.log("email", userData. C_second);
 
 
   // Store User Data in Local State
@@ -56,20 +60,24 @@ console.log("email", userData.email);
       setUserData({
         email: data.email,
         name: data.name,
+        C_second:data.C_second,
+        D_second:data.D_second,
+        date_of_birth:data.date_of_birth
+
       })
     }
   }, [data, isSuccess])
 
   // Store User Data in Redux Store
-  useEffect(() => {
-    if (data && isSuccess) {
+  // useEffect(() => {
+  //   if (data && isSuccess) {
      
-      dispatch(setUserInfo({
-        email: data.email,
-        name: data.name
-        }))
-    }
-  }, [data, isSuccess, dispatch])
+  //     dispatch(setUserInfo({
+  //       email: data.email,
+  //       name: data.name
+  //       }))
+  //   }
+  // }, [data, isSuccess, dispatch])
 
 
 
@@ -122,6 +130,8 @@ console.log("email", userData.email);
        {/* <h1>  Email: {userData.email}</h1>  */}
            <h5 className='text-lg'>Friends</h5>
            <h1>{userData.email}</h1>
+       <h1>Your DOB:  {userData.date_of_birth}<br/></h1>   
+
            {/* <div className={"  min-h-screen "}>{children}</div> */}
            
            

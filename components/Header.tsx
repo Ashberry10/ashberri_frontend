@@ -58,9 +58,9 @@ function Header() {
 
                      </a>
 
-                     <Link className="text-sky-600 hover:text-sky-700" href={"/userprofile"}>
+                     {/* <Link className="text-sky-600 hover:text-sky-700" href={"/userprofile"}>
         UserProfile
-      </Link>
+      </Link> */}
                     
 
                      <a  onClick={() => router.push("/Profile")}
@@ -213,9 +213,9 @@ className="text-sky-400 block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4
 
 
 
-      <Link className="text-sky-600 hover:text-sky-700" href={"/userprofile"}>
+      {/* <Link className="text-sky-600 hover:text-sky-700" href={"/userprofile"}>
         UserProfile
-      </Link>
+      </Link> */}
 
                      <a onClick={() => router.push("/Profile")}
                         className="text-sky-400 block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">

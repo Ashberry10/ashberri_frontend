@@ -25,10 +25,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/Alluser.js"
     ],
-    "/Login": [
+    "/Profile": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/Login.js"
+      "static/chunks/pages/Profile.js"
+    ],
+    "/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/[id].js"
     ],
     "/_app": [
       "static/chunks/webpack.js",

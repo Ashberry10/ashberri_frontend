@@ -8,8 +8,9 @@ import { useRouter } from "next/navigation";
 import { useSignupUserMutation } from "./api/authApi";
 import { Form, Formik,Field } from "formik";
 import { useFormik } from "formik";
-
+import { signIn } from 'next-auth/react';
 // import "react-datepicker/dist/react-datepicker.css";
+import { useRef } from 'react';
 
 // import { SingleDatepicker } from "chakra-dayzed-datepicker";
 
@@ -29,7 +30,9 @@ function signup() {
     month:string;
     year:string;
   }
-  
+  const email = useRef("")
+
+  const pass = useRef("")
 
   const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
@@ -37,7 +40,14 @@ function signup() {
   const [signupUser, { data, isLoading }] = useSignupUserMutation();
   const initialValues: MyFormValues ={ name: "",email:"",password:"",day:"",month:"",year:""}
 
-
+  const onSubmit = async () => {
+    const result = await signIn("credentials", {
+      email: email.current,
+      password: pass.current,
+      redirect: true,
+      callbackUrl: "/",
+    });
+  }
 
   return (
       <>
@@ -211,8 +221,8 @@ function signup() {
                       </button>
                       
                       <button   className="bg-green-600 hover:bg-green-700 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        >Submit</button>
-                  
+                        onClick={onSubmit}>Submitt</button>
+               
                     </div>
                     </Form>
       )}

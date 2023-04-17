@@ -132,7 +132,7 @@ const Login = ({ searchParams }: IProps) => {
         <input  placeholder="email" type="email" onChange={(e) => (email.current = e.target.value)} ></input>
 
         <input  placeholder="Password" type="password"   onChange={(e) => (pass.current = e.target.value)} ></input>
-        <button onClick={onSubmit}>Login</button>
+        <button  onClick={onSubmit}>Login</button>
       </div>
     </div>
           {/* <input className="px-4 h-12   my-2 border border-1 outline-violet-300 border-gray-200 rounded-lg" type="text" placeholder="Email address or phone number" />
