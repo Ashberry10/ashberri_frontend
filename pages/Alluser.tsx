@@ -200,7 +200,31 @@ const {data,isSuccess} =  useAllUserPredictQuery(token)
 
 
        </div>
-  
+
+
+// generate code
+
+/* <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+<header className="w-full h-16 bg-white shadow">
+  <nav className="flex items-center justify-between w-full h-full px-4">
+    <div className="font-bold text-xl">My Website</div>
+    <div className="flex items-center">
+      <a href="#" className="mx-4 hover:text-gray-500">Home</a>
+      <a href="#" className="mx-4 hover:text-gray-500">About</a>
+      <a href="#" className="mx-4 hover:text-gray-500">Contact</a>
+    </div>
+  </nav>
+</header>
+<main className="flex flex-col items-center justify-center w-full flex-1 px-4">
+  <h1 className="text-4xl font-bold text-center mb-8">Welcome to My Website</h1>
+  <p className="text-xl text-center mb-8">This is a basic example of a responsive website using Tailwind CSS and React.</p>
+  <button className="px-8 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-700">Learn More</button>
+</main>
+<footer className="w-full h-16 bg-gray-200 flex items-center justify-center">
+  <p>&copy; 2023 My Website</p>
+</footer>
+</div>
+   */
   );
 }
 
