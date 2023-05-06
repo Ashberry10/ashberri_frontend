@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import da from 'date-fns/esm/locale/da/index.js';
+// import Header from '../components/Header'
 
 // import  { getToken }  from "./LocalStorage";
 // import { setUserInfo, unsetUserInfo } from '../pages/user/setUserInfoSlice';
@@ -86,7 +87,6 @@ function Profile() {
 
 
   return (
-  
     <div>
       
         {/* {
@@ -118,6 +118,8 @@ function Profile() {
     
 
           ))} */}
+  {/* <Header/> */}
+
 <h1>
           {/* Your Name: {name} <br/> */}
           {/* Your dateofbirth: {date_of_birth} <br/> */}

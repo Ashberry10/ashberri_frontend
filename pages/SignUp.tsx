@@ -50,7 +50,7 @@ function signup() {
       email: email.current,
       password: pass.current,
       redirect: true,
-      callbackUrl: "/",
+      // callbackUrl: "/",
     });
   }
 
@@ -64,8 +64,8 @@ function signup() {
 
         <div className="mb-5">
 
-          <h1 className='text-sky-400 text-6xl flex  justify-center'>ashberri</h1><br />
-          <p className='text-gray-600 text-2xl flex justify-center '>People those how highly compatible  <br /> and  think  like U,connect in ashberri...</p>
+          <h1 className='text-sky-400 text-6xl flex  justify-center'>frindcafe</h1><br />
+          <p className='text-gray-600 text-2xl flex justify-center '>People those how highly compatible  <br /> and  think  like U,connect in frindcafe...</p>
 
         </div>
         <div
@@ -257,7 +257,7 @@ function signup() {
                       <button
                         className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
-                        onClick={() => router.push("/auth/login")}
+                        onClick={() => router.push("/Login")}
                       >
                         Close
                       </button>

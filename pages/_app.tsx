@@ -23,6 +23,7 @@ interface IProps {
   session : any;
 }
 function MyApp({ Component, pageProps}: AppProps) {
+  // let header = Login ? <Header /> : null
   return (
 <SessionProvider session={pageProps.session} >
     <Provider store={store}>
