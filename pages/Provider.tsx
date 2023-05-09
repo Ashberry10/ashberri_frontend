@@ -17,9 +17,40 @@
 
 // "use client";
 
-import { Provider } from "react-redux";
-import { store } from "./store/store";
+// import { Provider } from "react-redux";
+// import { store } from "./store/store";
 
-export function Providers({ children }: { children: React.ReactNode }) {
-  return <Provider store={store}>{children}</Provider>;
+// export function Providers({ children }: { children: React.ReactNode }) {
+//   return <Provider store={store}>{children}</Provider>;
+// }
+
+
+// "use client";
+
+// import React from 'react'
+// import { Provider } from "react-redux";
+// import { store } from "./store/store";
+// const Provider = ({ children }: { children: React.ReactNode }) => {
+//   return (<>
+//     <Provider store={store}>{children}</Provider>
+//     </>
+//   )
+// }
+
+// export default Provider
+
+
+
+
+import React from 'react'
+import { Provider } from "react-redux";
+import { store } from "@/store/store";
+function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+    <Provider store={store}>{children}</Provider>
+    </>
+  )
 }
+
+export default Providers

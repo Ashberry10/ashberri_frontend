@@ -1,8 +1,8 @@
 
 "use client";
 // import Button from "@elements/Button";
+import dynamic from "next/dynamic";
 
-import { getCookie } from 'cookies-next';
 import { Textarea } from '@chakra-ui/react'
 import { Flex, Grid, Heading, Stack, Text } from "@chakra-ui/layout";
 import { effect, useToast } from "@chakra-ui/react";
@@ -13,7 +13,7 @@ import { InputControl, SubmitButton } from "formik-chakra-ui";
 // import { Link } from "react-router-dom";
 import Link from 'next/link';
 import { useSigninUserMutation } from "./api/authApi"
-import { useAppDispatch } from "../pages/store/hooks";
+import { useAppDispatch } from "@/store/hooks";
 
 import { useRouter } from 'next/navigation'
 import { useSignupUserMutation } from "./api/authApi"
@@ -23,7 +23,7 @@ import { useEffect } from "react";
 // import { recoilPersist } from "recoil-persist";
 // import SignUp from '../pages/SignUp';
 // import axios from "axios";
-import { setCookie } from 'cookies-next';
+
 import { useRef } from 'react';
 import { signIn } from 'next-auth/react';
 import { redirect } from 'next/dist/server/api-utils';
@@ -198,9 +198,10 @@ const Login = ({ searchParams }: IProps) => {
   )
 }
 
-export default Login
+// export default Login
 
 
+export default dynamic (() => Promise.resolve(Login), {ssr: false})
 
 
 

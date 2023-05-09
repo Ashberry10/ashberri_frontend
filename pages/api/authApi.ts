@@ -74,10 +74,30 @@
 
 import { Id } from '@reduxjs/toolkit/dist/tsHelpers';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { access } from 'fs';
+// import { access } from 'fs';
+interface Users {
+  name: string;
+  email: string;
+  day:string
+  month:string
+  year:string
+  id:number
+}
 
 
 
+
+interface CreatePostParams {
+  body: {
+    name: string;
+    email: string;
+    day:string
+    month:string
+    year:string
+ 
+  };
+  access: string;
+}
 
 
 type User ={
@@ -93,6 +113,9 @@ type User ={
   FriendName:string
   data:any
   Compatiblity:string
+  day:string
+  month:string
+  year:string
   
 
 
@@ -121,7 +144,6 @@ export const authApi = createApi({
     method: 'GET'
    })
   }),
-
 
 
    //GETALLUSERById
@@ -164,6 +186,8 @@ export const authApi = createApi({
        }}
       }
      }), 
+
+  
 
 
 //PROFILE VIEW
@@ -244,9 +268,39 @@ export const authApi = createApi({
     },
 
   }),
+  
+  // UpdateUser
+  // updateUser: builder.mutation({
+  //   query:({body,access}:CreatePostParams) => ({
+      
+  //     url: '/update',
+  //     method: 'PATCH',
+      
+  //     headers: {
+  //       'authorization': `Bearer ${access}`,
+  //     },
+  //     body
+  //   }
+    
+  //   )
+  // }),
 
 
 
+
+
+  updateUser: builder.mutation<Users, { id: number; data: Partial<Users> }>({
+    query: ( access) => ({
+      url: `/update/`,
+      method: 'PATCH',
+     headers: {
+     'authorization': `Bearer ${access}`,
+   },
+      // body: data,
+    }),
+  })
+
+// const body = { name, email, password, day:string; month:string; year:string }
 
 
   // getuserById: builder.query({
@@ -313,4 +367,4 @@ export const authApi = createApi({
 })
 
 // Export hooks for usage in functional components, which are auto-generated based on the defined endpoints
-export const { useGetAllUserQuery,useProfileQuery,useAllUserPredictQuery, useSignupUserMutation,useGetAllUserIdQuery, useSigninUserMutation,useProfileByIdQuery  } = authApi
+export const { useGetAllUserQuery,useProfileQuery,useAllUserPredictQuery, useSignupUserMutation,useGetAllUserIdQuery, useSigninUserMutation,useProfileByIdQuery  ,useUpdateUserMutation } = authApi

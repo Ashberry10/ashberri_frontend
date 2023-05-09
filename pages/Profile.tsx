@@ -4,14 +4,14 @@
 import React from 'react'
 // import { useGetAllUserQuery } from "../pages/user/userSlice";
 import { useProfileQuery } from "./api/authApi";
-import { useAppSelector } from "./store/hooks";
+import { useAppSelector } from "@/store/hooks";
 import { setUser } from "./api/state/authSlice";
-import { useAppDispatch } from "./store/hooks"
+import { useAppDispatch } from "@/store/hooks"
 import { redirect } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import da from 'date-fns/esm/locale/da/index.js';
+
 // import Header from '../components/Header'
 
 // import  { getToken }  from "./LocalStorage";
@@ -133,7 +133,7 @@ function Profile() {
            <h5 className='text-lg'>Friends</h5>
            <h1>{userData.email}</h1>
        <h1>Your DOB:  {userData.date_of_birth}<br/></h1>   
-
+        <button className="bg-gray-300 hover:bg-gray-500 text-white my-1 py-1 rounded-md font-bold" onClick={() => router.push("/EditYourProfile")}>Edit profile</button>
            {/* <div className={"  min-h-screen "}>{children}</div> */}
            
            

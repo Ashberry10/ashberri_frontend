@@ -2,7 +2,7 @@ import { useProfileByIdQuery } from "./api/authApi";
 import { useAllUserPredictQuery,useGetAllUserQuery,useGetAllUserIdQuery } from "./api/authApi";
 import { getSession } from 'next-auth/react';
 import { GetStaticPaths, GetStaticProps } from "next";
-import { GetServerSideProps} from "next"
+// import { GetServerSideProps} from "next"
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from 'next/router'
 import { useEffect,useState } from "react";
@@ -41,7 +41,7 @@ interface BreakingNewsPageProps {
 // function  ends
 
 // main function 
-export default function myData() {
+export default function MyData() {
 
     const [users, setUsers] = useState([])
 

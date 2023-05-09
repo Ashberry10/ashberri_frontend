@@ -1,27 +1,13 @@
 "use client"
 
-import { Grid, Heading, Stack } from "@chakra-ui/layout";
-import { InputControl, SubmitButton } from "formik-chakra-ui";
 import React from 'react'
-// import Login from './auth/login/page';
 import { useRouter } from "next/navigation";
 import { useSignupUserMutation } from "./api/authApi";
 import { Form, Formik, Field } from "formik";
-import { useFormik } from "formik";
 import { signIn } from 'next-auth/react';
-// import "react-datepicker/dist/react-datepicker.css";
 import { useRef } from 'react';
-// import PreviewImage from "./PreviewImage";
 
-// import { SingleDatepicker } from "chakra-dayzed-datepicker";
-
-
-// import "react-datepicker/dist/react-datepicker.css";
-
-
-function signup() {
-
-
+function Signup() {
 
   interface MyFormValues {
     name: string;
@@ -37,7 +23,7 @@ function signup() {
 
   const pass = useRef("")
 
-  const fileRef = useRef(null);
+  // const fileRef = useRef(null);
   const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
 
@@ -50,7 +36,7 @@ function signup() {
       email: email.current,
       password: pass.current,
       redirect: true,
-      // callbackUrl: "/",
+      callbackUrl: "/",
     });
   }
 
@@ -61,12 +47,9 @@ function signup() {
 
       <body
         className="bg-gray-100">
-
         <div className="mb-5">
-
           <h1 className='text-sky-400 text-6xl flex  justify-center'>frindcafe</h1><br />
           <p className='text-gray-600 text-2xl flex justify-center '>People those how highly compatible  <br /> and  think  like U,connect in frindcafe...</p>
-
         </div>
         <div
           className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
@@ -101,29 +84,12 @@ function signup() {
                   // })
 
                 }}
-
-
-
-              // <Formik
-              // initialValues={{profile_photo:""}}
-              // onSubmit={(values) => {
-              //   // signupUser({ ...values });
-
-              //   console.log('Form data',values);
-              // }} 
-              // yup code furthur
-
-
               >
                 {({ handleSubmit, values, handleChange, setFieldValue }) => (
 
 
 
                   <Form onSubmit={handleSubmit} >
-
-
-
-
 
                     <p className="my-2 p-4 text-blueGray-500 text-sm leading-relaxed ">
                       <Field className="px-2 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg"
@@ -146,16 +112,9 @@ function signup() {
 
                       />
 
-
-
-
                       <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
                         Date of Birth (Provide correct DOB for your better future)
                       </label>
-
-
-
-
                       <Field className="px-10 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" as="select" placeholder="DD" id='day' name='day' >
 
 
@@ -176,10 +135,6 @@ function signup() {
                           <svg className="fill-current h-4  " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
                         </div>
 
-
-
-
-
                       </Field>
 
 
@@ -188,9 +143,8 @@ function signup() {
 
 
 
-                        {/*  
-  <select
-    className="block appearance-none bg-white  border-gray-200  border-2 outline-violet-300 border-gray-200 hover:border-violet-300  px-1 py-2 pr-12  rounded shadow leading-tight focus:outline-none focus:shadow-outline"  placeholder="dLast name"> */}
+                  
+
                         <option className="hidden">MM</option>
                         <option value="1">Jan</option>
                         <option value="2">Feb</option>
@@ -271,8 +225,6 @@ function signup() {
                   </Form>
                 )}
               </Formik>
-
-
             </div>
           </div>
         </div>
@@ -286,352 +238,4 @@ function signup() {
   );
 };
 
-export default signup;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// NOTE:- formik signup using formik,yup,material ui
-// https://www.heady.io/blog/react-typescript-hooks-form-validation-with-formik-yup-and-material-ui
-
-
-
-// import React, { useState } from 'react'
-// import {
-//     Grid,
-//     TextField,
-//     Button,
-//     makeStyles,
-//     createStyles,
-//     Theme,
-// } from '@material-ui/core'
-// import { Formik, Form, FormikProps } from 'formik'
-// import * as Yup from 'yup'
-
-
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         root: {
-//             maxWidth: '450px',
-//             display: 'block',
-//             margin: '0 auto',
-//         },
-//         textField: {
-//             '& > *': {
-//                 width: '100%',
-//             },
-//         },
-//         submitButton: {
-//             marginTop: '24px',
-//         },
-//         title: { textAlign: 'center' },
-//         successMessage: { color: 'green' },
-//         errorMessage: { color: 'red' },
-//     })
-// )
-
-// interface ISignUpForm {
-//     fullName: string
-//     password: string
-//     confirmPassword: string
-//     email: string
-// }
-
-// interface IFormStatus {
-//     message: string
-//     type: string
-// }
-
-// interface IFormStatusProps {
-//     [key: string]: IFormStatus
-// }
-
-// const formStatusProps: IFormStatusProps = {
-//     success: {
-//         message: 'Signed up successfully.',
-//         type: 'success',
-//     },
-//     duplicate: {
-//         message: 'Email-id already exist. Please use different email-id.',
-//         type: 'error',
-//     },
-//     error: {
-//         message: 'Something went wrong. Please try again.',
-//         type: 'error',
-//     },
-// }
-
-// const SignUp: React.FunctionComponent = () => {
-//     const classes = useStyles()
-//     const [displayFormStatus, setDisplayFormStatus] = useState(false)
-//     const [formStatus, setFormStatus] = useState<IFormStatus>({
-//         message: '',
-//         type: '',
-//     })
-
-//     // const createNewUser = async (data: ISignUpForm, resetForm: Function) => {
-//     //     try {
-//     //         // API call integration will be here. Handle success / error response accordingly.
-//     //         if (data) {
-//     //             setFormStatus(formStatusProps.success)
-//     //             resetForm({})
-//     //         }
-//     //     } catch (error) {
-//     //         const response = error.response
-//     //         if (
-//     //             response.data === 'user already exist' &&
-//     //             response.status === 400
-//     //         ) {
-//     //             setFormStatus(formStatusProps.duplicate)
-//     //         } else {
-//     //             setFormStatus(formStatusProps.error)
-//     //         }
-//     //     } finally {
-//     //         setDisplayFormStatus(true)
-//     //     }
-//     // }
-
-//     return (
-//         <div className={classes.root}>
-//             <Formik
-//                 initialValues={{
-//                     fullName: '',
-//                     password: '',
-//                     confirmPassword: '',
-//                     email: '',
-//                 }}
-//                 onSubmit={(values: ISignUpForm, actions) => {
-//                     // createNewUser(values, actions.resetForm)
-//                     setTimeout(() => {
-//                         actions.setSubmitting(false)
-//                     }, 500)
-//                 }}
-//                 validationSchema={Yup.object().shape({
-//                     email: Yup.string()
-//                         .email()
-//                         .required('Enter valid email-id'),
-//                     fullName: Yup.string().required('Please enter full name'),
-//                     password: Yup.string()
-//                         .matches(
-//                             /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{8,20}\S$/
-//                         )
-//                         .required(
-//                             'Please valid password. One uppercase, one lowercase, one special character and no spaces'
-//                         ),
-//                     confirmPassword: Yup.string()
-//                         .required('Required')
-//                         .test(
-//                             'password-match',
-//                             'Password musth match',
-//                             function (value) {
-//                                 return this.parent.password === value
-//                             }
-//                         ),
-//                 })}
-//             >
-//                 {(props: FormikProps<ISignUpForm>) => {
-//                     const {
-//                         values,
-//                         touched,
-//                         errors,
-//                         handleBlur,
-//                         handleChange,
-//                         isSubmitting,
-//                     } = props
-//                     return (
-//                         <Form>
-//                             <h1 className={classes.title}>Sign up</h1>
-//                             <Grid
-//                                 container
-//                                 justify="space-around"
-//                                 direction="row"
-//                             >
-//                                 <Grid
-//                                     item
-//                                     lg={10}
-//                                     md={10}
-//                                     sm={10}
-//                                     xs={10}
-//                                     className={classes.textField}
-//                                 >
-//                                     <TextField
-//                                         name="fullName"
-//                                         id="fullName"
-//                                         label="Full Name"
-//                                         value={values.fullName}
-//                                         type="text"
-//                                         helperText={
-//                                             errors.fullName && touched.fullName
-//                                                 ? errors.fullName
-//                                                 : 'Enter your full name.'
-//                                         }
-//                                         error={
-//                                             errors.fullName && touched.fullName
-//                                                 ? true
-//                                                 : false
-//                                         }
-//                                         onChange={handleChange}
-//                                         onBlur={handleBlur}
-//                                     />
-//                                 </Grid>
-//                                 <Grid
-//                                     item
-//                                     lg={10}
-//                                     md={10}
-//                                     sm={10}
-//                                     xs={10}
-//                                     className={classes.textField}
-//                                 >
-//                                     <TextField
-//                                         name="password"
-//                                         id="password"
-//                                         label="Password"
-//                                         value={values.password}
-//                                         type="password"
-//                                         helperText={
-//                                             errors.password && touched.password
-//                                                 ? 'Please valid password. One uppercase, one lowercase, one special character and no spaces'
-//                                                 : 'One uppercase, one lowercase, one special character and no spaces'
-//                                         }
-//                                         error={
-//                                             errors.password && touched.password
-//                                                 ? true
-//                                                 : false
-//                                         }
-//                                         onChange={handleChange}
-//                                         onBlur={handleBlur}
-//                                     />
-//                                 </Grid>
-//                                 <Grid
-//                                     item
-//                                     lg={10}
-//                                     md={10}
-//                                     sm={10}
-//                                     xs={10}
-//                                     className={classes.textField}
-//                                 >
-//                                     <TextField
-//                                         name="confirmPassword"
-//                                         id="confirmPassword"
-//                                         label="Confirm password"
-//                                         value={values.confirmPassword}
-//                                         type="password"
-//                                         helperText={
-//                                             errors.confirmPassword &&
-//                                             touched.confirmPassword
-//                                                 ? errors.confirmPassword
-//                                                 : 'Re-enter password to confirm'
-//                                         }
-//                                         error={
-//                                             errors.confirmPassword &&
-//                                             touched.confirmPassword
-//                                                 ? true
-//                                                 : false
-//                                         }
-//                                         onChange={handleChange}
-//                                         onBlur={handleBlur}
-//                                     />
-//                                 </Grid>
-//                                 <Grid
-//                                     item
-//                                     lg={10}
-//                                     md={10}
-//                                     sm={10}
-//                                     xs={10}
-//                                     className={classes.textField}
-//                                 >
-//                                     <TextField
-//                                         name="email"
-//                                         id="email"
-//                                         label="Email-id"
-//                                         value={values.email}
-//                                         type="email"
-//                                         helperText={
-//                                             errors.email && touched.email
-//                                                 ? errors.email
-//                                                 : 'Enter email-id'
-//                                         }
-//                                         error={
-//                                             errors.email && touched.email
-//                                                 ? true
-//                                                 : false
-//                                         }
-//                                         onChange={handleChange}
-//                                         onBlur={handleBlur}
-//                                     />
-//                                 </Grid>
-//                                 <Grid
-//                                     item
-//                                     lg={10}
-//                                     md={10}
-//                                     sm={10}
-//                                     xs={10}
-//                                     className={classes.submitButton}
-//                                 >
-//                                     <Button
-//                                         type="submit"
-//                                         variant="contained"
-//                                         color="secondary"
-//                                         disabled={isSubmitting}
-//                                     >
-//                                         Submit
-//                                     </Button>
-//                                     {displayFormStatus && (
-//                                         <div className="formStatus">
-//                                             {formStatus.type === 'error' ? (
-//                                                 <p
-//                                                     className={
-//                                                         classes.errorMessage
-//                                                     }
-//                                                 >
-//                                                     {formStatus.message}
-//                                                 </p>
-//                                             ) : formStatus.type ===
-//                                               'success' ? (
-//                                                 <p
-//                                                     className={
-//                                                         classes.successMessage
-//                                                     }
-//                                                 >
-//                                                     {formStatus.message}
-//                                                 </p>
-//                                             ) : null}
-//                                         </div>
-//                                     )}
-//                                 </Grid>
-//                             </Grid>
-//                         </Form>
-//                     )
-//                 }}
-//             </Formik>
-//         </div>
-//     )
-// }
-
-// export default SignUp
+export default Signup;

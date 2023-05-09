@@ -8,10 +8,11 @@
 
 
 import {SessionProvider} from "next-auth/react";
+import { useRouter } from 'next/router'
 
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import {store} from './store/store'
+import {store} from '@/store/store'
 import { ChakraProvider } from "@chakra-ui/react";
 import {Provider} from 'react-redux'
 import Header from '../components/Header'
@@ -23,7 +24,7 @@ interface IProps {
   session : any;
 }
 function MyApp({ Component, pageProps}: AppProps) {
-  // let header = Login ? <Header /> : null
+  const router = useRouter()
   return (
 <SessionProvider session={pageProps.session} >
     <Provider store={store}>

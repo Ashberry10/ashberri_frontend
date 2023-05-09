@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 // import SignUp from "../pages/SignUp";
 import { signIn, signOut, useSession } from "next-auth/react";
 // import mockRouter from 'next-router-mock';
+import dynamic from "next/dynamic";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,11 +16,7 @@ function Header() {
   
   const {data:session} = useSession()
 
-  // console.log({data:session});
-  // session?.user.token
-  // console.log(data:session);
-  
-  // jest.mock('next/router', () => require('next-router-mock'));
+
   return (
     <div>
       <nav className="bg-white py-1 lg:px-12 shadow border-solid border-t-1">
@@ -49,8 +46,7 @@ function Header() {
                     
                   
                      <a onClick={() => router.push("/Alluser")}
-                  //  <a onClick={() => router.push("/Trail")}
-
+                 
                         className="text-sky-400 block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">
                      <svg className="h-8 w-8 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3" />   <h6 className="text-black">Home</h6> </svg>
                      <h6 >Alluser</h6>
@@ -72,11 +68,7 @@ function Header() {
                  
 
                      
-                     {/* <a onClick={() => router.push("/Login")}
-                      className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">
-                     <svg className="h-8 w-8"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M20 12h-13l3 -3m0 6l-3 -3" /></svg>
-                    </a>
-                  */}
+                
 
 
 <div className="ml-auto flex gap-2">
@@ -187,16 +179,7 @@ function Header() {
                     
                      </Link>
 
-                     {/* <a onClick={() => router.push("/Protect")}
-                        className="text-sky-400 block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">
-                     <svg className="h-8 w-8 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3" />   <h6 className="text-black">Home</h6> </svg>
-                     <h6 >Protected</h6>
-                     </a>
-                    */}
-                     {/* <Link className="text-sky-600 hover:text-sky-700" href={"/alluser"}>
-        Alluser
-      </Link>
-      <br/> */}
+                 
 
          <a onClick={() => router.push("/Alluser")}
         //  <a onClick={() => router.push("/Trail")}
@@ -260,68 +243,15 @@ className="text-sky-400 block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4
         </Transition>
       </nav>
 
-      {/* <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        </div>
-      </header> */}
-      {/* <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-     
-          <div className="px-4 py-6 sm:px-0">
-            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
 
-
-  
-            </div>
-
-
-          </div>
-        
-        </div>
-      </main> */}
 
     </div>
   );
 }
 
-export default Header ;
+
+export default dynamic (() => Promise.resolve(Header), {ssr: false})
 
 
 
 
-// import React from 'react'
-// import Link from 'next/link';
-// import { useRouter } from "next/router";
-// import { UserView }  from '../pages/user/UserView';
-
-// function Header() {
-//   const router = useRouter();
-//   return (
-//   <><div>header</div>
-  
-//   {/* <a onClick={() => router.push("/LoginSignUp")}
-//                       className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">
-//                      <svg className="h-8 w-8"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M20 12h-13l3 -3m0 6l-3 -3" /></svg>
-//                     </a> */}
-                 
-
-
-//                     <Link  href="/LoginSignUp"
-                    
-//                          className="text-sky-400 block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-sky-400 mr-2">
-                       
-//                         <svg className="h-8 w-8 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M20 12h-13l3 -3m0 6l-3 -3" /></svg>
-//                       {/* <h6 className>lOGIN</h6> */}
-                  
-
-//                       </Link>
-
-//     <UserView/>
-
-
-//   </>
-//   )
-// }
-
-// export default Header
