@@ -1,21 +1,9 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-  "/EditYourProfile": "pages/EditYourProfile.html",
-  "/Alluser": "pages/Alluser.html",
-  "/Login": "pages/Login.html",
-  "/Profile": "pages/Profile.html",
-  "/PreviewImage": "pages/PreviewImage.html",
-  "/Provider": "pages/Provider.html",
-  "/SignUp": "pages/SignUp.html",
-  "/[id]": "pages/[id].html",
-  "/api/authApi": "pages/api/authApi.js",
-  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/api/hello": "pages/api/hello.js",
-  "/api/state/authSlice": "pages/api/state/authSlice.js",
-  "/api/state/modelSlice": "pages/api/state/modelSlice.js",
-  "/api/state/userSlice": "pages/api/state/userSlice.js",
-  "/": "pages/index.html",
   "/_error": "pages/_error.js",
-  "/404": "pages/404.html"
+  "/_document": "pages/_document.js",
+  "/Alluser": "pages/Alluser.js",
+  "/[id]": "pages/[id].js",
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
+  "/Profile": "pages/Profile.js"
 }
