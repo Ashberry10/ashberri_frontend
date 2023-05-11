@@ -37,7 +37,7 @@ const Login = ({ searchParams }: IProps) => {
 
 
 
-  
+const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   // const [credentials, setcredentials] = useState({ email: " ", password: " " });
   // const {persistAtom} = recoilPersist()
   // const [email, setEmail] = useState<string>();
@@ -52,7 +52,9 @@ const Login = ({ searchParams }: IProps) => {
   const [showModal, setShowModal] = React.useState(true);
 
 
-
+  const togglePasswordVisibility = () => {
+    setIsPasswordHidden(!isPasswordHidden);
+  };
   const onSubmit = async () => {
     const result = await signIn("credentials", {
       email: email.current,
@@ -131,7 +133,94 @@ const Login = ({ searchParams }: IProps) => {
         {/* <input  placeholder="username" type="text" onChange={(e) => (Username.current = e.target.value)} ></input> */}
         <input className="px-4 h-12   my-2 border border-1 outline-violet-300 border-gray-200 rounded-lg"  placeholder="email" type="email" onChange={(e) => (email.current = e.target.value)} ></input>
 
-        <input className="px-4 h-12 my-2 border border-1 outline-violet-300 border-gray-200 rounded-lg"   placeholder="Password" type="password"   onChange={(e) => (pass.current = e.target.value)} ></input>
+        {/* <input className="px-4 h-12 my-2 border border-1 outline-violet-300 border-gray-200 rounded-lg"   placeholder="Password" type="password"   onChange={(e) => (pass.current = e.target.value)}  >
+
+
+
+        </input> */}
+        <div className="relative">
+      <input className= " pr-24 pl-5 h-12 my-2 border border-1 outline-violet-300 border-gray-200 rounded-lg" 
+        type={isPasswordHidden ? 'password' : 'text'}
+        name="password"
+        autoComplete="current-password"
+        required
+
+
+
+
+        placeholder="Password"  onChange={(e) => (pass.current = e.target.value)}
+        
+        
+        
+        
+      />
+      <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+        <button
+          type="button"
+          onClick={togglePasswordVisibility}
+          className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700"
+        >
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            {isPasswordHidden ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+              d="M4 12l2-2m0 0l6-6h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7l6 6zm8 0l2 2m-2-2V9"
+
+                
+              />
+
+
+              // <img width="50" height="50" src="https://img.icons8.com/ios/50/visible--v1.png" alt="visible--v1"/>
+              
+
+            ) : (
+              // <path
+              //   strokeLinecap="round"
+              //   strokeLinejoin="round"
+              //   strokeWidth={2}
+              //   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              // />
+
+
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12Z"/>
+              <path d="M12 8C10.3431 8 9 9.34315 9 11C9 12.6569 10.3431 14 12 14C13.6569 14 15 12.6569 15 11C15 9.34315 13.6569 8 12 8Z"/>
+              <path d="M12 17C13.6569 17 15 15.6569 15 14C15 12.3431 13.6569 11 12 11C10.3431 11 9 12.3431 9 14C9 15.6569 10.3431 17 12 17Z"/>
+            </svg>
+            )}
+          </svg>
+
+
+
+          
+        </button>
+      </div>
+
+    </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+{/*         
+        <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+    <button type="button" id="show-password" className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12l2-2m0 0l6-6h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7l6 6zm8 0l2 2m-2-2V9"></path>
+      </svg>
+    </button>
+  </div> */}
         <button className="bg-violet-300 hover:bg-violet-400 text-white my-2 py-3 rounded-md font-bold" onClick={onSubmit}>Login</button>
       {/* </div> */}
     {/* </div> */}
