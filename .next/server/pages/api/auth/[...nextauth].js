@@ -1,45 +1,110 @@
 "use strict";
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 (() => {
 var exports = {};
-exports.id = "pages/api/auth/[...nextauth]";
-exports.ids = ["pages/api/auth/[...nextauth]"];
+exports.id = 748;
+exports.ids = [748];
 exports.modules = {
 
-/***/ "next-auth":
-/*!****************************!*\
-  !*** external "next-auth" ***!
-  \****************************/
-/***/ ((module) => {
-
-module.exports = require("next-auth");
-
-/***/ }),
-
-/***/ "next-auth/providers/credentials":
-/*!**************************************************!*\
-  !*** external "next-auth/providers/credentials" ***!
-  \**************************************************/
-/***/ ((module) => {
-
-module.exports = require("next-auth/providers/credentials");
-
-/***/ }),
-
-/***/ "(api)/./pages/api/auth/[...nextauth].ts":
-/*!*****************************************!*\
-  !*** ./pages/api/auth/[...nextauth].ts ***!
-  \*****************************************/
+/***/ 9574:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"authOptions\": () => (/* binding */ authOptions),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next-auth/providers/credentials */ \"next-auth/providers/credentials\");\n/* harmony import */ var next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next-auth */ \"next-auth\");\n/* harmony import */ var next_auth__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_auth__WEBPACK_IMPORTED_MODULE_1__);\n\n\nconst authOptions = {\n    secret: process.env.AUTH_SECRET,\n    providers: [\n        // ..add more prodiver\n        next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_0___default()({\n            // The Username to display on the sign in form (e.g. \"Sign in with...\")\n            name: \"Credentials\",\n            // `credentials` is used to generate a form on the sign in page.\n            // You can specify which fields should be submitted, by adding keys to the `credentials` object.\n            // e.g. domain, userUsername, password, 2FA token, etc.\n            // You can pass any HTML attribute to the <input> tag through the object.\n            credentials: {\n                // Username: { label: \"Username\", type: \"text\", placeholder: \"jsmith\" },\n                email: {\n                    label: \"email\",\n                    type: \"email\",\n                    placeholder: \"jsmith@gmail.com\"\n                },\n                password: {\n                    label: \"Password\",\n                    type: \"password\"\n                }\n            },\n            async authorize (credentials, req) {\n                // Add logic here to look up the user from the credentials supplied\n                //   const user = { id: \"1\", Username: \"J Smith\", email: \"jsmith@example.com\" }\n                //   if (user) {\n                //     // Any object returned will be saved in `user` property of the JWT\n                //     return user\n                //   } else {\n                //     // If you return null then an error will be displayed advising the user to check their details.\n                //     return null\n                //     // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter\n                //   }\n                const { email , password  } = credentials;\n                //  const res = await fetch('http://127.0.0.1:8000/api/user/login/',{\n                const res = await fetch(\"http://ashberri-api.onrender.com/api/user/login/\", {\n                    method: \"POST\",\n                    headers: {\n                        \"Content-Type\": \"application/json\"\n                    },\n                    body: JSON.stringify({\n                        // Username,\n                        email,\n                        password\n                    })\n                });\n                const user = await res.json();\n                // console.log({user});\n                if (res.ok && user) {\n                    return user;\n                } else {\n                    return null;\n                }\n            }\n        })\n    ],\n    // session:{\n    //     strategy:\"jwt\"\n    // },\n    callbacks: {\n        async jwt ({ token , user  }) {\n            return {\n                ...token,\n                ...user\n            };\n        },\n        async session ({ session , token , user  }) {\n            session.user = token;\n            return session;\n        }\n    },\n    pages: {\n        signIn: \"/Login\",\n        signOut: \"/\"\n    }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (next_auth__WEBPACK_IMPORTED_MODULE_1___default()(authOptions));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvYXV0aC9bLi4ubmV4dGF1dGhdLnRzLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQU9rRTtBQUVoQjtBQUUzQyxNQUFNRSxjQUE4QjtJQUN4Q0MsUUFBUUMsUUFBUUMsR0FBRyxDQUFDQyxXQUFXO0lBQzlCQyxXQUFVO1FBRU4sc0JBQXNCO1FBQ3RCUCxzRUFBbUJBLENBQUM7WUFDbEIsdUVBQXVFO1lBQ3ZFUSxNQUFNO1lBQ04sZ0VBQWdFO1lBRTlELGdHQUFnRztZQUNoRyx1REFBdUQ7WUFDdkQseUVBQXlFO1lBQ3pFQyxhQUFhO2dCQUNYLHdFQUF3RTtnQkFDeEVDLE9BQU87b0JBQUVDLE9BQU87b0JBQVNDLE1BQU07b0JBQVNDLGFBQWE7Z0JBQW1CO2dCQUV4RUMsVUFBVTtvQkFBRUgsT0FBTztvQkFBWUMsTUFBTTtnQkFBVztZQUNsRDtZQUNBLE1BQU1HLFdBQVVOLFdBQVcsRUFBRU8sR0FBRyxFQUFFO2dCQUVoQyxtRUFBbUU7Z0JBQ3JFLCtFQUErRTtnQkFFL0UsZ0JBQWdCO2dCQUNoQix5RUFBeUU7Z0JBQ3pFLGtCQUFrQjtnQkFDbEIsYUFBYTtnQkFDYixzR0FBc0c7Z0JBQ3RHLGtCQUFrQjtnQkFFbEIsa0pBQWtKO2dCQUNsSixNQUFNO2dCQUVELE1BQU0sRUFBQ04sTUFBSyxFQUFDSSxTQUFRLEVBQUUsR0FBR0w7Z0JBQzNCLHFFQUFxRTtnQkFDcEUsTUFBTVEsTUFBTSxNQUFNQyxNQUFNLG9EQUFtRDtvQkFJMUVDLFFBQU87b0JBQ1BDLFNBQVE7d0JBQ04sZ0JBQWU7b0JBRW5CO29CQUVBQyxNQUFLQyxLQUFLQyxTQUFTLENBQUM7d0JBQ2xCLFlBQVk7d0JBQ1piO3dCQUNBSTtvQkFDRjtnQkFDSjtnQkFHQSxNQUFNVSxPQUFPLE1BQU1QLElBQUlRLElBQUk7Z0JBRTNCLHVCQUF1QjtnQkFFdkIsSUFBSVIsSUFBSVMsRUFBRSxJQUFJRixNQUFNO29CQUNsQixPQUFPQTtnQkFDVCxPQUFNO29CQUVOLE9BQU8sSUFBSTtnQkFDWCxDQUFDO1lBQ0g7UUFDRjtLQUNEO0lBS0MsWUFBWTtJQUNaLHFCQUFxQjtJQUNyQixLQUFLO0lBRUxHLFdBQVc7UUFDVCxNQUFNQyxLQUFJLEVBQUVDLE1BQUssRUFBRUwsS0FBSSxFQUFFLEVBQUU7WUFDekIsT0FBTztnQkFBRSxHQUFHSyxLQUFLO2dCQUFFLEdBQUdMLElBQUk7WUFBQztRQUM3QjtRQUNBLE1BQU1NLFNBQVEsRUFBRUEsUUFBTyxFQUFFRCxNQUFLLEVBQUVMLEtBQUksRUFBRSxFQUFFO1lBQ3RDTSxRQUFRTixJQUFJLEdBQUdLO1lBQ2YsT0FBT0M7UUFDVDtJQUVGO0lBQ0FDLE9BQU07UUFDSkMsUUFBTztRQUNQQyxTQUFRO0lBQ1o7QUFDQSxFQUFFO0FBSVIsaUVBQWVoQyxnREFBUUEsQ0FBQ0MsWUFBWUEsRUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovL2FzaGJlcnJpX2Zyb250ZW5kLy4vcGFnZXMvYXBpL2F1dGgvWy4uLm5leHRhdXRoXS50cz8yZThiIl0sInNvdXJjZXNDb250ZW50IjpbIlxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5pbXBvcnQgQ3JlZGVudGlhbHNQcm92aWRlciBmcm9tIFwibmV4dC1hdXRoL3Byb3ZpZGVycy9jcmVkZW50aWFsc1wiO1xyXG5pbXBvcnQgeyBzaWduT3V0IH0gZnJvbSAnbmV4dC1hdXRoL3JlYWN0JztcclxuaW1wb3J0IE5leHRBdXRoLHtOZXh0QXV0aE9wdGlvbnN9IGZyb20gXCJuZXh0LWF1dGhcIlxyXG5cclxuZXhwb3J0IGNvbnN0IGF1dGhPcHRpb25zOk5leHRBdXRoT3B0aW9ucyA9IHtcclxuICAgc2VjcmV0OiBwcm9jZXNzLmVudi5BVVRIX1NFQ1JFVCxcclxuICAgIHByb3ZpZGVyczpbXHJcbiAgICAgIFxyXG4gICAgICAgIC8vIC4uYWRkIG1vcmUgcHJvZGl2ZXJcclxuICAgICAgICBDcmVkZW50aWFsc1Byb3ZpZGVyKHtcclxuICAgICAgICAgIC8vIFRoZSBVc2VybmFtZSB0byBkaXNwbGF5IG9uIHRoZSBzaWduIGluIGZvcm0gKGUuZy4gXCJTaWduIGluIHdpdGguLi5cIilcclxuICAgICAgICAgIG5hbWU6IFwiQ3JlZGVudGlhbHNcIixcclxuICAgICAgICAgIC8vIGBjcmVkZW50aWFsc2AgaXMgdXNlZCB0byBnZW5lcmF0ZSBhIGZvcm0gb24gdGhlIHNpZ24gaW4gcGFnZS5cclxuICAgICAgIFxyXG4gICAgICAgICAgICAvLyBZb3UgY2FuIHNwZWNpZnkgd2hpY2ggZmllbGRzIHNob3VsZCBiZSBzdWJtaXR0ZWQsIGJ5IGFkZGluZyBrZXlzIHRvIHRoZSBgY3JlZGVudGlhbHNgIG9iamVjdC5cclxuICAgICAgICAgICAgLy8gZS5nLiBkb21haW4sIHVzZXJVc2VybmFtZSwgcGFzc3dvcmQsIDJGQSB0b2tlbiwgZXRjLlxyXG4gICAgICAgICAgICAvLyBZb3UgY2FuIHBhc3MgYW55IEhUTUwgYXR0cmlidXRlIHRvIHRoZSA8aW5wdXQ+IHRhZyB0aHJvdWdoIHRoZSBvYmplY3QuXHJcbiAgICAgICAgICAgIGNyZWRlbnRpYWxzOiB7XHJcbiAgICAgICAgICAgICAgLy8gVXNlcm5hbWU6IHsgbGFiZWw6IFwiVXNlcm5hbWVcIiwgdHlwZTogXCJ0ZXh0XCIsIHBsYWNlaG9sZGVyOiBcImpzbWl0aFwiIH0sXHJcbiAgICAgICAgICAgICAgZW1haWw6IHsgbGFiZWw6IFwiZW1haWxcIiwgdHlwZTogXCJlbWFpbFwiLCBwbGFjZWhvbGRlcjogXCJqc21pdGhAZ21haWwuY29tXCIgfSxcclxuXHJcbiAgICAgICAgICAgICAgcGFzc3dvcmQ6IHsgbGFiZWw6IFwiUGFzc3dvcmRcIiwgdHlwZTogXCJwYXNzd29yZFwiIH1cclxuICAgICAgICAgICAgfSxcclxuICAgICAgICAgICAgYXN5bmMgYXV0aG9yaXplKGNyZWRlbnRpYWxzLCByZXEpIHtcclxuICAgICAgICBcclxuICAgICAgICAgICAgICAvLyBBZGQgbG9naWMgaGVyZSB0byBsb29rIHVwIHRoZSB1c2VyIGZyb20gdGhlIGNyZWRlbnRpYWxzIHN1cHBsaWVkXHJcbiAgICAgICAgICAgIC8vICAgY29uc3QgdXNlciA9IHsgaWQ6IFwiMVwiLCBVc2VybmFtZTogXCJKIFNtaXRoXCIsIGVtYWlsOiBcImpzbWl0aEBleGFtcGxlLmNvbVwiIH1cclxuICAgICAgICBcclxuICAgICAgICAgICAgLy8gICBpZiAodXNlcikge1xyXG4gICAgICAgICAgICAvLyAgICAgLy8gQW55IG9iamVjdCByZXR1cm5lZCB3aWxsIGJlIHNhdmVkIGluIGB1c2VyYCBwcm9wZXJ0eSBvZiB0aGUgSldUXHJcbiAgICAgICAgICAgIC8vICAgICByZXR1cm4gdXNlclxyXG4gICAgICAgICAgICAvLyAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgIC8vICAgICAvLyBJZiB5b3UgcmV0dXJuIG51bGwgdGhlbiBhbiBlcnJvciB3aWxsIGJlIGRpc3BsYXllZCBhZHZpc2luZyB0aGUgdXNlciB0byBjaGVjayB0aGVpciBkZXRhaWxzLlxyXG4gICAgICAgICAgICAvLyAgICAgcmV0dXJuIG51bGxcclxuICAgICAgICBcclxuICAgICAgICAgICAgLy8gICAgIC8vIFlvdSBjYW4gYWxzbyBSZWplY3QgdGhpcyBjYWxsYmFjayB3aXRoIGFuIEVycm9yIHRodXMgdGhlIHVzZXIgd2lsbCBiZSBzZW50IHRvIHRoZSBlcnJvciBwYWdlIHdpdGggdGhlIGVycm9yIG1lc3NhZ2UgYXMgYSBxdWVyeSBwYXJhbWV0ZXJcclxuICAgICAgICAgICAgLy8gICB9XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgIGNvbnN0IHtlbWFpbCxwYXNzd29yZCB9ID0gY3JlZGVudGlhbHMgYXMgYW55O1xyXG4gICAgICAgICAgICAgICAgLy8gIGNvbnN0IHJlcyA9IGF3YWl0IGZldGNoKCdodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3VzZXIvbG9naW4vJyx7XHJcbiAgICAgICAgICAgICAgICAgY29uc3QgcmVzID0gYXdhaXQgZmV0Y2goJ2h0dHA6Ly9hc2hiZXJyaS1hcGkub25yZW5kZXIuY29tL2FwaS91c2VyL2xvZ2luLycse1xyXG5cclxuXHJcblxyXG4gICAgICAgICAgICAgICAgICBtZXRob2Q6XCJQT1NUXCIsXHJcbiAgICAgICAgICAgICAgICAgIGhlYWRlcnM6e1xyXG4gICAgICAgICAgICAgICAgICAgIFwiQ29udGVudC1UeXBlXCI6XCJhcHBsaWNhdGlvbi9qc29uXCJcclxuXHJcbiAgICAgICAgICAgICAgICB9LFxyXG4gICAgICAgICAgICBcclxuICAgICAgICAgICAgICAgIGJvZHk6SlNPTi5zdHJpbmdpZnkoe1xyXG4gICAgICAgICAgICAgICAgICAvLyBVc2VybmFtZSxcclxuICAgICAgICAgICAgICAgICAgZW1haWwsXHJcbiAgICAgICAgICAgICAgICAgIHBhc3N3b3JkLFxyXG4gICAgICAgICAgICAgICAgfSlcclxuICAgICAgICAgICAgfSlcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBjb25zdCB1c2VyID0gYXdhaXQgcmVzLmpzb24oKTtcclxuXHJcbiAgICAgICAgICAgIC8vIGNvbnNvbGUubG9nKHt1c2VyfSk7XHJcbiAgICBcclxuICAgICAgICAgICAgaWYgKHJlcy5vayAmJiB1c2VyKSB7XHJcbiAgICAgICAgICAgICAgcmV0dXJuIHVzZXI7XHJcbiAgICAgICAgICAgIH0gZWxzZXtcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIHJldHVybiBudWxsO1xyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgICB9LFxyXG4gICAgICAgIH0pLFxyXG4gICAgICBdLFxyXG5cclxuXHJcblxyXG5cclxuICAgICAgICAvLyBzZXNzaW9uOntcclxuICAgICAgICAvLyAgICAgc3RyYXRlZ3k6XCJqd3RcIlxyXG4gICAgICAgIC8vIH0sXHJcbiAgIFxyXG4gICAgICAgIGNhbGxiYWNrczoge1xyXG4gICAgICAgICAgYXN5bmMgand0KHsgdG9rZW4sIHVzZXIgfSkge1xyXG4gICAgICAgICAgICByZXR1cm4geyAuLi50b2tlbiwgLi4udXNlciB9O1xyXG4gICAgICAgICAgfSxcclxuICAgICAgICAgIGFzeW5jIHNlc3Npb24oeyBzZXNzaW9uLCB0b2tlbiwgdXNlciB9KSB7XHJcbiAgICAgICAgICAgIHNlc3Npb24udXNlciA9IHRva2VuIGFzIGFueTtcclxuICAgICAgICAgICAgcmV0dXJuIHNlc3Npb247XHJcbiAgICAgICAgICB9LFxyXG4gICAgICAgICAgXHJcbiAgICAgICAgfSxcclxuICAgICAgICBwYWdlczp7XHJcbiAgICAgICAgICBzaWduSW46XCIvTG9naW5cIixcclxuICAgICAgICAgIHNpZ25PdXQ6XCIvXCJcclxuICAgICAgfVxyXG4gICAgICB9O1xyXG5cclxuXHJcblxyXG5leHBvcnQgZGVmYXVsdCBOZXh0QXV0aChhdXRoT3B0aW9ucylcclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuIl0sIm5hbWVzIjpbIkNyZWRlbnRpYWxzUHJvdmlkZXIiLCJOZXh0QXV0aCIsImF1dGhPcHRpb25zIiwic2VjcmV0IiwicHJvY2VzcyIsImVudiIsIkFVVEhfU0VDUkVUIiwicHJvdmlkZXJzIiwibmFtZSIsImNyZWRlbnRpYWxzIiwiZW1haWwiLCJsYWJlbCIsInR5cGUiLCJwbGFjZWhvbGRlciIsInBhc3N3b3JkIiwiYXV0aG9yaXplIiwicmVxIiwicmVzIiwiZmV0Y2giLCJtZXRob2QiLCJoZWFkZXJzIiwiYm9keSIsIkpTT04iLCJzdHJpbmdpZnkiLCJ1c2VyIiwianNvbiIsIm9rIiwiY2FsbGJhY2tzIiwiand0IiwidG9rZW4iLCJzZXNzaW9uIiwicGFnZXMiLCJzaWduSW4iLCJzaWduT3V0Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./pages/api/auth/[...nextauth].ts\n");
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "authOptions": () => (/* binding */ authOptions),
+  "default": () => (/* binding */ _nextauth_)
+});
+
+;// CONCATENATED MODULE: external "next-auth/providers/credentials"
+const credentials_namespaceObject = require("next-auth/providers/credentials");
+var credentials_default = /*#__PURE__*/__webpack_require__.n(credentials_namespaceObject);
+;// CONCATENATED MODULE: external "next-auth"
+const external_next_auth_namespaceObject = require("next-auth");
+var external_next_auth_default = /*#__PURE__*/__webpack_require__.n(external_next_auth_namespaceObject);
+;// CONCATENATED MODULE: ./pages/api/auth/[...nextauth].ts
+
+
+const authOptions = {
+    secret: process.env.AUTH_SECRET,
+    providers: [
+        // ..add more prodiver
+        credentials_default()({
+            // The Username to display on the sign in form (e.g. "Sign in with...")
+            name: "Credentials",
+            // `credentials` is used to generate a form on the sign in page.
+            // You can specify which fields should be submitted, by adding keys to the `credentials` object.
+            // e.g. domain, userUsername, password, 2FA token, etc.
+            // You can pass any HTML attribute to the <input> tag through the object.
+            credentials: {
+                // Username: { label: "Username", type: "text", placeholder: "jsmith" },
+                email: {
+                    label: "email",
+                    type: "email",
+                    placeholder: "jsmith@gmail.com"
+                },
+                password: {
+                    label: "Password",
+                    type: "password"
+                }
+            },
+            async authorize (credentials, req) {
+                // Add logic here to look up the user from the credentials supplied
+                //   const user = { id: "1", Username: "J Smith", email: "jsmith@example.com" }
+                //   if (user) {
+                //     // Any object returned will be saved in `user` property of the JWT
+                //     return user
+                //   } else {
+                //     // If you return null then an error will be displayed advising the user to check their details.
+                //     return null
+                //     // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+                //   }
+                const { email , password  } = credentials;
+                //  const res = await fetch('http://127.0.0.1:8000/api/user/login/',{
+                const res = await fetch("http://ashberri-api.onrender.com/api/user/login/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        // Username,
+                        email,
+                        password
+                    })
+                });
+                const user = await res.json();
+                // console.log({user});
+                if (res.ok && user) {
+                    return user;
+                } else {
+                    return null;
+                }
+            }
+        })
+    ],
+    // session:{
+    //     strategy:"jwt"
+    // },
+    callbacks: {
+        async jwt ({ token , user  }) {
+            return {
+                ...token,
+                ...user
+            };
+        },
+        async session ({ session , token , user  }) {
+            session.user = token;
+            return session;
+        }
+    },
+    pages: {
+        signIn: "/Login",
+        signOut: "/"
+    }
+};
+/* harmony default export */ const _nextauth_ = (external_next_auth_default()(authOptions));
+
 
 /***/ })
 
@@ -50,7 +115,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/auth/[...nextauth].ts"));
+var __webpack_exports__ = (__webpack_exec__(9574));
 module.exports = __webpack_exports__;
 
 })();
