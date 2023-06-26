@@ -17,10 +17,9 @@
 // export default PreviewImage
 
 
-
 import React from 'react'
 
-function PreviewImage() {
+const PreviewImage = () => {
   return (
     <div>PreviewImage</div>
   )

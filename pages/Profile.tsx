@@ -1,168 +1,102 @@
-// "use client"
 
 
-import React from 'react'
-// import { useGetAllUserQuery } from "../pages/user/userSlice";
-import { useProfileQuery } from "./api/authApi";
-import { useAppSelector } from "@/store/hooks";
-import { setUser } from "./api/state/authSlice";
-import { useAppDispatch } from "@/store/hooks"
-import { redirect } from 'next/dist/server/api-utils';
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react';
-import { useState } from 'react';
 
-// import Header from '../components/Header'
 
-// import  { getToken }  from "./LocalStorage";
-// import { setUserInfo, unsetUserInfo } from '../pages/user/setUserInfoSlice';
-// import { useNavigate } from 'react-router';
-// import { useSession } from 'next-auth/react';
+
+// Profile.tsx
+import React, { useEffect } from 'react';
+import { useGetUserProfileQuery } from '../pages/api/authApi';
+import { getSession } from 'next-auth/react';
 import { signIn, signOut, useSession } from "next-auth/react";
-// import Provider from '../Provider';
-
-import { setUserInfo, unsetUserInfo } from './api/state/userSlice';
-
-
-
-
-function Profile() {
-  const dispatch = useAppDispatch();
-  // const tok = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMjc4Nzk2LCJpYXQiOjE2ODAxMDU5OTYsImp0aSI6Ijk1YWY2NzdkMDVhMTQ5YzJhZWE1MjgyYTIwNjgyNDg1IiwidXNlcl9pZCI6NDV9.QjC3ItmiCQiTtx_5qWpwofS_n2xtITZ2mDayELxtlXk"
-  // const [cart,setCart] = useState()
-  const {data:session} = useSession();
-  console.log({data:session});
-  const token:any = session?.user.accessToken;
-
-  console.log("token",token);
-  const router = useRouter();
- 
-
-
-  // console.log(token);
-  const { data, isSuccess } =  useProfileQuery(token)
-
-
-  const [userData, setUserData] = useState({
-    email: "",
-    name: "",
-    C_second:"",
-    D_second:"",
-    date_of_birth:""
-
-  })
-  console.log("profile data",data);
-// console.log("email", userData. C_second);
-
-
-  // Store User Data in Local State
-  useEffect(() => {
-    if (data && isSuccess) {
-      setUserData({
-        email: data.email,
-        name: data.name,
-        C_second:data.C_second,
-        D_second:data.D_second,
-        date_of_birth:data.date_of_birth
-
-      })
-    }
-  }, [data, isSuccess])
-
-  // Store User Data in Redux Store
-  // useEffect(() => {
-  //   if (data && isSuccess) {
-     
-  //     dispatch(setUserInfo({
-  //       email: data.email,
-  //       name: data.name
-  //       }))
-  //   }
-  // }, [data, isSuccess, dispatch])
-
-
-
-
-
-
-
-  return (
-    <div>
-      
-        {/* {
-            responseInfo.data.map((post, i) =>
-          <div key={i}>
-            <h2>{post.name} {post.email}</h2>
-            <p>{post.Dfirst}</p>
-            <hr />
-          </div>)} */}
-{/* 
-          {
-        responseInfo.data?.map((data) =>
-          <div key={i}>
-         
-            // <p>{post.name}</p>
-            <hr />
-          </div>
-        )
-      } */}
-
-
-
-
-
- 
-    {/* {data?.map((data:any) => (
-          <h1> {data.name}</h1>
-       <h1>{data.name}--{data.Dfirst}--{data.Cfirst}</h1>
-    
-
-          ))} */}
-  {/* <Header/> */}
-
-<h1>
-          {/* Your Name: {name} <br/> */}
-          {/* Your dateofbirth: {date_of_birth} <br/> */}
-
-
-          {/* Your Dfirst: {Dfirst}<br/>
-          Your Cfirst:  {Cfirst}<br/> */}
-           
-          </h1>
-       {/* <h1>  Email: {userData.email}</h1>  */}
-           <h5 className='text-lg'>Friends</h5>
-           <h1>{userData.email}</h1>
-       <h1>Your DOB:  {userData.date_of_birth}<br/></h1>   
-        <button className="bg-gray-900 hover:bg-gray-700 text-white my-1 py-1 rounded-md font-bold" onClick={() => router.push("/EditYourProfile")}>Edit profile</button>
-           {/* <div className={"  min-h-screen "}>{children}</div> */}
-           
-           
-           {/* <h1>{data}</h1> */}
-           
-          </div>
-           
-        
-
-  )
-}
-
-export default Profile
-
-
-
-
-
-
-
-
-
-// import React from 'react'
-
-// function profile() {
-//   return (
-//     <div>profile</div>
-//   )
+import { useRouter } from 'next/navigation'
+// interface UserProfile {
+//   email: string;
+//   name: string;
 // }
 
-// export default profile
+interface FriendRequest {
+  id: number;
+  name: string;
+}
+
+// interface UserData {
+//   user_profile: UserProfile;
+//   friend_requests: FriendRequest[];
+// }
+
+
+
+const Profile: React.VFC = () => {
+
+
+const router = useRouter();
+  
+const {data:session} = useSession();
+// const token:any = session?.user.accessToken;
+// const token: string | undefined = session?.user.accessToken;
+const token:any= session?.user.accessToken;
+
+  const { data, error, isLoading } = useGetUserProfileQuery(token || '');
+
+  useEffect(() => {
+    if (error) {
+      console.error('Failed to fetch user profile:', error);
+    }
+  }, [error]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error occurred while fetching user profile.</div>;
+  }
+
+  const userProfile = data?.user_profile;
+  const friendRequests = data?.friend_requests || [];
+  return (
+    <div className="max-w-lg mx-auto p-4">
+    <h1 className="text-2xl font-bold mb-4">Your Profile</h1>
+    <div className="bg-white shadow-md p-4 rounded-md">
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold">Name:</h2>
+        <p>{userProfile?.name}</p>
+      </div>
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold">Email:</h2>
+        <p>{userProfile?.email}</p>
+      </div>
+      <button
+        className="bg-gray-900 hover:bg-gray-700 text-white my-1 py-2 px-4 rounded-md font-bold w-full"
+        onClick={() => router.push("/EditYourProfile")}
+      >
+        Edit Profile
+      </button>
+    </div>
+    <div className="mt-4">
+      <h2 className="text-xl font-bold mb-2">Friend Requests:</h2>
+      {friendRequests.length > 0 ? (
+        <ul className="bg-white shadow-md p-4 rounded-md">
+          {friendRequests.map((request: FriendRequest) => (
+            <li key={request.id} className="mb-2">
+              {request.name}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No friend requests.</p>
+      )}
+    </div>
+  </div>
+  );
+};
+
+export default Profile;
+
+
+
+
+
+
+
 
