@@ -7,6 +7,7 @@ import {
   useGetAllUserFriendStatusQuery,
 } from "./api/friendApi";
 import Link from "next/dist/client/link";
+import LoadingIcon from "./LoadingIcon";
 
 interface FriendProps {
   name: string;
@@ -94,7 +95,7 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
                     onClick={() => handleCancelFriendRequest(curElem.id)}
                     disabled={isCancelingFriendRequest}
                   >
-                    {isCancelingFriendRequest ? "Canceling..." : "Cancel Friend Request"}
+                    {isCancelingFriendRequest ? <LoadingIcon/> : "Cancel Friend Request"}
                   </button>
                 )}
                 {friendStatus?.friend_status !== 'Pending' && (
@@ -103,7 +104,7 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
                     onClick={() => handleSendFriendRequest(curElem.id)}
                     disabled={isSendingFriendRequest}
                   >
-                    {isSendingFriendRequest ? "Sending..." : "Send Friend Request"}
+                    {isSendingFriendRequest ? <LoadingIcon/> : "Send Friend Request"}
                   </button>
                 )}
               </div>
@@ -236,10 +237,6 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
 //     </>
 //   );
 // }
-
-
-
-
 
 
 

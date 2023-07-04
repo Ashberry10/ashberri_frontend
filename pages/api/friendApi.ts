@@ -48,23 +48,11 @@ const getAuthToken = () => {
   endpoints: (builder) => ({
 
 
-// SendingFriendRequest
-      sendFriendRequest: builder.mutation({
-        query: ({access,formData}) => ({
-          url: 'send-friend-request/',
-          method: 'POST',
-          // body: friendRequestData,
-          headers: {
-            'authorization': `Bearer ${access}`,
-          },
-          body: formData,
-        }),
-      }),
 
 
       getAllUserFriendStatus: builder.query({
         query: (access) => ({
-          url: 'friend-requests-status/',
+          url: 'friend-request/',
           method: 'GET',
           headers: {
             'authorization': `Bearer ${access}`,
@@ -73,11 +61,23 @@ const getAuthToken = () => {
         }),
       }),
 
+// SendingFriendRequest
+sendFriendRequest: builder.mutation({ 
+  query: ({access,formData}) => ({
+    url: 'friend-request/',
+    method: 'POST',
+    // body: friendRequestData,
+    headers: {
+      'authorization': `Bearer ${access}`,
+    },
+    body: formData,
+  }),
+}),
 
     
       cancelFriendRequest: builder.mutation({
         query: ({access,formData}) => ({
-          url: `cancel-friend-request/`,
+          url: `friend-request/`,
           method: 'DELETE',
           headers: {
             'authorization': `Bearer ${access}`,
@@ -95,9 +95,6 @@ const getAuthToken = () => {
 export const { useSendFriendRequestMutation, useCancelFriendRequestMutation,useGetAllUserFriendStatusQuery } = friendApi;
 
 // export const { useSendFriendRequestMutation,useCancelFriendRequestMutation  } = friendApi;
-
-
-
 
 
 
