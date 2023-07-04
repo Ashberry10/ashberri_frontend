@@ -1,3 +1,88 @@
+// headless ui
+import React, { useEffect } from 'react';
+import { useGetUserProfileQuery } from '../pages/api/authApi';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { Disclosure, Transition } from '@headlessui/react';
+
+interface FriendRequest {
+  id: number;
+  name: string;
+}
+
+const Profile: React.VFC = () => {
+  const router = useRouter();
+  const { data: session } = useSession();
+  const token: any = session?.user.accessToken;
+
+  const { data, error, isLoading } = useGetUserProfileQuery(token || '');
+
+  useEffect(() => {
+    if (error) {
+      console.error('Failed to fetch user profile:', error);
+    }
+  }, [error]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error occurred while fetching user profile.</div>;
+  }
+
+  const userProfile = data?.user_profile;
+  const friendRequests = data?.friend_requests || [];
+
+  return (
+    <div className="max-w-lg mx-auto p-4">
+      <div className="bg-white shadow-md p-4 rounded-md">
+        <div className="flex items-center mb-4">
+          <img className="w-12 h-12 rounded-full" src={userProfile?.avatar} alt={userProfile?.name} />
+          <div className="ml-4">
+            <h2 className="text-lg font-bold">{userProfile?.name}</h2>
+            <p className="text-gray-500">{userProfile?.email}</p>
+          </div>
+          <button
+            className="ml-auto text-blue-500 font-bold outline-none focus:outline-none"
+            onClick={() => router.push('/EditYourProfile')}
+          >
+            Edit Profile
+          </button>
+        </div>
+        <hr className="my-4" />
+        <div className="mb-4">
+          <h3 className="text-md font-bold">About Me</h3>
+          <p>{userProfile?.bio}</p>
+        </div>
+        <hr className="my-4" />
+        <div className="mb-4">
+          <h3 className="text-md font-bold">Friend Requests</h3>
+          {friendRequests.length > 0 ? (
+            <ul>
+              {friendRequests.map((request: FriendRequest) => (
+                <li key={request.id} className="flex items-center mb-2">
+                  {/* <img className="w-6 h-6 rounded-full" src={request.avatar} alt={request.name} /> */}
+                  <span className="ml-2">{request.name}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No friend requests.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
+
+
+
+
+
+
 // // using chakra ui
 // import React, { useEffect } from 'react';
 // import { useGetUserProfileQuery } from '../pages/api/authApi';
@@ -93,85 +178,6 @@
 
 
 
-// headless ui
-import React, { useEffect } from 'react';
-import { useGetUserProfileQuery } from '../pages/api/authApi';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { Disclosure, Transition } from '@headlessui/react';
-
-interface FriendRequest {
-  id: number;
-  name: string;
-}
-
-const Profile: React.VFC = () => {
-  const router = useRouter();
-  const { data: session } = useSession();
-  const token: any = session?.user.accessToken;
-
-  const { data, error, isLoading } = useGetUserProfileQuery(token || '');
-
-  useEffect(() => {
-    if (error) {
-      console.error('Failed to fetch user profile:', error);
-    }
-  }, [error]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error occurred while fetching user profile.</div>;
-  }
-
-  const userProfile = data?.user_profile;
-  const friendRequests = data?.friend_requests || [];
-
-  return (
-    <div className="max-w-lg mx-auto p-4">
-      <div className="bg-white shadow-md p-4 rounded-md">
-        <div className="flex items-center mb-4">
-          <img className="w-12 h-12 rounded-full" src={userProfile?.avatar} alt={userProfile?.name} />
-          <div className="ml-4">
-            <h2 className="text-lg font-bold">{userProfile?.name}</h2>
-            <p className="text-gray-500">{userProfile?.email}</p>
-          </div>
-          <button
-            className="ml-auto text-blue-500 font-bold outline-none focus:outline-none"
-            onClick={() => router.push('/EditYourProfile')}
-          >
-            Edit Profile
-          </button>
-        </div>
-        <hr className="my-4" />
-        <div className="mb-4">
-          <h3 className="text-md font-bold">About Me</h3>
-          <p>{userProfile?.bio}</p>
-        </div>
-        <hr className="my-4" />
-        <div className="mb-4">
-          <h3 className="text-md font-bold">Friend Requests</h3>
-          {friendRequests.length > 0 ? (
-            <ul>
-              {friendRequests.map((request: FriendRequest) => (
-                <li key={request.id} className="flex items-center mb-2">
-                  {/* <img className="w-6 h-6 rounded-full" src={request.avatar} alt={request.name} /> */}
-                  <span className="ml-2">{request.name}</span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No friend requests.</p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Profile;
 
 
 

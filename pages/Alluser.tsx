@@ -71,9 +71,11 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
 
           return (
             <div key={curElem.id} className="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
-              <div className="relative">
-                <img className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} />
-              </div>
+              <Link href={`/${curElem.id}`}>
+                <div className="relative">
+                  <img className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} />
+                </div>
+              </Link>
               <div className="px-4 py-3">
                 {/* <h1 className="text-lg font-semibold">{curElem.name}</h1> */}
                 <p className="text-sm text-gray-500">{curElem.status}</p>
@@ -86,8 +88,8 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
                       <span className="text-sm font-medium mr-1">Compatibility:</span>
                       <span className="text-sm">{curElem.Compatibility}</span>
                     </div>
-            
-                    {friendStatus?.friend_status === 'Pending' && (
+
+                    {friendStatus?.friend_status === 'Pending' && friendStatus?.friend_status !== 'We Are Friends' && (
                       <button
                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
                         onClick={() => handleCancelFriendRequest(curElem.id)}
@@ -96,7 +98,8 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
                         {isCancelingFriendRequest ? <LoadingIcon/> : "Cancel Friend Request"}
                       </button>
                     )}
-                    {friendStatus?.friend_status !== 'Pending' && (
+
+                    {friendStatus?.friend_status !== 'Pending' && friendStatus?.friend_status !== 'We Are Friends' && (
                       <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
                         onClick={() => handleSendFriendRequest(curElem.id)}
@@ -104,6 +107,10 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
                       >
                         {isSendingFriendRequest ? <LoadingIcon/> : "Send Friend Request"}
                       </button>
+                    )}
+
+                    {friendStatus?.friend_status === 'We Are Friends' && (
+                      <span className="text-green-500 font-bold mt-3">We Are Friends</span>
                     )}
                   </>
                 )}
@@ -115,11 +122,6 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
     </>
   );
 }
-
-
-
-
-
 
 
 

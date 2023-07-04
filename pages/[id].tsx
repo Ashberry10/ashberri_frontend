@@ -2,6 +2,7 @@
 
 
 // import { useEffect, useState } from "react";
+import Profile from './Profile';
 // import { useRouter } from "next/router";
 // import { useSession } from "next-auth/react";
 
@@ -81,7 +82,7 @@ import { useEffect, useState } from "react";
 
 interface UserData {
   id: string;
-  FriendName: string;
+  ProfileName: string;
   Compatibility: number;
 }
 
@@ -108,7 +109,7 @@ export default function MyData() {
       <ul className="bg-white shadow-md p-4 rounded-md">
         {users.map((user) => (
           <li key={user.id} className="mb-2">
-            <div>{user.FriendName} = {user.Compatibility}</div>
+            <div>{user.ProfileName}  {user.Compatibility}</div>
           </li>
         ))}
       </ul>

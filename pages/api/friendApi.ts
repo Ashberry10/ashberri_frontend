@@ -75,6 +75,37 @@ sendFriendRequest: builder.mutation({
 }),
 
     
+
+
+
+// SendingFriendRequest
+ acceptFriendRequest: builder.mutation({ 
+  query: ({access,formData}) => ({
+    url: 'accept_or_reject_friendrequest/',
+    method: 'POST',
+    // body: friendRequestData,
+    headers: {
+      'authorization': `Bearer ${access}`,
+    },
+    body: formData,
+  }),
+}),
+
+
+
+rejectFriendRequest: builder.mutation({ 
+  query: ({access,formData}) => ({
+    url: 'accept_or_reject_friendrequest/',
+    method: 'POST',
+    // body: friendRequestData,
+    headers: {
+      'authorization': `Bearer ${access}`,
+    },
+    body: formData,
+  }),
+}),
+
+
       cancelFriendRequest: builder.mutation({
         query: ({access,formData}) => ({
           url: `friend-request/`,
@@ -92,7 +123,7 @@ sendFriendRequest: builder.mutation({
   }),
 });
 
-export const { useSendFriendRequestMutation, useCancelFriendRequestMutation,useGetAllUserFriendStatusQuery } = friendApi;
+export const { useSendFriendRequestMutation, useCancelFriendRequestMutation,useGetAllUserFriendStatusQuery,useAcceptFriendRequestMutation,useRejectFriendRequestMutation } = friendApi;
 
 // export const { useSendFriendRequestMutation,useCancelFriendRequestMutation  } = friendApi;
 
