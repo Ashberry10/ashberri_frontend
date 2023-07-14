@@ -288,25 +288,22 @@ export default function Navbar() {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Link className="text-white font-bold text-xl" href="/">
-                {/* <a className="text-white font-bold text-xl">My Website</a> */}
                 Ashberri
               </Link>
             </div>
+            <button className="btn btn-primary">
+      daisyUI Button
+      </button>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href ="/Alluser">
-                  {/* <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a> */}
                   Alluser
                 </Link>
                 <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href ="/Profile">
-                  {/* <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a> */}
                   Profile
 
                 </Link>
-            {/* user name - {name} */}
-                {/* <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/contact">
-                  
-                </Link> */}
+
 
 
 
@@ -356,7 +353,6 @@ export default function Navbar() {
              Alluser
               </Link>
             <Link className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="/Profile">
-              {/* <a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a> */}
               Profile
             </Link>
             
@@ -365,7 +361,6 @@ export default function Navbar() {
           <>
             <p className="text-sky-600"> {session.user.name}</p>
             <button className="text-red-500" onClick={() => signOut()}>
-            {/* <button className="text-red-500" onClick={() => signOut()  , router.push("/")}> */}
 
               Sign Out
             </button>

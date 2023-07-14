@@ -115,7 +115,7 @@ const Login = ({ searchParams }: IProps) => {
 
             <span className=" text-center text-sm my-2 cursor-pointer hover:underline">Forgotten password?</span>
             <hr className="my-2" />
-            <button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit" type="button" onClick={() => router.push("/SignUp")}>Create New Account</button>
+            <button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit"  onClick={() => router.push("/SignUp")}>Create New Account</button>
             <span className="absolute-bottom-12 text-sm"><span className="font-bold hover:underline cursor-pointer">Create a Page </span>
 
               for a celebrity, brand or business.</span>

@@ -20,6 +20,9 @@ import { ReactNode } from 'react';
 import Login from "./Login";
 import {  useSession } from "next-auth/react";
 
+import 'tailwindcss/tailwind.css'
+import 'daisyui/dist/full.css'
+
 
 import  {useRouter} from "next/navigation";
 interface IProps {

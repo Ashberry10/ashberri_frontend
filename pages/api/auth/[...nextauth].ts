@@ -26,7 +26,7 @@ export const authOptions:NextAuthOptions = {
             //   const user = { id: "1", Username: "J Smith", email: "jsmith@example.com" }
         
             //   if (user) {
-            //     // Any object returned will be saved in `user` property of the JWT
+            //     // Any object returned will be saved in `user` property of the JWT`
             //     return user
             //   } else {
             //     // If you return null then an error will be displayed advising the user to check their details.
@@ -37,7 +37,10 @@ export const authOptions:NextAuthOptions = {
             async authorize(credentials, req) {
                 const {email,password } = credentials as any;
                 // const res = await fetch('http://127.0.0.1:8000/account/login/', {
-                  const res = await fetch('https://ashberri-api.onrender.com/account/login/', {
+                // const res = await fetch('http://154.41.254.253:8000/account/login/', {
+                  const res = await fetch('http://154.41.254.253:8000/account/login/', {
+
+                  // const res = await fetch('https://ashberri-api.onrender.com/account/login/', {
 
 
          
