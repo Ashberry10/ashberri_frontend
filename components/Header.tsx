@@ -267,17 +267,19 @@ import dynamic from "next/dynamic";
 import { useState } from 'react'
 import Link from 'next/link'
 import { useAppSelector } from "./../store/hooks";
-
+import LoadingPage from "../pages/LoadingPage";
 
 export default function Navbar() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const {data:session} = useSession()
+  const {data:session, status} = useSession()
   // const { name } = useAppSelector((state) => state.auth);
   // console.log(name);
-
+  // if (status === "loading") {
+  //   return <LoadingPage />;
+  // }
   return (
     <>
 
@@ -291,9 +293,7 @@ export default function Navbar() {
                 Ashberri
               </Link>
             </div>
-            <button className="btn btn-primary">
-      daisyUI Button
-      </button>
+   
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href ="/Alluser">

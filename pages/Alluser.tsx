@@ -7,16 +7,17 @@ import {
   useGetAllUserFriendStatusQuery,
 } from "./api/friendApi";
 import Link from "next/dist/client/link";
+import LoadingPage from "./LoadingPage";
 import LoadingIcon from "./LoadingIcon";
-
 interface FriendProps {
   name: string;
   avatarUrl: string;
   status: string;
 }
 
-export default function AllUser({ name, avatarUrl, status }: FriendProps) {
-  const { data: session } = useSession();
+export default function AllUser({ name, avatarUrl }: FriendProps) {
+  const { data: session,status  } = useSession();
+ 
   const token: any = session?.user.accessToken;
   const { data: allUsersData, isSuccess: isAllUsersDataSuccess } = useAllUserPredictQuery(token);
   const { data: friendStatusesData, refetch: refetchFriendStatuses } = useGetAllUserFriendStatusQuery(token);
@@ -25,9 +26,11 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
   const [sendFriendRequest] = useSendFriendRequestMutation();
   const [cancelFriendRequest] = useCancelFriendRequestMutation();
 
+  if (status === "loading") {``
+    return <LoadingPage />;
+  }
   let allUsers = allUsersData || [];
   let friendStatuses = friendStatusesData || [];
-
   const handleSendFriendRequest = async (friendId: string) => {
     try {
       setSendingRequests((prevRequests) => [...prevRequests, friendId]);
@@ -38,6 +41,7 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
       console.log(`Failed to send friend request to ${friendId}: ${error.message}`);
     } finally {
       setSendingRequests((prevRequests) => prevRequests.filter((id) => id !== friendId));
+
     }
   };
 
@@ -58,6 +62,7 @@ export default function AllUser({ name, avatarUrl, status }: FriendProps) {
     // Handle loading state or error state
     return null;
   }
+
 
   return (
     <>

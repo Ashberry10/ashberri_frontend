@@ -1,3 +1,5 @@
+// usig only tailwind
+
 "use client";
 import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react";
