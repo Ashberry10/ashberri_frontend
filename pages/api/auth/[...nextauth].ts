@@ -36,7 +36,9 @@ export const authOptions:NextAuthOptions = {
             //   }
             async authorize(credentials, req) {
                 const {email,password } = credentials as any;
-                const res = await fetch('http://127.0.0.1:8000/account/login/', {
+                // const res = await fetch('http://127.0.0.1:8000/account/login/', {
+                const res = await fetch('http://223.235.85.166:8000/account/login/', {
+
                   // const res = await fetch('http://154.41.254.253:8000/account/login/', {
 
                   // const res = await fetch('https://ashberri-api.onrender.com/account/login/', {
