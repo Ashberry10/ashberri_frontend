@@ -8,7 +8,6 @@
 
 
 import {SessionProvider} from "next-auth/react";
-// import { useRouter } from 'next/router'
 
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
@@ -17,8 +16,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import {Provider} from 'react-redux'
 import Header from '../components/Header'
 import { ReactNode } from 'react';
-import Login from "./Login";
-import {  useSession } from "next-auth/react";
 
 import 'tailwindcss/tailwind.css'
 import 'daisyui/dist/full.css'
@@ -33,7 +30,6 @@ function MyApp({ Component, pageProps}: AppProps) {
   const router = useRouter()
   const asPath:any = router;
   const noNav =  ['/Login'];
-  // const {data:session} = useSession()
 
   return (
 <SessionProvider session={pageProps.session} >
@@ -41,10 +37,7 @@ function MyApp({ Component, pageProps}: AppProps) {
       <ChakraProvider>
 
       <Header/>
-        {/* {session?.user ? (    
-      <Header/>  ) : (null)} */}
-      {/* <Login/> */}
-      {/* {noNav.includes(asPath) ? null : <Header />} */}
+  
      <Component {...pageProps} />
       </ChakraProvider>
      </Provider>

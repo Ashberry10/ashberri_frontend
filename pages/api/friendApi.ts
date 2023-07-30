@@ -41,13 +41,12 @@ const getAuthToken = () => {
     baseQuery: fetchBaseQuery({
     // baseUrl: 'http://127.0.0.1:8000/friend/'
      // baseUrl: 'http://223.235.84.204:8000/account/'
-  baseUrl: 'http://localhost:8000/account/'
+  baseUrl: 'http://localhost:8000/friend/'
 
 
 
 
   //  baseUrl: 'http://154.41.254.253:8000/friend/'
-   //  baseUrl: 'https://ashberri-api.onrender.com/friend/'
 
    
     
@@ -133,7 +132,6 @@ rejectFriendRequest: builder.mutation({
 
 export const { useSendFriendRequestMutation, useCancelFriendRequestMutation,useGetAllUserFriendStatusQuery,useAcceptFriendRequestMutation,useRejectFriendRequestMutation } = friendApi;
 
-// export const { useSendFriendRequestMutation,useCancelFriendRequestMutation  } = friendApi;
 
 
 
