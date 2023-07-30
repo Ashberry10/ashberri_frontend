@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 // import { Disclosure } from 'daisyui';
 import LoadingIcon from "./LoadingIcon";
 import LoadingPage from './LoadingPage';
+import Image from 'next/image';
 
 interface FriendRequest {
   id: number;
@@ -41,7 +42,7 @@ const Profile: React.VFC = () => {
     <div className="max-w-lg mx-auto p-4">
       <div className="bg-white shadow-md p-4 rounded-md">
         <div className="flex items-center mb-4">
-          <img className="w-12 h-12 rounded-full" src={userProfile?.avatar} alt={userProfile?.name} />
+          <Image className="w-12 h-12 rounded-full" src={userProfile?.avatar} alt={userProfile?.name} />
           <div className="ml-4">
             <h2 className="text-lg font-bold">{userProfile?.name}</h2>
             <p className="text-gray-500">{userProfile?.email}</p>

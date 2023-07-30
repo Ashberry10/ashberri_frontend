@@ -9,6 +9,7 @@ import {
 import Link from "next/dist/client/link";
 import LoadingPage from "./LoadingPage";
 import LoadingIcon from "./LoadingIcon";
+import Image from "next/image";
 interface FriendProps {
   name: string;
   avatarUrl: string;
@@ -78,7 +79,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
             <div key={curElem.id} className="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
               <Link href={`/${curElem.id}`}>
                 <div className="relative">
-                  <img className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} />
+                  <Image className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} />
                 </div>
               </Link>
               <div className="px-4 py-3">

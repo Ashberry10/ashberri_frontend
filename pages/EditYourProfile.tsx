@@ -509,7 +509,7 @@ const EditYourProfile = () => {
                       {values.file ? (
                         <Fragment>
                           <div className="flex justify-center">
-                            <img
+                            <Image
                               className="h-20 w-20 mx-auto rounded-full"
                               src={URL.createObjectURL(values.file)}
                               alt="Profile"
