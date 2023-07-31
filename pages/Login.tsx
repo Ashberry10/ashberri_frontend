@@ -33,7 +33,7 @@ const Login = ({ searchParams }: IProps) => {
     ssr: false
   });
 
-  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true); //password visibility
   const router = useRouter();
   const dispatch = useAppDispatch();
   const email = useRef("")
@@ -51,15 +51,25 @@ const Login = ({ searchParams }: IProps) => {
   };
 
   const onSubmit = async () => {
-    const result = await signIn("credentials", {
-      email: email.current,
-      password: pass.current,
-      redirect: true,
-      callbackUrl: "/",
-    });
+    try {
+      const result = await signIn("credentials", {
+        email: email.current,
+        password: pass.current,
+        redirect: false,
+      });
+      if (result?.error) {
+        console.log('Error during login:', result.error);
+      }else{
+        console.log('Loing successful!');
+        router.push('/');
+      }
+    } catch (error) {
+      console.log('Error during login:', error);
+    }
   }
 
-  const { data: session } = useSession()
+
+  const { data: session } = useSession()  //from next-auth to the user session
 
   return (
     <div>
