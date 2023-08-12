@@ -963,16 +963,7 @@ required
 
 
 
-{/* 
-                      <Field as="select" className="px-7 h-10 mb-2 border border-2 outline-violet-300 border-gray-200 rounded-lg" name="gender">
-          <option className="hidden">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </Field>
 
-
- */}
 
 
 
