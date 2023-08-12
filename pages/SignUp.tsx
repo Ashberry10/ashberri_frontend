@@ -707,14 +707,23 @@ function Signup() {
   // };
 
   const onSubmit = async () => {
+    try {
     const result = await signIn("credentials", {
       email: email.current,
       password: pass.current,
       redirect: true,
       callbackUrl: "/",
     });
+    if (result?.error) {
+      console.log('Error during login:', result.error);
+    }else{
+      console.log('Loing successful!');
+      router.push('/');
+    }
+  } catch (error) {
+    console.log('Error during login:', error);
   }
-
+}
   return (
     <>
 
