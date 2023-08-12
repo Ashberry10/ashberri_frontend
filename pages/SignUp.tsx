@@ -980,7 +980,7 @@ required
             <div className="flex items-center space-x-4 mb-1 font-medium border-gray-500">
               <label className="cursor-pointer px-1 ">
                 <Field type="radio" name="gender" value="male" className="hidden" />
-                <div className={`border-gray-200 border rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'male' ? 'bg-violet-300 border-violet-300' : ''}`}>
+                <div className={` border rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'male' ? 'bg-violet-300 border-violet-300' : ''}`}>
                   <span className="block text-sm text-gray-600">Male</span>
                 </div>
               </label>
