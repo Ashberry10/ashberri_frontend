@@ -777,7 +777,7 @@ function Signup() {
                       /><br />
 
                       {/* <label  htmlFor="email">E-mail</label> */}
-                      <Field className="px-2 h-10 mb-2 w-full border border-2 outline-violet-300 border-gray-200 rounded-lg" placeholder="email address" name='email'
+                      <Field className="px-2 h-10 mb-2 w-full  border-2 outline-violet-300 border-gray-200 rounded-lg" placeholder="email address" name='email'
 
                       />
                       
@@ -849,7 +849,7 @@ required
                       <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
                         Date of Birth (Provide correct DOB for your better future)
                       </label>
-                      <Field className="px-7 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg"                   as="select" placeholder="DD" id='day' name='day' >
+                      <Field className="px-7 h-10 mb-2   border-2 outline-violet-300 border-gray-200 rounded-lg"                   as="select" placeholder="DD" id='day' name='day' >
 
 
 
@@ -899,7 +899,7 @@ required
 
 
                       &nbsp;&nbsp;
-                      <Field className="px-7 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" as="select" placeholder="MM" name='month' >
+                      <Field className="px-7 h-10 mb-2   border-2 outline-violet-300 border-gray-200 rounded-lg" as="select" placeholder="MM" name='month' >
 
 
 
@@ -930,7 +930,7 @@ required
 
                       &nbsp;&nbsp;
 
-                      <Field className="px-7 h-10 mb-1  border border-2 outline-violet-300 border-gray-200 rounded-lg" as="select" placeholder="YYYY" name='year' >
+                      <Field className="px-7 h-10 mb-1  border-2 outline-violet-300 border-gray-200 rounded-lg" as="select" placeholder="YYYY" name='year' >
 
 
                         <option className="hidden">YYYY</option>
@@ -980,19 +980,19 @@ required
             <div className="flex items-center space-x-4 mb-1 font-medium border-gray-500">
               <label className="cursor-pointer px-1 ">
                 <Field type="radio" name="gender" value="male" className="hidden" />
-                <div className={` border rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'male' ? 'bg-violet-300 border-violet-300' : ''}`}>
+                <div className={` border-2 rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'male' ? 'bg-violet-300 border-violet-300' : ''}`}>
                   <span className="block text-sm text-gray-600">Male</span>
                 </div>
               </label>
               <label className="cursor-pointer">
                 <Field type="radio" name="gender" value="female" className="hidden" />
-                <div className={`border rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'female' ? 'bg-violet-300 border-violet-300' : ''}`}>
+                <div className={`border-2 rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'female' ? 'bg-violet-300 border-violet-300' : ''}`}>
                   <span className="block text-sm text-gray-600">Female</span>
                 </div>
               </label>
               <label className="cursor-pointer">
                 <Field type="radio" name="gender" value="other" className="hidden" />
-                <div className={`border rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'other' ? 'bg-violet-300 border-violet-300' : ''}`}>
+                <div className={`border-2 rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'other' ? 'bg-violet-300 border-violet-300' : ''}`}>
                   <span className="block text-sm text-gray-600">Other</span>
                 </div>
               </label>
