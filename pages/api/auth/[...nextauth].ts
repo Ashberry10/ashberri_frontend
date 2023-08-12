@@ -39,7 +39,7 @@ export const authOptions:NextAuthOptions = {
                 // const res = await fetch('http://127.0.0.1:8000/account/login/', {
                 // const res = await fetch('http://223.235.84.204:8000/account/login/', {
 
-                const res = await fetch('http://localhost:8000/account/login/', {
+                const res = await fetch('http://ashberri.in:8000/account/login/', {
                   
 
 

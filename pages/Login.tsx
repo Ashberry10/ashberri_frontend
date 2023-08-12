@@ -27,6 +27,7 @@ const schema = yup.object().shape({
   password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
 });
 
+console.log("this is login page")
 const Login = ({ searchParams }: IProps) => {
 
   const Header = dynamic(() => import('../components/Header'), {
@@ -146,3 +147,9 @@ const Login = ({ searchParams }: IProps) => {
 }
 
 export default dynamic(() => Promise.resolve(Login), { ssr: false })
+
+
+
+
+
+

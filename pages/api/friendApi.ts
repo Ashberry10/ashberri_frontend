@@ -41,7 +41,7 @@ const getAuthToken = () => {
     baseQuery: fetchBaseQuery({
     // baseUrl: 'http://127.0.0.1:8000/friend/'
      // baseUrl: 'http://223.235.84.204:8000/account/'
-  baseUrl: 'http://localhost:8000/friend/'
+  baseUrl: 'http://ashberri.in:8000/friend/'
 
 
 

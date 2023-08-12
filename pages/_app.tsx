@@ -27,9 +27,6 @@ interface IProps {
   session : any;
 }
 function MyApp({ Component, pageProps}: AppProps) {
-  const router = useRouter()
-  const asPath:any = router;
-  const noNav =  ['/Login'];
 
   return (
 <SessionProvider session={pageProps.session} >
@@ -37,7 +34,6 @@ function MyApp({ Component, pageProps}: AppProps) {
       <ChakraProvider>
 
       <Header/>
-  
      <Component {...pageProps} />
       </ChakraProvider>
      </Provider>

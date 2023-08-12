@@ -646,6 +646,7 @@ function Signup() {
     day: string;
     month: string;
     year: string;
+    gender:string;
     // file: string;
   }
 
@@ -668,7 +669,7 @@ function Signup() {
     day: yup.string().required('day  is required'),
     month: yup.string().required('month  is required'),
     year: yup.string().required('year  is required'),
-
+    gender: yup.string().required('Gender is required'),
     email: yup.string().email('Invalid email').required('Email is required'),
     password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
   });
@@ -691,7 +692,7 @@ function Signup() {
   const togglePasswordVisibility = () => {
     setIsPasswordHidden(!isPasswordHidden);
   };
-  const initialValues: MyFormValues = { name: "", email: "", password: "", day: "", month: "", year: "" }
+  const initialValues: MyFormValues = { name: "", email: "", password: "", day: "", month: "", year: "" , gender:""}
   // const handleSubmit = async (values: FormValues) => {
   //   try {
   //     await schema.validate(values, { abortEarly: false });
@@ -724,7 +725,6 @@ function Signup() {
         <div className="mb-5">
           <h1 className='black text-5xl flex  justify-center pt-7 phone:text-1xl'>ashberri</h1><br />
 
-          {/* <p className='text-gray-600 text-2xl flex justify-center '>People those how highly compatible  <br /> and  think  like U,connect in ashberri...</p> */}
         </div>
         <div
           className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
@@ -849,12 +849,12 @@ required
                       <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
                         Date of Birth (Provide correct DOB for your better future)
                       </label>
-                      <Field className="px-7 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg" as="select" placeholder="DD" id='day' name='day' >
+                      <Field className="px-7 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg"                   as="select" placeholder="DD" id='day' name='day' >
 
 
 
 
-                        <option className="hidden">DD</option>
+                        <option className="hidden ">DD</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -960,34 +960,43 @@ required
                       </Field>
 
 
-                      {/* <Field name="file" placeholder="fileupload" encType="multipart/form-data" type="file" /> */}
 
 
+{/* 
+                      <Field as="select" className="px-7 h-10 mb-2 border border-2 outline-violet-300 border-gray-200 rounded-lg" name="gender">
+          <option className="hidden">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </Field>
 
-                      {/* <input className="px-10 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg"
-                     
-                        ref={fileRef}
-                        type="file"
-                        onChange={(event) => {
-                          setFieldValue("file", event.currentTarget?.files?.[0])
-                          
-                        }}
-                     
-                      />
-                       
-                     {values.file && <PreviewImage file={values.file} />}
 
  */}
 
 
 
 
-         
-                     
-{/* 
-                        <button onClick={() => {
-                          fileRef.current.click()
-                        }}>Upload</button> */}
+<label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2" htmlFor="grid-state">Gender</label>
+            <div className="flex items-center space-x-4 mb-1 font-medium border-gray-500">
+              <label className="cursor-pointer px-1 ">
+                <Field type="radio" name="gender" value="male" className="hidden" />
+                <div className={`border-gray-200 border rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'male' ? 'bg-violet-300 border-violet-300' : ''}`}>
+                  <span className="block text-sm text-gray-600">Male</span>
+                </div>
+              </label>
+              <label className="cursor-pointer">
+                <Field type="radio" name="gender" value="female" className="hidden" />
+                <div className={`border rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'female' ? 'bg-violet-300 border-violet-300' : ''}`}>
+                  <span className="block text-sm text-gray-600">Female</span>
+                </div>
+              </label>
+              <label className="cursor-pointer">
+                <Field type="radio" name="gender" value="other" className="hidden" />
+                <div className={`border rounded-lg p-2 px-7  cursor-pointer ${values.gender === 'other' ? 'bg-violet-300 border-violet-300' : ''}`}>
+                  <span className="block text-sm text-gray-600">Other</span>
+                </div>
+              </label>
+            </div>
 
                     </p>
 
@@ -995,23 +1004,6 @@ required
 
 
 
-
-                    {/* <Form>
-
-                      <input className="px-10 h-10 mb-2  border border-2 outline-violet-300 border-gray-200 rounded-lg"
-                        ref={fileRef}
-                        type="file"
-                        onChange={(e) => {
-                          setFieldValue("file", e.target.files[0])
-
-                        }}
-                     
-                      />
-                      {values.file && <PreviewImage file={values.file} />}
-
-                    </Form> */}
-
-                    {/* </p> */}
 
 
 
@@ -1032,10 +1024,10 @@ required
 
                     </div>
                   </Form>
-                )}
-              </Formik>
-            </div>
-          </div>
+                    )}
+                   </Formik>
+                 </div>
+                  </div>
         </div>
         <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
 

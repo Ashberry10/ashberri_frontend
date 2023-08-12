@@ -27,7 +27,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
   const [sendFriendRequest] = useSendFriendRequestMutation();
   const [cancelFriendRequest] = useCancelFriendRequestMutation();
 
-  if (status === "loading") {``
+  if (status === "loading") {
     return <LoadingPage />;
   }
   let allUsers = allUsersData || [];
@@ -128,11 +128,3 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
     </>
   );
 }
-
-
-
-
-
-
-
-

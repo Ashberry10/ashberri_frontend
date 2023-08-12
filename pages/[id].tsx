@@ -1,8 +1,8 @@
-// Without using rtk and using normal fetch api
+// // Without using rtk and using normal fetch api
 
 
+// import Profile from './Profile';
 // import { useEffect, useState } from "react";
-import Profile from './Profile';
 // import { useRouter } from "next/router";
 // import { useSession } from "next-auth/react";
 
@@ -25,7 +25,7 @@ import Profile from './Profile';
 //     async function fetchData() {
 //       try {
 //         const response = await fetch(
-//           `http://127.0.0.1:8000/account/friendStatusAndCompatibilityById/?id=${id}`,
+//           `http://ashberri.in:8000/account/friendStatusAndCompatibilityById/?id=${id}`,
 //           {
 //             method: "GET",
 //             headers: {
@@ -95,7 +95,7 @@ export default function MyData() {
   const token = session?.user.accessToken;
 
   const { data, isSuccess } = useUserPredictByIdQuery({ access: token, id: id });
-
+  console.log("this is id page")
   useEffect(() => {
     if (isSuccess) {
       setUsers(data);

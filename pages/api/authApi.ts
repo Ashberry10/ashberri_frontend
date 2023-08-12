@@ -41,7 +41,7 @@ export const authApi = createApi({
   // baseUrl: 'http://127.0.0.1:8000/account/'
 
   // baseUrl: 'http://223.235.84.204:8000/account/'
-  baseUrl: 'http://localhost:8000/account/'
+  baseUrl: 'http://ashberri.in:8000/account/'
 
 
 
@@ -115,7 +115,7 @@ export const authApi = createApi({
       headers: {
         Authorization: `Bearer ${access}`,
       }
-
+     
       // headers: {
       //   'Content-Type': 'application/json',
         
@@ -181,7 +181,7 @@ UserPredictById: builder.query({
 // user signup
   signupUser: builder.mutation({
     // query: (body: { name: string;email:string,password:string,day:string,year:string,month:string;  }) => {
-    query: (body: { name: string; email: string; password: string; day:string; month:string; year:string;}) => {
+    query: (body: { name: string; email: string; password: string; day:string; month:string; year:string;gender:string}) => {
     // query: (body:  User ) => {
       // console.log(typeof body);
 
