@@ -16,7 +16,7 @@ const Profile: React.VFC = () => {
   const router = useRouter();
   const { data: session,status } = useSession();
   const token: any = session?.user.accessToken;
-
+  
   const { data, error, isLoading } = useGetUserProfileQuery(token || '');
   console.log(data);
   useEffect(() => {

@@ -9,7 +9,8 @@ import React, { useState } from "react";
 import { useRef } from 'react';
 import { signIn } from 'next-auth/react';
 import * as yup from 'yup';
-
+import LoadingPage from './LoadingPage';
+import LoadingIcon from './LoadingIcon';
 interface IProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
@@ -42,7 +43,7 @@ const Login = ({ searchParams }: IProps) => {
 
   const [showModal, setShowModal] = React.useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false); // Add the isLoading state
   const handleLogin = () => {
     setIsLoggedIn(true);
   }
@@ -50,9 +51,9 @@ const Login = ({ searchParams }: IProps) => {
   const togglePasswordVisibility = () => {
     setIsPasswordHidden(!isPasswordHidden);
   };
-
   const onSubmit = async () => {
     try {
+      setIsLoading(true); // Set isLoading to true when authentication starts
       const result = await signIn("credentials", {
         email: email.current,
         password: pass.current,
@@ -60,14 +61,16 @@ const Login = ({ searchParams }: IProps) => {
       });
       if (result?.error) {
         console.log('Error during login:', result.error);
-      }else{
-        console.log('Loing successful!');
+      } else {
+        console.log('Login successful!');
         router.push('/');
       }
     } catch (error) {
       console.log('Error during login:', error);
+    } finally {
+      setIsLoading(false); // Set isLoading back to false when authentication finishes
     }
-  }
+  };
 
 
   const { data: session } = useSession()  //from next-auth to the user session
@@ -97,7 +100,7 @@ const Login = ({ searchParams }: IProps) => {
                 placeholder="Password" onChange={(e) => (pass.current = e.target.value)}
               />
               <div className="absolute inset-y-0 right-0  flex items-center text-sm leading-5">
-                <button
+              <button
                   type="button"
                   onClick={togglePasswordVisibility}
                   className="pr-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700"
@@ -124,7 +127,12 @@ const Login = ({ searchParams }: IProps) => {
 
             </div>
 
-            <button className="bg-violet-300 hover:bg-violet-400 text-white my-2 py-2 rounded-md font-bold" onClick={onSubmit}>Login</button>
+              <button  className="bg-violet-300 hover:bg-violet-400 text-white my-2 py-2 rounded-md font-bold" 
+      
+        onClick={onSubmit}
+      >
+        {isLoading ? <LoadingIcon/> : 'Login'}
+      </button>
 
             <span className=" text-center text-sm my-2 cursor-pointer hover:underline">Forgotten password?</span>
             <hr className="my-2" />

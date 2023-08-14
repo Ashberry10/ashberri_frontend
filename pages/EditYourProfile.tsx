@@ -263,7 +263,6 @@
 
 
 // using headless ui
-import  Button  from '@headlessui/react';
 
 import { useEffect } from 'react';
 import { useUpdateUserMutation } from "./api/authApi";
@@ -276,7 +275,6 @@ import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useRouter } from 'next/router';
 import { Listbox } from '@headlessui/react';
-
 const EditYourProfile = () => {
   const [values, setValues] = useState({
     name: '',
@@ -286,6 +284,10 @@ const EditYourProfile = () => {
     day: '',
     file: null,
   });
+
+
+
+  let buttonClasses = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded center' ;
 
   const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
@@ -425,6 +427,64 @@ const EditYourProfile = () => {
               <h2 className="text-3xl font-bold text-gray-700">Edit Profile</h2>
             </div>
             <form className="space-y-6 mt-5">
+            <div className="flex items-center">
+                <div className="flex flex-col w-full">
+                  <label className="text-sm font-bold text-gray-500 tracking-wide">Profile Picture</label>
+                  <div className="mt-1 flex justify-center px-6 pt-2  border-2 border-gray-300 border-dashed rounded-md">
+                    <div className="space-y-1 text-center">
+                      {values.file ? (
+                        <Fragment>
+                          <div className="flex justify-center">
+                            <img
+                              className="h-20 w-20 mx-auto rounded-full"
+                              src={URL.createObjectURL(values.file)}
+                              alt="Profile"
+                            />
+                          </div>
+                          <div className="text-sm">
+                            <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                              <span>Change</span>
+                              <input
+                                id="file-upload"
+                                name="file"
+                                type="file"
+                                className="sr-only"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                              />
+                            </label>
+                          </div>
+                          {/*  */}
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          <div className="flex justify-center">
+                            <div className="h-20 w-20 text-gray-400">
+                              <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className="text-sm">
+                            <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                              <span>Select a file</span>
+                              
+                              <input
+                                id="file-upload"
+                                name="file"
+                                type="file"
+                                className="sr-only"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                              />
+                            </label>
+                          </div>
+                        </Fragment>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="flex items-center">
                 <div className="flex flex-col w-full">
                   <label className="text-sm font-bold text-gray-500 tracking-wide">Name</label>
@@ -509,81 +569,38 @@ const EditYourProfile = () => {
                     </select>
                   </div>
                 </div></div>
-              <div className="flex items-center">
-                <div className="flex flex-col w-full">
-                  <label className="text-sm font-bold text-gray-500 tracking-wide">Profile Picture</label>
-                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                    <div className="space-y-1 text-center">
-                      {values.file ? (
-                        <Fragment>
-                          <div className="flex justify-center">
-                            <img
-                              className="h-20 w-20 mx-auto rounded-full"
-                              src={URL.createObjectURL(values.file)}
-                              alt="Profile"
-                            />
-                          </div>
-                          <div className="text-sm">
-                            <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                              <span>Change</span>
-                              <input
-                                id="file-upload"
-                                name="file"
-                                type="file"
-                                className="sr-only"
-                                accept="image/*"
-                                onChange={handleFileChange}
-                              />
-                            </label>
-                          </div>
-                          {/*  */}
-                        </Fragment>
-                      ) : (
-                        <Fragment>
-                          <div className="flex justify-center">
-                            <div className="h-20 w-20 text-gray-400">
-                              <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className="text-sm">
-                            <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                              <span>Select a file</span>
-                              
-                              <input
-                                id="file-upload"
-                                name="file"
-                                type="file"
-                                className="sr-only"
-                                accept="image/*"
-                                onChange={handleFileChange}
-                              />
-                            </label>
-                          </div>
-                        </Fragment>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <div>
 
 
 
 
-            <button
-                       className="btn flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium  bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full"
+                </div>
+                <div>
+ {/* <button
   type="button"
   onClick={handleUpload}
 
 >
   {isLoading ? 'Saving...' : 'Save Changes'}
-</button>
+</button> */}
 
 
 
-              </div>
+
+
+         <div className="flex justify-center items-center ">
+      <button
+        onClick={handleUpload}
+        className={buttonClasses}
+      >
+        {isLoading ? 'Saving...' : 'Save Changes'}
+      </button>
+    </div>
+</div>
+
+
+
             </form>
           </div>
         </div>
