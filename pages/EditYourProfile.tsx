@@ -263,7 +263,7 @@
 
 
 // using headless ui
-import { Box, Heading, Text, Stack, FormControl, FormLabel, Input, Button, Select } from '@chakra-ui/react';
+import  Button  from '@headlessui/react';
 
 import { useEffect } from 'react';
 import { useUpdateUserMutation } from "./api/authApi";
@@ -570,17 +570,16 @@ const EditYourProfile = () => {
               <div>
 
 
-                
-              <button
-  className="btn flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full"
+
+
+            <button
+                       className="btn flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium  bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full"
+  type="button"
   onClick={handleUpload}
+
 >
-  Save Changes
+  {isLoading ? 'Saving...' : 'Save Changes'}
 </button>
-
-
-
-
 
 
 
