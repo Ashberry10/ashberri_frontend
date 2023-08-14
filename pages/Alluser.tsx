@@ -83,17 +83,21 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
                 </div>
               </Link>
               <div className="px-4 py-3">
-                {/* <h1 className="text-lg font-semibold">{curElem.name}</h1> */}
                 <p className="text-sm text-gray-500">{curElem.status}</p>
+                <Link href={`/${curElem.id}`}>
+
                 <div className="flex items-center mt-2">
                   <span className="text-sm">{curElem.ProfileName}</span>
                 </div>
+                  </Link>
                 {curElem.Compatibility !== 'Self' && (
                   <>
+                <Link href={`/${curElem.id}`}>
                     <div className="flex items-center mt-1">
                       <span className="text-sm font-medium mr-1">Compatibility:</span>
                       <span className="text-sm">{curElem.Compatibility}</span>
                     </div>
+                  </Link>
 
                     {friendStatus?.friend_status === 'Pending' && friendStatus?.friend_status !== 'We Are Friends' && (
                       <button

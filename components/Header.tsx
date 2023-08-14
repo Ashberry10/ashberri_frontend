@@ -196,7 +196,7 @@ export default function Navbar() {
 //   return (
 //     <div className="sticky top-0 z-50 pr-5">
 //       <div className="flex flex-col h-screen bg-slate-500  sticky top-0 z-50">
-//       <div className="h-16 flex items-center justify-center text-black text-xl font-semibold sticky top-0 z-50">Ashberri</div>
+//       <div className="h-16 ">Ashberri</div>
 //       {menuItems.map((item) => (
 //         <Link key={item.key} href={item.key}>
 //           <h1 className={router.pathname === item.key ? 'active' : ''}>
