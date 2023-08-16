@@ -22,6 +22,7 @@ import 'daisyui/dist/full.css'
 
 
 import  {useRouter} from "next/navigation";
+import Layout from "../components/Layout";
 interface IProps {
   children : ReactNode;
   session : any;
@@ -29,12 +30,15 @@ interface IProps {
 function MyApp({ Component, pageProps}: AppProps) {
 
   return (
-<SessionProvider session={pageProps.session} >
+    
+    <SessionProvider session={pageProps.session} >
     <Provider store={store}>
       <ChakraProvider>
 
       <Header/>
+      {/* <Layout> */}
      <Component {...pageProps} />
+  {/* </Layout> */}
       </ChakraProvider>
      </Provider>
      </SessionProvider>

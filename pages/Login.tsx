@@ -35,6 +35,9 @@ const Login = ({ searchParams }: IProps) => {
     ssr: false
   });
 
+
+
+  
   const [isPasswordHidden, setIsPasswordHidden] = useState(true); //password visibility
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -67,9 +70,9 @@ const Login = ({ searchParams }: IProps) => {
       }
     } catch (error) {
       console.log('Error during login:', error);
-    } finally {
-      setIsLoading(false); // Set isLoading back to false when authentication finishes
-    }
+     } finally {
+       setIsLoading(false); // Set isLoading back to false when authentication finishes
+     }
   };
 
 

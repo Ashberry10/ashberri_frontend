@@ -1,8 +1,3 @@
-
-
-
-
-
 "use client";
 import { Transition } from "@headlessui/react";
 import { useRouter } from "next/navigation";
@@ -176,6 +171,10 @@ export default function Navbar() {
 
 
 
+
+
+
+
 // import React from 'react'
 // import { Transition } from "@headlessui/react";
 // import { useRouter } from "next/router";
@@ -205,7 +204,7 @@ export default function Navbar() {
 //         </Link>
 //       ))}
     
-
+ 
 // <div>
 //                     <div className="ml-auto flex gap-2">
 //        {session?.user ? (
@@ -222,7 +221,7 @@ export default function Navbar() {
 //          </button>
 //        )}
 //      </div>
-//     </div>
+//     </div> 
 //     </div>
 //     </div>
 //   )
@@ -233,4 +232,29 @@ export default function Navbar() {
 
 
 
+// src/components/VerticalHeader.tsx
 
+// import React from 'react';
+
+// const VerticalHeader: React.FC = () => {
+//   return (
+//     <nav className="bg-gray-800 w-20 h-screen flex flex-col justify-between items-center static">
+//       <div className="py-6 sticky">
+//         {/* Your logo or branding */}
+//         {/* Example: <img src="/logo.png" alt="Logo" className="w-10 h-10" /> */}
+//       </div>
+//       <div className="space-y-4">
+//         {/* Navigation links */}
+//         <a href="#" className="text-white hover:text-gray-300">Home</a>
+//         <a href="#" className="text-white hover:text-gray-300">About</a>
+//         <a href="#" className="text-white hover:text-gray-300">Services</a>
+//         <a href="#" className="text-white hover:text-gray-300">Contact</a>
+//       </div>
+//       <div className="py-6">
+//         {/* Other footer content */}
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default VerticalHeader;

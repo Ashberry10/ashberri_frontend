@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { useGetUserProfileQuery } from '../pages/api/authApi';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-// import { Disclosure } from 'daisyui';
-import LoadingIcon from "./LoadingIcon";
 import LoadingPage from './LoadingPage';
 import Image from 'next/image';
 

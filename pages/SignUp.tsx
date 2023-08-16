@@ -623,7 +623,7 @@
 
 
 
-"use client" //?
+"use client" 
 import React from 'react'
 import { useRouter } from "next/navigation";
 import { useSignupUserMutation } from "./api/authApi";
@@ -635,6 +635,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import dynamic from "next/dynamic";
 import * as yup from 'yup';
 // import { Form, Formik, Field } from "formik";
+import LoadingIcon from "./LoadingIcon";
 
 
 function Signup() {
@@ -649,20 +650,6 @@ function Signup() {
     gender:string;
     // file: string;
   }
-
-
-  // interface FormState {
-  //   name: string;
-  //   // lastName: string;
-  //   email: string;
-  //   password: string;
-  //   day: string;
-  //   month: string;
-  //   year: string;
-  //   errors: {
-  //     [key: string]: string;
-  //   };
-  // }
 
   const schema = yup.object().shape({
     name: yup.string().required('Name is required'),
@@ -692,6 +679,8 @@ function Signup() {
   const togglePasswordVisibility = () => {
     setIsPasswordHidden(!isPasswordHidden);
   };
+  // const [isLoading, setIsLoading] = useState(false); // Add the isLoading state
+
   const initialValues: MyFormValues = { name: "", email: "", password: "", day: "", month: "", year: "" , gender:""}
   // const handleSubmit = async (values: FormValues) => {
   //   try {
@@ -723,6 +712,11 @@ function Signup() {
   } catch (error) {
     console.log('Error during login:', error);
   }
+}
+
+
+if (isLoading) {
+  return <div><LoadingIcon /></div>;
 }
   return (
     <>

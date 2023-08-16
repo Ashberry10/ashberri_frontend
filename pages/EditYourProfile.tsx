@@ -271,20 +271,29 @@ import { useAppSelector } from "./../store/hooks";
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { useGetUserProfileQuery } from "./api/authApi";
 import Image from 'next/image';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useRouter } from 'next/router';
 import { Listbox } from '@headlessui/react';
 const EditYourProfile = () => {
+    
+  const genderOptions = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' },
+  ];
+  
   const [values, setValues] = useState({
     name: '',
     email: '',
     year: '',
     month: '',
     day: '',
+    gender: '', 
     file: null,
   });
-
 
 
   let buttonClasses = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded center' ;
@@ -313,6 +322,7 @@ const EditYourProfile = () => {
     month: "",
     year: "",
     file: "",
+    gender:""
   });
 
   const [updateUserMutation] = useUpdateUserMutation();
@@ -330,13 +340,14 @@ const EditYourProfile = () => {
     }));
   };
   const handleUpload = async () => {
-    const { name, day, file, email, year, month } = values;
+    const { name, day, file, email, year, month, gender } = values;
     const formData = new FormData();
     if (name) formData.append('name', name);
     if (email) formData.append('email', email);
     if (day) formData.append('day', day);
     if (year) formData.append('year', year);
     if (month) formData.append('month', month);
+    if (gender) formData.append('gender', gender);
     file && formData.append('file', file);
     
 
@@ -393,6 +404,8 @@ const EditYourProfile = () => {
         day: userProfile.day,
         month: userProfile.month,
         year: userProfile.year,
+        gender: userProfile.gender,
+
         file: userProfile.file, // Assuming the file URL is provided in the API response
       });
     }
@@ -429,7 +442,7 @@ const EditYourProfile = () => {
             <form className="space-y-6 mt-5">
             <div className="flex items-center">
                 <div className="flex flex-col w-full">
-                  <label className="text-sm font-bold text-gray-500 tracking-wide">Profile Picture</label>
+                  <label className="mr-2 font-semibold">Profile Picture</label>
                   <div className="mt-1 flex justify-center px-6 pt-2  border-2 border-gray-300 border-dashed rounded-md">
                     <div className="space-y-1 text-center">
                       {values.file ? (
@@ -487,7 +500,7 @@ const EditYourProfile = () => {
               </div>
               <div className="flex items-center">
                 <div className="flex flex-col w-full">
-                  <label className="text-sm font-bold text-gray-500 tracking-wide">Name</label>
+                  <label className="mr-2 font-semibold">Name</label>
                   <input
                     className="text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                     type="text"
@@ -500,7 +513,7 @@ const EditYourProfile = () => {
               </div>
               <div className="flex items-center">
                 <div className="flex flex-col w-full">
-                  <label className="text-sm font-bold text-gray-500 tracking-wide">Email</label>
+                  <label className="mr-2 font-semibold">Email</label>
                   <input
                     className="text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                     type="email"
@@ -514,9 +527,9 @@ const EditYourProfile = () => {
       <div className="mt-6">
                  <div className="flex items-center mb-2">
                    <label htmlFor="birthday" className="mr-2 font-semibold">Birthday</label>
-                   <span className="text-gray-500 text-sm">Your Current DOB={userData.day}/{userData.month}/{userData.year}</span>
+                   <span className="text-gray-500 text-sm">Your Current DOB &nbsp;=&nbsp;{userData.day}/{userData.month}/{userData.year}</span>
                  </div>
-                 <div className="grid grid-cols-3 gap-4 sm:grid-cols-auto">
+                 <div className="grid grid-cols-3 gap-3 sm:grid-cols-auto">
                    <div className="flex flex-col">
                      <label htmlFor="day" className="sr-only">Day</label>
                      <select
@@ -577,14 +590,90 @@ const EditYourProfile = () => {
 
                 </div>
                 <div>
- {/* <button
-  type="button"
-  onClick={handleUpload}
+ 
 
->
-  {isLoading ? 'Saving...' : 'Save Changes'}
-</button> */}
+<div className="flex items-center">
+  <div className="flex flex-col w-full">
 
+
+  <div className="flex items-center mb-2">
+                   <label  className="mr-2 font-semibold">Gender</label>
+                   <span className="text-gray-500 text-sm">Your Current Gender &nbsp;=&nbsp; {userData.gender}</span>
+                 </div>
+
+
+
+                 <div className=" grid grid-cols-3 gap-3 items-center  mb-1 font-medium border-gray-500">
+  <label className="cursor-pointer px-1">
+    <input
+      onChange={handleChange}
+      type="radio"
+      name="gender"
+      value="male"
+      className="hidden"
+    />
+    <div
+      className={`border-2 rounded-lg p-2 px-7  cursor-pointer ${
+        values.gender === 'male' ? 'bg-gray-300 border-gray-300' : ''
+      }`}
+    >
+      <span className="block text-sm text-gray-600">Male</span>
+    </div>
+  </label>
+  <label className="cursor-pointer">
+    <input
+      onChange={handleChange}
+      type="radio"
+      name="gender"
+      value="female"
+      className="hidden"
+    />
+    <div
+      className={`border-2 rounded-lg p-2 px-7 cursor-pointer ${
+        values.gender === 'female' ? 'bg-gray-300 border-gray-300' : ''
+      }`}
+    >
+      <span className="block text-sm text-gray-600">Female</span>
+    </div>
+  </label>
+  <label className="cursor-pointer">
+    <input
+      onChange={handleChange}
+      type="radio"
+      name="gender"
+      value="other"
+      className="hidden"
+    />
+    <div
+      className={`border-2 rounded-lg p-2 px-7 cursor-pointer ${
+        values.gender === 'other' ? 'bg-gray-300 border-gray-300' : ''
+      }`}
+    >
+      <span className="block text-sm text-gray-600">Other</span>
+    </div>
+  </label>
+</div>
+<br/>
+
+
+
+
+    {/* <select
+      id="gender"
+      name="gender"
+      value={values.gender}
+      onChange={handleChange}
+      className="p-3 border border-gray-300 rounded-md focus:outline-none"
+    >
+      <option value="">Select Gender</option>
+      {genderOptions.map((gender) => (
+        <option key={gender.value} value={gender.value}>
+          {gender.label}
+        </option>
+      ))}
+    </select> */}
+  </div>
+</div>
 
 
 
