@@ -404,8 +404,7 @@ const EditYourProfile = () => {
         day: userProfile.day,
         month: userProfile.month,
         year: userProfile.year,
-        gender: userProfile.gender,
-
+        gender: userProfile.gender,     
         file: userProfile.file, // Assuming the file URL is provided in the API response
       });
     }
@@ -583,28 +582,19 @@ const EditYourProfile = () => {
                   </div>
                 </div></div>
 
-              <div>
-
-
-
-
-                </div>
-                <div>
+          
  
 
 <div className="flex items-center">
   <div className="flex flex-col w-full">
 
-
   <div className="flex items-center mb-2">
-                   <label  className="mr-2 font-semibold">Gender</label>
-                   <span className="text-gray-500 text-sm">Your Current Gender &nbsp;=&nbsp; {userData.gender}</span>
-                 </div>
+  <label className="mr-2 font-semibold">Gender</label>
+  <span className="text-gray-500 text-sm">Your Current Gender &nbsp;=&nbsp; {userData.gender}</span>
+</div>
 
-
-
-                 <div className=" grid grid-cols-3 gap-3 items-center  mb-1 font-medium border-gray-500">
-  <label className="cursor-pointer px-1">
+<div className="grid grid-cols-3 gap-2 sm:grid-cols-auto">
+  <label className="cursor-pointer">
     <input
       onChange={handleChange}
       type="radio"
@@ -613,13 +603,14 @@ const EditYourProfile = () => {
       className="hidden"
     />
     <div
-      className={`border-2 rounded-lg p-2 px-7  cursor-pointer ${
+      className={`border-2 text-center  rounded-lg p-2 px-7 cursor-pointer ${
         values.gender === 'male' ? 'bg-gray-300 border-gray-300' : ''
       }`}
     >
       <span className="block text-sm text-gray-600">Male</span>
     </div>
   </label>
+
   <label className="cursor-pointer">
     <input
       onChange={handleChange}
@@ -629,13 +620,16 @@ const EditYourProfile = () => {
       className="hidden"
     />
     <div
-      className={`border-2 rounded-lg p-2 px-7 cursor-pointer ${
+      className={`border-2 rounded-lg text-center   p-2 px-5 cursor-pointer ${
         values.gender === 'female' ? 'bg-gray-300 border-gray-300' : ''
       }`}
     >
       <span className="block text-sm text-gray-600">Female</span>
     </div>
   </label>
+
+
+
   <label className="cursor-pointer">
     <input
       onChange={handleChange}
@@ -645,14 +639,84 @@ const EditYourProfile = () => {
       className="hidden"
     />
     <div
-      className={`border-2 rounded-lg p-2 px-7 cursor-pointer ${
+      className={`border-2 rounded-lg text-center  p-2 px-6 cursor-pointer ${
         values.gender === 'other' ? 'bg-gray-300 border-gray-300' : ''
       }`}
     >
       <span className="block text-sm text-gray-600">Other</span>
     </div>
   </label>
+
+
+
 </div>
+
+
+</div>
+</div> 
+
+
+{/* <div className="mb-4">
+  <label className="block text-sm font-medium text-gray-700">Gender</label>
+  <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+    <label className="cursor-pointer">
+      <input
+        onChange={handleChange}
+        type="radio"
+        name="gender"
+        value="male"
+        className="hidden"
+      />
+      <div
+        className={`border-2 rounded-lg p-2 text-center cursor-pointer ${
+          values.gender === 'male' ? 'bg-gray-300 border-gray-300' : ''
+        }`}
+      >
+        <span className="block text-xs sm:text-sm text-gray-600">Male</span>
+      </div>
+    </label>
+    <label className="cursor-pointer">
+      <input
+        onChange={handleChange}
+        type="radio"
+        name="gender"
+        value="female"
+        className="hidden"
+      />
+      <div
+        className={`border-2 rounded-lg p-2 text-center cursor-pointer ${
+          values.gender === 'female' ? 'bg-gray-300 border-gray-300' : ''
+        }`}
+      >
+        <span className="block text-xs sm:text-sm text-gray-600">Female</span>
+      </div>
+    </label>
+    <label className="cursor-pointer">
+      <input
+        onChange={handleChange}
+        type="radio"
+        name="gender"
+        value="other"
+        className="hidden"
+      />
+      <div
+        className={`border-2 rounded-lg p-2 text-center cursor-pointer ${
+          values.gender === 'other' ? 'bg-gray-300 border-gray-300' : ''
+        }`}
+      >
+        <span className="block text-xs sm:text-sm text-gray-600">Other</span>
+      </div>
+    </label>
+  </div>
+</div>
+
+
+ */}
+
+
+
+
+
 <br/>
 
 
@@ -672,8 +736,6 @@ const EditYourProfile = () => {
         </option>
       ))}
     </select> */}
-  </div>
-</div>
 
 
 
@@ -686,7 +748,6 @@ const EditYourProfile = () => {
         {isLoading ? 'Saving...' : 'Save Changes'}
       </button>
     </div>
-</div>
 
 
 

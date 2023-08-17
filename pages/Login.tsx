@@ -11,6 +11,7 @@ import { signIn } from 'next-auth/react';
 import * as yup from 'yup';
 import LoadingPage from './LoadingPage';
 import LoadingIcon from './LoadingIcon';
+import Layout from '../components/Layout';
 interface IProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
@@ -31,10 +32,14 @@ const schema = yup.object().shape({
 console.log("this is login page")
 const Login = ({ searchParams }: IProps) => {
 
-  const Header = dynamic(() => import('../components/Header'), {
+  // const Header = dynamic(() => import('../components/Header'), {
+  //   ssr: false
+  // });
+
+
+  const Layout = dynamic(() => import('../components/Layout'), {
     ssr: false
   });
-
 
 
   
@@ -80,7 +85,7 @@ const Login = ({ searchParams }: IProps) => {
 
   return (
     <div>
-      {session?.user ? <Header /> : null}
+      {/* {session?.user ? <Layout /> : null} */}
 
       <body
         className="bg-gray-100 h-screen  ">

@@ -16,7 +16,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import {Provider} from 'react-redux'
 import Header from '../components/Header'
 import { ReactNode } from 'react';
-
 import 'tailwindcss/tailwind.css'
 import 'daisyui/dist/full.css'
 
@@ -34,11 +33,11 @@ function MyApp({ Component, pageProps}: AppProps) {
     <SessionProvider session={pageProps.session} >
     <Provider store={store}>
       <ChakraProvider>
+      {/* <Layout> */}
 
       <Header/>
-      {/* <Layout> */}
-     <Component {...pageProps} />
-  {/* </Layout> */}
+            <Component {...pageProps} />
+          {/* </Layout>  */}
       </ChakraProvider>
      </Provider>
      </SessionProvider>
