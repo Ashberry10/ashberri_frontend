@@ -1,5 +1,4 @@
 // usig only tailwind
-
 "use client";
 import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react";
@@ -9,12 +8,15 @@ import React, { useState } from "react";
 import { useRef } from 'react';
 import { signIn } from 'next-auth/react';
 import * as yup from 'yup';
-import LoadingPage from './LoadingPage';
-import LoadingIcon from './LoadingIcon';
-import Layout from '../components/Layout';
+import LoadingPage from '../../pages/LoadingPage';
+import LoadingIcon from '../../pages/LoadingIcon';
+import Layout from '../Layout';
+import SignUp from "./SignUp";
 interface IProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
+
+
 
 interface FormState {
   email: string;
@@ -35,27 +37,32 @@ const Login = ({ searchParams }: IProps) => {
   // const Header = dynamic(() => import('../components/Header'), {
   //   ssr: false
   // });
-
-
-  const Layout = dynamic(() => import('../components/Layout'), {
+  
+  const handleSignupClick = () => {
+    router.push('/SignUp'); // Navigate to the SignUp page when the button is clicked
+    // console.log("dfsdf")
+    
+    // <h1>sdfsdfsdf</h1>
+  };
+  const Layout = dynamic(() => import('../Layout'), {
     ssr: false
   });
-
-
   
+  
+  // 1997/12/18
   const [isPasswordHidden, setIsPasswordHidden] = useState(true); //password visibility
   const router = useRouter();
   const dispatch = useAppDispatch();
   const email = useRef("")
   const pass = useRef("")
-
-  const [showModal, setShowModal] = React.useState(true);
+  
+  // const [showModal, setShowModal] = React.useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Add the isLoading state
   const handleLogin = () => {
     setIsLoggedIn(true);
   }
-
   const togglePasswordVisibility = () => {
     setIsPasswordHidden(!isPasswordHidden);
   };
@@ -85,8 +92,7 @@ const Login = ({ searchParams }: IProps) => {
 
   return (
     <div>
-      {/* {session?.user ? <Layout /> : null} */}
-
+      {session?.user ? (null) :(
       <body
         className="bg-gray-100 h-screen  ">
 
@@ -144,12 +150,24 @@ const Login = ({ searchParams }: IProps) => {
 
             <span className=" text-center text-sm my-2 cursor-pointer hover:underline">Forgotten password?</span>
             <hr className="my-2" />
-            <button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit"  onClick={() => router.push("/SignUp")}>Create New Account</button>
-            <span className="absolute-bottom-12 text-sm"><span className="font-bold hover:underline cursor-pointer">Create a Page </span>
+            {/* <button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit"  onClick={() => router.push("/SignUp")}>Create New Account</button> */}
+      
+   
+            {/* <span className="absolute-bottom-12 text-sm"><span className="font-bold hover:underline cursor-pointer">Create a Page </span>
+              for a celebrity, brand or business.</span> */}
 
-              for a celebrity, brand or business.</span>
+
+
+<button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit" type="button"
+            onClick={() => setShowModal(true)}
+          >Create New Account</button>
+              
+              
+              
+              
           </div>
         </div>
+
 
         {/* <Profile/> */}
         <div>
@@ -158,11 +176,19 @@ const Login = ({ searchParams }: IProps) => {
         </div>
       </body>
 
+ )}
+
+{showModal ? (
+<SignUp/>
+) : null}
+
+
     </div>
   )
 }
 
 export default dynamic(() => Promise.resolve(Login), { ssr: false })
+
 
 
 

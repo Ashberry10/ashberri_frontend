@@ -22,6 +22,8 @@ import 'daisyui/dist/full.css'
 
 import  {useRouter} from "next/navigation";
 import Layout from "../components/Layout";
+import Login from "@/components/modals/Login";
+import SignUp from "@/components/modals/SignUp";
 interface IProps {
   children : ReactNode;
   session : any;
@@ -33,11 +35,13 @@ function MyApp({ Component, pageProps}: AppProps) {
     <SessionProvider session={pageProps.session} >
     <Provider store={store}>
       <ChakraProvider>
-      {/* <Layout> */}
-
-      <Header/>
+     
+      {/* <SignUp/> */}
+      <Login/>
+      <Layout>
+        
             <Component {...pageProps} />
-          {/* </Layout>  */}
+          </Layout> 
       </ChakraProvider>
      </Provider>
      </SessionProvider>

@@ -306,7 +306,6 @@ const EditYourProfile = () => {
     }));
   };
   const router = useRouter();
-
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e?.target.files?.[0] || null;
     setValues((prevValues) => ({
@@ -415,9 +414,11 @@ const EditYourProfile = () => {
   
 
   return (
-    <div className=" bg-gray-100  flex flex-col justify-center sm:py-12">
-      <div className="relative py-1 sm:max-w-xl sm:mx-auto">
-        <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
+    // <div className=" bg-gray-100  flex flex-col justify-center sm:py-12">
+    <div className=" bg-gray-100  flex flex-col justify-center h-screen no-scrollbar pb-24" >
+
+      <div className="relative  sm:max-w-xl sm:mx-auto">
+        <div className="relative  bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
           <div className="max-w-md mx-auto">
             <div className="flex items-center space-x-5">
               {/* <div className="w-12 h-12 rounded-full bg-yellow-500 flex justify-center items-center">

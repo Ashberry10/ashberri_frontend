@@ -625,17 +625,18 @@
 
 "use client" 
 import React from 'react'
+import Login from './Login';
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useSignupUserMutation } from "./api/authApi";
+import { useSignupUserMutation } from "../../pages/api/authApi";
 import { signIn } from 'next-auth/react';
 import { useRef } from 'react';
 import  { useState } from "react";
-import PreviewImage from './PreviewImage';
+import PreviewImage from '../../pages/PreviewImage';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import dynamic from "next/dynamic";
 import * as yup from 'yup';
-// import { Form, Formik, Field } from "formik";
-import LoadingIcon from "./LoadingIcon";
+import LoadingIcon from "../../pages/LoadingIcon";
 
 
 function Signup() {
@@ -666,11 +667,12 @@ function Signup() {
 
   
   const email = useRef("")
+  const [showModal, setShowModal] = useState(false);
 
   const pass = useRef("")
   const fileRef = useRef<HTMLInputElement>(null);
   // const fileRef = useRef(null);
-  const [showModal, setShowModal] = React.useState(false);
+  // const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
 
   const [signupUser, { data, isLoading }] = useSignupUserMutation();
@@ -713,6 +715,7 @@ function Signup() {
     console.log('Error during login:', error);
   }
 }
+const { data: session } = useSession()  //from next-auth to the user session
 
 
 if (isLoading) {
@@ -720,8 +723,8 @@ if (isLoading) {
 }
   return (
     <>
+      {/* {session?.user ? (null) :( */}
 
-      {/* {showModal ? ( */}
 
       <body
         className="bg-gray-100">
@@ -840,10 +843,7 @@ required
 
             )}
           </svg>
-
-
-
-          
+        
         </button>
       </div>
 
@@ -853,10 +853,7 @@ required
                       <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" htmlFor="grid-state">
                         Date of Birth (Provide correct DOB for your better future)
                       </label>
-                      <Field className="px-7 h-10 mb-2   border-2 outline-violet-300 border-gray-200 rounded-lg"                   as="select" placeholder="DD" id='day' name='day' >
-
-
-
+                      <Field className="px-7 h-10 mb-2   border-2 outline-violet-300 border-gray-200 rounded-lg"as="select" placeholder="DD" id='day' name='day' >
 
                         <option className="hidden ">DD</option>
                         <option value="1">1</option>
@@ -964,13 +961,6 @@ required
                       </Field>
 
 
-
-
-
-
-
-
-
 <label className="pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2" htmlFor="grid-state">Gender</label>
             <div className="flex items-center space-x-4 mb-1 font-medium border-gray-500">
               <label className="cursor-pointer px-1 ">
@@ -994,27 +984,31 @@ required
             </div>
 
                     </p>
-
-
-
-
-
-
-
-
                     {/*footer*/}
                     <div className="flex items-center justify-end p-2 border-t border-solid border-blueGray-200 rounded-b">
-                      <button
+                      {/* <button
                         className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
                         onClick={() => router.push("/Login")}
                       >
                         Close
-                      </button>
+                      </button> */}
+
+
+
+<button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit" type="button"
+            onClick={() => setShowModal(true)}
+          >Close</button>
+              
+
+
+
+
+
+
 
                       <button className="bg-green-600 hover:bg-green-700 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         onClick={onSubmit}>
-                        {/* type="submit"> */}
                         Submit</button>
 
                     </div>
@@ -1026,8 +1020,15 @@ required
         </div>
         <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
 
+      {showModal ? (
+
+
+<Login/>
+
+) : null  }
       </body>
 
+  {/* )}  */}
     </>
 
 
