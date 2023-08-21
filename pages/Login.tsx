@@ -1,4 +1,4 @@
-// usig only tailwind
+// // usig only tailwind
 "use client";
 import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react";
@@ -8,9 +8,10 @@ import React, { useState } from "react";
 import { useRef } from 'react';
 import { signIn } from 'next-auth/react';
 import * as yup from 'yup';
-import LoadingPage from '../../pages/LoadingPage';
-import LoadingIcon from '../../pages/LoadingIcon';
-import Layout from '../Layout';
+// import LoadingPage from '../LoadingPage';
+import LoadingPage from "./LoadingPage";
+import LoadingIcon from './LoadingIcon';
+// import Layout from '/Layout';
 import SignUp from "./SignUp";
 interface IProps {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -44,9 +45,9 @@ const Login = ({ searchParams }: IProps) => {
     
     // <h1>sdfsdfsdf</h1>
   };
-  const Layout = dynamic(() => import('../Layout'), {
-    ssr: false
-  });
+  // const Layout = dynamic(() => import('../Layout'), {
+  //   ssr: false
+  // });
   
   
   // 1997/12/18
@@ -59,10 +60,20 @@ const Login = ({ searchParams }: IProps) => {
   // const [showModal, setShowModal] = React.useState(true);
   const [showModal, setShowModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false); // Add the isLoading state
   const handleLogin = () => {
     setIsLoggedIn(true);
   }
+
+    const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   const togglePasswordVisibility = () => {
     setIsPasswordHidden(!isPasswordHidden);
   };
@@ -150,20 +161,31 @@ const Login = ({ searchParams }: IProps) => {
 
             <span className=" text-center text-sm my-2 cursor-pointer hover:underline">Forgotten password?</span>
             <hr className="my-2" />
-            {/* <button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit"  onClick={() => router.push("/SignUp")}>Create New Account</button> */}
-      
+            <div className="items-center">
+
+<button
+  className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 ml-14 mx-auto rounded-md font-bold "
+  onClick={openModal}
+>
+  Create New Account
+</button>
+
+{isModalOpen && (
+  <SignUp closeModal={closeModal} /> 
+)}
+</div>
    
-            {/* <span className="absolute-bottom-12 text-sm"><span className="font-bold hover:underline cursor-pointer">Create a Page </span>
-              for a celebrity, brand or business.</span> */}
+            <span className="absolute-bottom-12 text-sm"><span className="font-bold hover:underline cursor-pointer">Create a Page </span>
+              for a celebrity, brand or business.</span>
 
 
 
-<button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit" type="button"
+{/* <button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit" type="button"
             onClick={() => setShowModal(true)}
           >Create New Account</button>
+               */}
               
-              
-              
+
               
           </div>
         </div>
@@ -178,9 +200,6 @@ const Login = ({ searchParams }: IProps) => {
 
  )}
 
-{showModal ? (
-<SignUp/>
-) : null}
 
 
     </div>
@@ -192,6 +211,46 @@ export default dynamic(() => Promise.resolve(Login), { ssr: false })
 
 
 
-// 
 
 
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import Login from './Login'; // Import your existing Login component
+// import SignUp from './SignUp'; // Import the SignUp component
+
+// const LoginPage = () => {
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+
+//   const openModal = () => {
+//     setIsModalOpen(true);
+//   };
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+//   };
+
+//   return (
+//     <div>
+
+//       <button
+//         className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit"
+//         onClick={openModal}
+//       >
+//         Create New Account
+//       </button>
+
+//       {isModalOpen && (
+//         <SignUp closeModal={closeModal} /> 
+//       )}
+//     </div>
+//   );
+// };
+
+// export default LoginPage;

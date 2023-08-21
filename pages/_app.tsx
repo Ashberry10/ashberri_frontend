@@ -22,8 +22,8 @@ import 'daisyui/dist/full.css'
 
 import  {useRouter} from "next/navigation";
 import Layout from "../components/Layout";
-import Login from "@/components/modals/Login";
-import SignUp from "@/components/modals/SignUp";
+import Login from "@/pages/Login";
+// import SignUp from "@/pages/SignUp";
 interface IProps {
   children : ReactNode;
   session : any;
