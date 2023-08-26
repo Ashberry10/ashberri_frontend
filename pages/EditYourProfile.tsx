@@ -198,8 +198,7 @@ const EditYourProfile = () => {
             <form className="space-y-6 mt-5">
             <div className="flex ">
                 <div className="flex flex-col w-full">
-                  <label className="mr-2 font-semibold">Profile Picture</label>
-                  {/* <div className="mt-1 flex justify-center px-6 pt-2  border-2 border-gray-300 border-dashed rounded-md"> */}
+                  <label className="mr-2 pb-2 font-semibold">Profile Picture</label>
                   <div>
                   <div className="space-y ">
 
@@ -211,27 +210,30 @@ const EditYourProfile = () => {
  {profileImage ? (
    
    
-   <div className="text-sm">
-            <img
-              className="h-20 w-20  rounded-full"
-              src={profileImage}
-              alt="Profile"
-            />
-          <label
-            htmlFor="file-upload"
-            className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-          >
-            <span>{profileImage ? 'Change' : 'Select a file'}</span>
-            <input
-              id="file-upload"
-              name="file"
-              type="file"
-              className="sr-only"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
-          </label>
-        </div>
+<div className="text-sm">
+  <label htmlFor="file-upload" className="flex items-center ">
+    <img
+      className="h-20 w-20 rounded-full "
+      src={profileImage}
+      alt="Profile"
+    />
+    {/* <span className=" pl-10">{profileImage ? 'Change' : 'Select a file'}</span> */}
+    <span
+      className="bg-gray-500 ml-10 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full focus:outline-none"
+    >
+      {profileImage ? 'Change' : 'Select a file'}
+    </span>
+    <input
+      id="file-upload"
+      name="file"
+      type="file"
+      className="sr-only"
+      accept="image/*"
+      onChange={handleFileChange}
+    />
+
+  </label>
+</div>
 
 
 
