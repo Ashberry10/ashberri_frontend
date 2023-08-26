@@ -463,13 +463,13 @@ const { data: session } = useSession()  //from next-auth to the user session
 
   return (
     <>
-
+ {session?.user ? (null) :(
 
       <body
         className="bg-gray-100">
    
         <div
-          className="justify-center  items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+          className="justify-center  xs:mb-32 items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
         >
           <div className="relative w-96 ">
             <div className="border-0 rounded-lg shadow-lg relative flex flex-col  bg-white outline-none focus:outline-none">
@@ -503,21 +503,14 @@ const { data: session } = useSession()  //from next-auth to the user session
                         type="text"
                         name="name"
                         placeholder="Full Name"
-
-
                       /><br />
 
                       {/* <label  htmlFor="email">E-mail</label> */}
                       {/* <Field className="px-2 h-10 mb-2 w-full border-2 outline-violet-300 border-gray-200 rounded-lg" placeholder="Email" name='email' */}
                       <Field className="px-2 h-10 mb-1 w-full  border-2 outline-violet-300 border-gray-200 rounded-lg"
-placeholder="Email" name='email'
+                      placeholder="Email" name='email'
                       />
-                      
-                      
-                      
-          
-                      
-                      
+                
                       <br />
 
 
@@ -722,14 +715,14 @@ required
                       
                       
                       
+                     
                       
                       
                       
                       
                       
                       
-                      
-
+ 
                     </p>
 
                     <div className="flex items-center justify-end p-2 border-t border-solid border-blueGray-200 rounded-b">
@@ -752,7 +745,7 @@ required
                         type="button"
             onClick={closeModal} // Close the modal
           >
-Close
+          Close
           </button>
 
                       <button className="bg-green-600 hover:bg-green-700 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -771,10 +764,23 @@ Close
 
       </body>
 
+ )}
     </>
+    
 
 
   );
 };
 export default SignUp
+
+
+
+
+
+
+
+
+
+
+
 

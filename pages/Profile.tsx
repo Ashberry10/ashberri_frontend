@@ -4,13 +4,23 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import LoadingPage from './LoadingPage';
 import Image from 'next/image';
-
+import EditYourProfile from './EditYourProfile';
 interface FriendRequest {
   id: number;
   name: string;
 }
 
-const Profile: React.VFC = () => {
+interface UserProfile {
+  name: string;
+  email: string;
+  // ... other fields
+}
+
+interface IProps {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+const Profile: React.FC<IProps> = ({ searchParams }) => {
   const router = useRouter();
   const { data: session,status } = useSession();
   const token: any = session?.user.accessToken;
@@ -65,7 +75,6 @@ const Profile: React.VFC = () => {
             <ul>
               {friendRequests.map((request: FriendRequest) => (
                 <li key={request.id} className="flex items-center mb-2">
-                  {/* <img className="w-6 h-6 rounded-full" src={request.avatar} alt={request.name} /> */}
                   <span className="ml-2">{request.name}</span>
                 </li>
               ))}
@@ -74,6 +83,7 @@ const Profile: React.VFC = () => {
             <p>No friend requests.</p>
           )}
         </div>
+        
       </div>
     </div>
   );

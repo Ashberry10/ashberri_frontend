@@ -81,8 +81,19 @@ sendFriendRequest: builder.mutation({
   }),
 }),
 
+// cancelfriendrequest
+cancelFriendRequest: builder.mutation({
+  query: ({access,formData}) => ({
+    url: `friend-request/`,
+    method: 'DELETE',
+    headers: {
+      'authorization': `Bearer ${access}`,
+    },
     
-
+    body: formData,
+    
+  }),
+}),
 
 
 // SendingFriendRequest
@@ -113,18 +124,7 @@ rejectFriendRequest: builder.mutation({
 }),
 
 
-      cancelFriendRequest: builder.mutation({
-        query: ({access,formData}) => ({
-          url: `friend-request/`,
-          method: 'DELETE',
-          headers: {
-            'authorization': `Bearer ${access}`,
-          },
-          
-          body: formData,
-          
-        }),
-      }),
+ 
 
 
   }),
