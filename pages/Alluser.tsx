@@ -71,7 +71,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
   const handleAcceptFriendRequest = async (friendId: string) => {
     try {
       setAcceptingFriendRequests((prevRequests) => [...prevRequests, friendId]);
-      await acceptFriendRequest({ access: token, formData: { sender: friendId } });
+      await acceptFriendRequest({ access: token, formData: { sender: friendId,action:'accept' } });
       console.log(`Accepted friend request from ${friendId}`);
       refetchFriendStatuses();
     } catch (error: any) {
@@ -84,7 +84,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
   const handleRejectFriendRequest = async (friendId: string) => {
     try {
       setRejectingFriendRequests((prevRequests) => [...prevRequests, friendId]);
-      await rejectFriendRequest({ access: token, formData: { sender: friendId } });
+      await rejectFriendRequest({ access: token, formData: { sender: friendId,action:'reject' } });
       console.log(`Rejected friend request from ${friendId}`);
       refetchFriendStatuses();
     } catch (error: any) {
@@ -114,7 +114,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
             <div key={curElem.id} className="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
                       <Link href={`/${curElem.id}`}>
                 <div className="relative">
-                  <Image className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} />
+                  {/* <Image className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} /> */}
                   
                 </div>
               </Link>
