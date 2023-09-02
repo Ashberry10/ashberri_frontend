@@ -36,7 +36,7 @@ export const authOptions:NextAuthOptions = {
             //   }
             async authorize(credentials, req) {
                 const {email,password } = credentials as any;
-                // const res = await fetch('http://127.0.0.1:8000/account/login/', {
+                // const res = await fetch('http://127.0.0.1:8001/account/login/', {
                 // const res = await fetch('http://223.235.84.204:8000/account/login/', {
 
                 const res = await fetch('http://ashberri.in:8000/account/login/', {
