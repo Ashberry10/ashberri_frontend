@@ -1,6 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // import { access } from 'fs';
 import { signIn, signOut, useSession } from "next-auth/react";
+import { BASE_URL } from '@/api_constants';
+// import { BASE_URL } from '../../api_constants';
+
 
 // Function to retrieve the authentication token from your application's state
 const getAuthToken = () => {
@@ -39,14 +42,13 @@ const getAuthToken = () => {
     // The base query to request data.
     // RTK Query ships with fetchBaseQuery, which is a lightweight fetch wrapper that automatically handles request headers and response parsing in a manner similar to common libraries like axios.
     baseQuery: fetchBaseQuery({
-    // baseUrl: 'http://127.0.0.1:8001/friend/'
-     // baseUrl: 'http://223.235.84.204:8000/account/'
-  baseUrl: 'http://ashberri.in:8000/friend/'
+     baseUrl: BASE_URL + '/friend/'
+     
+     
 
 
 
 
-  //  baseUrl: 'http://154.41.254.253:8000/friend/'
 
    
     

@@ -5,6 +5,9 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { headers } from 'next/dist/client/components/headers';
 import { RootState } from '../../store/store'; 
 // import { access } from 'fs';
+import { BASE_URL } from '@/api_constants';
+// import { BASE_URL } from '../../api_constants';
+
 
 import { getSession } from 'next-auth/react';
 
@@ -38,22 +41,15 @@ export const authApi = createApi({
  // The base query to request data.
  // RTK Query ships with fetchBaseQuery, which is a lightweight fetch wrapper that automatically handles request headers and response parsing in a manner similar to common libraries like axios.
  baseQuery: fetchBaseQuery({
-  // baseUrl: 'http://127.0.0.1:8001/account/'
 
-  // baseUrl: 'http://223.235.84.204:8000/account/'
-  baseUrl: 'http://ashberri.in:8000/account/'
+  baseUrl: BASE_URL+'/account/'
 
 
 
 
 
   
-  // baseUrl: 'http://154.41.254.253:8000/account/'
-  // baseUrl: 'https://ashberri-api.onrender.com/account',
 
-
-      // return headers;
-  // baseUrl:'https://jsonplaceholder.typicode.com/'
  }),
 
 

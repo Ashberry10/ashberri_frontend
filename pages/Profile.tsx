@@ -1,6 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useGetUserProfileQuery } from '../pages/api/authApi';
 import { useSession } from 'next-auth/react';
+import {
+
+  useGetAllUserFriendStatusQuery,
+  useAcceptFriendRequestMutation,
+  useRejectFriendRequestMutation
+} from "./api/friendApi";
 import { useRouter } from 'next/router';
 import LoadingPage from './LoadingPage';
 import Image from 'next/image';
@@ -24,7 +30,10 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
   const router = useRouter();
   const { data: session,status } = useSession();
   const token: any = session?.user.accessToken;
-  
+  const [acceptingFriendRequests, setAcceptingFriendRequests] = useState<string[]>([]);
+  const [rejectingFriendRequests, setRejectingFriendRequests] = useState<string[]>([]);
+  const [acceptFriendRequest] = useAcceptFriendRequestMutation();
+  const { data: friendStatusesData, refetch: refetchFriendStatuses } = useGetAllUserFriendStatusQuery(token);
   const { data, error, isLoading } = useGetUserProfileQuery(token || '');
   console.log(data);
   useEffect(() => {

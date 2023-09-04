@@ -1,6 +1,8 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signOut } from 'next-auth/react';
 import NextAuth,{NextAuthOptions} from "next-auth"
+import { BASE_URL } from "@/api_constants";
+
 
 export const authOptions:NextAuthOptions = {
    secret: process.env.AUTH_SECRET,
@@ -36,15 +38,12 @@ export const authOptions:NextAuthOptions = {
             //   }
             async authorize(credentials, req) {
                 const {email,password } = credentials as any;
-                // const res = await fetch('http://127.0.0.1:8001/account/login/', {
-                // const res = await fetch('http://223.235.84.204:8000/account/login/', {
 
-                const res = await fetch('http://ashberri.in:8000/account/login/', {
+                const res = await fetch(BASE_URL +'/account/login/', {
                   
 
+                  // const res = await fetch('http://ashberri.in:8000/account/login/', {
 
-
-                  // const res = await fetch('http://154.41.254.253:8000/account/login/', {
 
 
 
