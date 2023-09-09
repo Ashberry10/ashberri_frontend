@@ -18,6 +18,7 @@ interface FriendRequest {
   id: number;
   sender_name: string;
   compatibility: number;
+  status:string
 }
 
 interface UserProfile {
@@ -47,6 +48,11 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
      console.error('Failed to fetch user profile:', error);
     }
   }, [error]);
+
+  // if(friendrequest?.total_friend_requests==0)
+  // {
+  //   return<div>No Friend Request Found</div>
+  // }
   
   if (isLoading) {
     return <div><LoadingPage /></div>;
@@ -59,8 +65,8 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
   const userProfile = data?.user_profile;
   const userProfileFriendrequest = friendrequest?.friend_requests;
 
-
-  var profileImage = "http://223.235.84.152:8000"+userProfile.file;
+console.log(friendrequest)
+  var profileImage = "http://223.235.84.152:8000" +userProfile.file;
 
 
   return (
@@ -81,12 +87,15 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
         </div>
         <hr className="my-4" />
         <div className="mb-4">
-        <h3 className="text-lg font-bold mb-2">Friend Requests:</h3>
-            <h2 className="text-lg font-bold">{data?.sender_name}</h2>
-        {userProfileFriendrequest &&
-          userProfileFriendrequest.map((friendRequest: FriendRequest) => (
-            <div key={friendRequest.id} className="mb-2">
-              <p>
+
+
+
+                      {userProfileFriendrequest &&
+                        userProfileFriendrequest.map((friendRequest: FriendRequest) => (
+                          <div key={friendRequest.id} className="mb-2">
+                {friendRequest?.status === 'pending' &&   (  
+                  <p>
+                <h3 className="text-lg font-bold mb-2">Friend Requests:</h3>
                 {friendRequest.sender_name} = 
                 {friendRequest.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
@@ -99,16 +108,44 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
                    {friendRequest.compatibility === 4 && (
                   <span className="text-yellow-500">⭐⭐⭐⭐</span>
                   
+                  )}
+                  
+                  
+                  {friendRequest.compatibility === 5 && (
+                    <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+                    
+                    )}
+                    </p>
                 )}
+                  <hr className="my-4" />
 
+{friendRequest?.status !== 'pending' && (  
+              <p>
+                <h3 className="text-lg font-bold mb-2">Friends:</h3>
 
-                   {friendRequest.compatibility === 5 && (
-                  <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+                {friendRequest.sender_name} = 
+                {friendRequest.compatibility === 0 && (
+                  <span className="text-yellow-500">Not Friend</span>
                   
                 )}
-              </p>
-            </div>
-          ))}
+                {friendRequest.compatibility === 3 && (
+                  <span className="text-yellow-500">⭐⭐⭐</span>
+                  
+                )}
+                   {friendRequest.compatibility === 4 && (
+                  <span className="text-yellow-500">⭐⭐⭐⭐</span>
+                  
+                  )}
+                  
+                  
+                  {friendRequest.compatibility === 5 && (
+                    <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+                    
+                    )}
+                    </p>
+                )}
+                    </div>
+                    ))} 
           </div>
       </div>
     </div>
