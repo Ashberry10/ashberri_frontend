@@ -57,6 +57,20 @@ const getAuthToken = () => {
   endpoints: (builder) => ({
 
 
+    getAllUserFriendRequest: builder.query({
+      query: (access) => ({
+        url: 'friend-requests/',
+        method: 'GET',
+        headers: {
+          'authorization': `Bearer ${access}`,
+
+        },
+      }),
+    }),
+    
+
+
+
 
 
       getAllUserFriendStatus: builder.query({
@@ -132,7 +146,7 @@ rejectFriendRequest: builder.mutation({
   }),
 });
 
-export const { useSendFriendRequestMutation, useCancelFriendRequestMutation,useGetAllUserFriendStatusQuery,useAcceptFriendRequestMutation,useRejectFriendRequestMutation } = friendApi;
+export const { useSendFriendRequestMutation, useCancelFriendRequestMutation,useGetAllUserFriendStatusQuery,useGetAllUserFriendRequestQuery,useAcceptFriendRequestMutation,useRejectFriendRequestMutation } = friendApi;
 
 
 
