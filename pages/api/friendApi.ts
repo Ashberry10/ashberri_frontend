@@ -121,6 +121,28 @@ cancelFriendRequest: builder.mutation({
 }),
 
 
+
+
+// SendingFriendRequest
+unFriend: builder.mutation({ 
+  query: ({access,formData}) => ({
+    url: 'unfriend/',
+    method: 'POST',
+    // body: friendRequestData,
+    headers: {
+      'authorization': `Bearer ${access}`,
+    },
+    body: formData,
+  }),
+}),
+
+
+
+
+
+
+
+
 // SendingFriendRequest
  acceptFriendRequest: builder.mutation({ 
   query: ({access,formData}) => ({
@@ -155,7 +177,7 @@ rejectFriendRequest: builder.mutation({
   }),
 });
 
-export const { useSendFriendRequestMutation, useCancelFriendRequestMutation,useGetAllUserFriendStatusQuery,useGetAllUserFriendsQuery,useGetAllUserFriendRequestQuery,useAcceptFriendRequestMutation,useRejectFriendRequestMutation } = friendApi;
+export const { useUnFriendMutation,useSendFriendRequestMutation, useCancelFriendRequestMutation,useGetAllUserFriendStatusQuery,useGetAllUserFriendsQuery,useGetAllUserFriendRequestQuery,useAcceptFriendRequestMutation,useRejectFriendRequestMutation } = friendApi;
 
 
 

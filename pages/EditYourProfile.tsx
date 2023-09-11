@@ -108,7 +108,7 @@ const EditYourProfile = () => {
 
       if (response) {
         console.log('Successfully uploaded');
-        window.location.reload(); // Reload the page after successful upload
+        // window.location.reload(); // Reload the page after successful upload
       } else {
         console.log('Failed uploading');
       }

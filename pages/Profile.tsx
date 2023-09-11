@@ -9,12 +9,15 @@ import LoadingPage from './LoadingPage';
 import {
   useAcceptFriendRequestMutation,
   useGetAllUserFriendRequestQuery,
-  useGetAllUserFriendsQuery
+  useGetAllUserFriendsQuery,  
+  useRejectFriendRequestMutation,
+
 } from './api/friendApi';
 import { useRouter } from 'next/router'
 interface FriendRequest {
   id: number;
   sender_name: string;
+  sender:number;
   compatibility: number;
   status:string
 }
@@ -42,11 +45,29 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
   const token: any = session?.user.accessToken;
   const [acceptFriendRequest] = useAcceptFriendRequestMutation();
   const { data, error, isLoading } = useGetUserProfileQuery(token || '');
-  
+  const [rejectFriendRequest] = useRejectFriendRequestMutation();
+
   const { data:friendrequest} = useGetAllUserFriendRequestQuery(token);
   const { data:friends } = useGetAllUserFriendsQuery(token);
 
   
+  const handleAcceptFriendRequest = async (friendId: number) => {
+    try {
+      const response = await acceptFriendRequest({ access: token, formData: { sender: friendId,action:'accept' }});
+      // Handle success, e.g., show a success message or update the UI.
+    } catch (error) {
+      // Handle error, e.g., display an error message.
+    }
+  };
+  
+  const handleRejectFriendRequest = async (friendId: number) => {
+    try {
+      const response = await rejectFriendRequest({ access: token, formData: { sender: friendId,action:'reject'  }});
+      // Handle success, e.g., show a success message or update the UI.
+    } catch (error) {
+      // Handle error, e.g., display an error message.
+    }
+  };
   
   
   useEffect(() => {
@@ -72,9 +93,9 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
   const userProfileFriendrequest = friendrequest?.friend_requests;
   const userProfileTotalFriendrequest = friendrequest?.total_friend_requests
   const userFriends =friends?.friend
-  console.log(userFriends)
+  // console.log(userFriends)
 
-// console.log(friendrequest)
+console.log(friendrequest)
   var profileImage = "http://223.235.84.152:8000" + userProfile.file;
   console.log(profileImage)
 //  var friendImage = "http://223.235.84.152:8000/media/" + userFriends.image;
@@ -114,7 +135,6 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
                         userProfileFriendrequest.map((friendRequest: FriendRequest) => (
                           <div key={friendRequest.id} className="mb-2">
                   <p>
-
                 {friendRequest.sender_name} = 
                 {friendRequest.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
@@ -136,9 +156,27 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
                     )}
                     </p>
                 
-                  <hr className="my-4" />
+                    <div>
+        <button
+          className="text-green-500 font-bold"
+          onClick={() => handleAcceptFriendRequest(friendRequest.sender)}
+        >
+          Accept
+        </button>
+        <button
+          className="text-red-500 font-bold ml-2"
+          onClick={() => handleRejectFriendRequest(friendRequest.sender)}
+        >
+          Reject
+        </button>
+      </div>
+      <hr className="my-4" />
+    </div>
 
-                    </div>
+
+
+
+         
                     ))} 
 
 

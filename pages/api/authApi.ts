@@ -152,11 +152,11 @@ UserPredictById: builder.query({
 
 
   getUserProfile: builder.query({
-    query: (token) => ({
+    query: (access) => ({
       url: 'profile/',
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${access}`,
         // 'Content-Type': 'application/json'
       }
     }),
@@ -205,7 +205,7 @@ UserPredictById: builder.query({
 
   updateUser: builder.mutation({
     query: ({access,formData}) => ({
-      url: 'update/',
+      url: 'profile/',
       method: 'PATCH',
       headers: {
         'authorization': `Bearer ${access}`,
