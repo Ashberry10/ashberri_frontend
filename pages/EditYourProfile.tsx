@@ -161,9 +161,6 @@ const EditYourProfile = () => {
         const imageUrl = "http://223.235.84.152:8000" + userProfile.file;
         setProfileImage(imageUrl);
       }
-
-
-
     }
   }, [userProfile, isSuccess]);
 

@@ -238,6 +238,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
  
   const token: any = session?.user.accessToken;
   const { data: allUsersData, isSuccess: isAllUsersDataSuccess } = useAllUserPredictQuery(token);
+  // console.log(allUsersData)
   const { data: friendStatusesData, refetch: refetchFriendStatuses } = useGetAllUserFriendStatusQuery(token);
   const [sendingRequests, setSendingRequests] = useState<string[]>([]);
   const [cancelingRequests, setCancelingRequests] = useState<string[]>([]);
@@ -253,6 +254,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
   }
 
   let allUsers = allUsersData || [];
+  console.log(allUsers)
   let friendStatuses = friendStatusesData || [];
 
   const handleSendFriendRequest = async (friendId: string) => {
@@ -324,13 +326,14 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
           const isRejectingFriendRequest = rejectingFriendRequests.includes(curElem.id);
           const isReceiverProfile = curElem.id === session?.user.id; // Check if it's the receiver's profile
           const isSenderProfile = curElem.id !== session?.user.id; // Check if it's the sender's profile
-          console.log(isSenderProfile)
+          const image = "http://223.235.84.152:8000" + curElem.image
           return (
             <div key={curElem.id} className="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
                       <Link href={`/${curElem.id}`}>
                 <div className="relative">
                   {/* <Image className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} /> */}
-                  
+                  <Image className="w-full h-full object-cover" src={image} alt={curElem?.name} width={238} height={248}  />
+ 
                 </div>
               </Link>
 
@@ -345,8 +348,28 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
                   <>
                           <Link href={`/${curElem.id}`}>
                     <div className="flex items-center mt-1">
+
+
                       <span className="text-sm font-medium mr-1">Compatibility:</span>
-                      <span className="text-sm">{curElem.Compatibility}</span>
+                      {/* <span className="text-sm">{curElem.Compatibility}</span> */}
+                {curElem.Compatibility === 0 && (
+                  <span className="text-yellow-500">Not Friend</span>
+                  
+                )}
+                {curElem.Compatibility === 3 && (
+                  <span className="text-yellow-500">⭐⭐⭐</span>
+                  
+                )}
+                   {curElem.Compatibility === 4 && (
+                  <span className="text-yellow-500">⭐⭐⭐⭐</span>
+                  
+                  )}
+                  
+                  
+                  {curElem.Compatibility === 5 && (
+                    <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+                    
+                    )}
                     </div>
                   </Link>
                   

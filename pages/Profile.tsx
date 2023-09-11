@@ -1,7 +1,5 @@
 
 
-
-
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useGetUserProfileQuery } from '../pages/api/authApi';
@@ -11,14 +9,21 @@ import LoadingPage from './LoadingPage';
 import {
   useAcceptFriendRequestMutation,
   useGetAllUserFriendRequestQuery,
+  useGetAllUserFriendsQuery
 } from './api/friendApi';
-import { useRouter } from 'next/router';
-
+import { useRouter } from 'next/router'
 interface FriendRequest {
   id: number;
   sender_name: string;
   compatibility: number;
   status:string
+}
+
+interface Friends{
+  id: number;
+  name: string;
+  compatibility: number;
+  image:string
 }
 
 interface UserProfile {
@@ -37,8 +42,9 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
   const token: any = session?.user.accessToken;
   const [acceptFriendRequest] = useAcceptFriendRequestMutation();
   const { data, error, isLoading } = useGetUserProfileQuery(token || '');
+  
   const { data:friendrequest} = useGetAllUserFriendRequestQuery(token);
-
+  const { data:friends } = useGetAllUserFriendsQuery(token);
 
   
   
@@ -64,12 +70,19 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
   
   const userProfile = data?.user_profile;
   const userProfileFriendrequest = friendrequest?.friend_requests;
+  const userProfileTotalFriendrequest = friendrequest?.total_friend_requests
+  const userFriends =friends?.friend
+  console.log(userFriends)
 
-console.log(friendrequest)
-  var profileImage = "http://223.235.84.152:8000" +userProfile.file;
-
+// console.log(friendrequest)
+  var profileImage = "http://223.235.84.152:8000" + userProfile.file;
+  console.log(profileImage)
+//  var friendImage = "http://223.235.84.152:8000/media/" + userFriends.image;
+//  console.log(friendImage)
 
   return (
+<>
+<div>
     <div className="max-w-lg mx-auto p-4">
     <div className="bg-white shadow-md p-4 rounded-md">
       <div className="flex items-center mb-4">
@@ -90,12 +103,18 @@ console.log(friendrequest)
 
 
 
+
+
+
+
+
+        <h3 className="text-lg font-bold mb-2">Total Friend Request:         {userProfileTotalFriendrequest ?  (userProfileTotalFriendrequest) : (   "No friend request" ) 
+}</h3>
                       {userProfileFriendrequest &&
                         userProfileFriendrequest.map((friendRequest: FriendRequest) => (
                           <div key={friendRequest.id} className="mb-2">
-                {friendRequest?.status === 'pending' &&   (  
                   <p>
-                <h3 className="text-lg font-bold mb-2">Friend Requests:</h3>
+
                 {friendRequest.sender_name} = 
                 {friendRequest.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
@@ -116,39 +135,63 @@ console.log(friendrequest)
                     
                     )}
                     </p>
-                )}
+                
                   <hr className="my-4" />
 
-{friendRequest?.status !== 'pending' && (  
-              <p>
-                <h3 className="text-lg font-bold mb-2">Friends:</h3>
+                    </div>
+                    ))} 
 
-                {friendRequest.sender_name} = 
-                {friendRequest.compatibility === 0 && (
+
+
+
+
+
+          <h3 className="text-lg font-bold mb-2">Friends</h3>
+        {userFriends &&
+                        userFriends.map((friends: Friends) => (
+
+                          <div key={friends.id} className="mb-2">
+                            <Image className="w-12 h-12 rounded-full" src={"http://223.235.84.152:8000/media/" + friends.image} alt={friends?.name} width={48} height={48} />
+    <p>
+
+                {friends.name} = 
+                {friends.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
                   
                 )}
-                {friendRequest.compatibility === 3 && (
+                {friends.compatibility === 3 && (
                   <span className="text-yellow-500">⭐⭐⭐</span>
                   
                 )}
-                   {friendRequest.compatibility === 4 && (
+                   {friends.compatibility === 4 && (
                   <span className="text-yellow-500">⭐⭐⭐⭐</span>
                   
                   )}
                   
                   
-                  {friendRequest.compatibility === 5 && (
+                  {friends.compatibility === 5 && (
                     <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
                     
                     )}
                     </p>
-                )}
-                    </div>
-                    ))} 
+                            </div>
+  
+        ))} 
+
+
+
+
+
+
           </div>
       </div>
     </div>
+    </div>
+        </>
+
+    
+    
+                      
   );
 };
 

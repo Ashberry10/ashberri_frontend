@@ -109,7 +109,30 @@ export default function MyData() {
       <ul className="bg-white shadow-md p-4 rounded-md">
         {users.map((user) => (
           <li key={user.id} className="mb-2">
-            <div>{user.ProfileName}  {user.Compatibility}</div>
+            <div>{user.ProfileName}   <div className="flex items-center mt-1">
+
+
+<span className="text-sm font-medium mr-1">Compatibility:</span>
+{/* <span className="text-sm">{curElem.Compatibility}</span> */}
+{user.Compatibility === 0 && (
+<span className="text-yellow-500">Not Friend</span>
+
+)}
+{user.Compatibility === 3 && (
+<span className="text-yellow-500">⭐⭐⭐</span>
+
+)}
+{user.Compatibility === 4 && (
+<span className="text-yellow-500">⭐⭐⭐⭐</span>
+
+)}
+
+
+{user.Compatibility === 5 && (
+<span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+
+)}
+</div></div>
           </li>
         ))}
       </ul>
