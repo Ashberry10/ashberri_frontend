@@ -135,7 +135,7 @@
 //                     </div>
 //                   </Link>
 
-//                     {friendStatus?.friend_status === 'Pending' && friendStatus?.friend_status !== 'We Are Friends' && friendStatus?.friend_status !== 'Friend Request Sent' && friendStatus?.friend_status !== 'Friend Request Not Sent' && (
+//                     {curElem.friend_status === 'Pending' && curElem.friend_status !== 'We Are Friends' && curElem.friend_status !== 'Friend Request Sent' && curElem.friend_status !== 'Friend Request Not Sent' && (
 //                       <div className="flex space-x-2 mt-3">
 //                         <button
 //                           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
@@ -154,7 +154,7 @@
 //                       </div>
 //                     )}
 
-//                 {friendStatus?.friend_status === 'Friend Request Sent' && friendStatus?.friend_status !== 'We Are Friends' && friendStatus?.friend_status !== 'Pending' && friendStatus?.friend_status !== 'Friend Request Not Sent' &&(
+//                 {curElem.friend_status === 'Friend Request Sent' && curElem.friend_status !== 'We Are Friends' && curElem.friend_status !== 'Pending' && curElem.friend_status !== 'Friend Request Not Sent' &&(
 //                       <button
 //                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
 //                         onClick={() => handleCancelFriendRequest(curElem.id)}
@@ -164,7 +164,7 @@
 //                       </button>
 //                     )}
 
-//                     {friendStatus?.friend_status === 'Friend Request Not Sent' && friendStatus?.friend_status !== 'We Are Friends' &&  friendStatus?.friend_status !== 'Pending' && friendStatus?.friend_status !== 'Friend Request Sent' &&(
+//                     {curElem.friend_status === 'Friend Request Not Sent' && curElem.friend_status !== 'We Are Friends' &&  curElem.friend_status !== 'Pending' && curElem.friend_status !== 'Friend Request Sent' &&(
 //                       <button
 //                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
 //                         onClick={() => handleSendFriendRequest(curElem.id)}
@@ -174,7 +174,7 @@
 //                       </button>
 //                     )}
 
-//                     {friendStatus?.friend_status === 'We Are Friends' && friendStatus?.friend_status !== 'Friend Request Not Sent'  &&  friendStatus?.friend_status !== 'Pending' && friendStatus?.friend_status !== 'Friend Request Sent' && (
+//                     {curElem.friend_status === 'We Are Friends' && curElem.friend_status !== 'Friend Request Not Sent'  &&  curElem.friend_status !== 'Pending' && curElem.friend_status !== 'Friend Request Sent' && (
 //                       <span className="text-green-500 font-bold mt-3">We Are Friends</span>
 //                     )}
 //                   </>
@@ -237,9 +237,9 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
   const { data: session, status } = useSession();
  
   const token: any = session?.user.accessToken;
-  const { data: allUsersData, isSuccess: isAllUsersDataSuccess } = useAllUserPredictQuery(token);
-  // console.log(allUsersData)
-  const { data: friendStatusesData, refetch: refetchFriendStatuses } = useGetAllUserFriendStatusQuery(token);
+  const { data: allUsersData, isSuccess: isAllUsersDataSuccess, refetch: refetchallUsersData} = useAllUserPredictQuery(token);
+  console.log(allUsersData)
+  // const { data: friendStatusesData, refetch: refetchFriendStatuses } = useGetAllUserFriendStatusQuery(token);
   const [sendingRequests, setSendingRequests] = useState<string[]>([]);
   const [cancelingRequests, setCancelingRequests] = useState<string[]>([]);
   const [acceptingFriendRequests, setAcceptingFriendRequests] = useState<string[]>([]);
@@ -255,14 +255,15 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
 
   let allUsers = allUsersData || [];
   console.log(allUsers)
-  let friendStatuses = friendStatusesData || [];
+  // let friendStatuses = friendStatusesData || [];
+  // console.log(friendStatuses)
 
   const handleSendFriendRequest = async (friendId: string) => {
     try {
       setSendingRequests((prevRequests) => [...prevRequests, friendId]);
       await sendFriendRequest({ access: token, formData: { receiver: friendId } });
       console.log(`Friend request sent successfully to ${friendId}`);
-      refetchFriendStatuses();
+      refetchallUsersData();
     } catch (error: any) {
       console.log(`Failed to send friend request to ${friendId}: ${error.message}`);
     } finally {
@@ -275,7 +276,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
       setCancelingRequests((prevRequests) => [...prevRequests, friendId]);
       await cancelFriendRequest({ access: token, formData: { receiver: friendId } });
       console.log(`Friend request canceled for ${friendId}`);
-      refetchFriendStatuses();
+      refetchallUsersData();
     } catch (error: any) {
       console.log(`Failed to cancel friend request for ${friendId}: ${error.message}`);
     } finally {
@@ -288,7 +289,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
       setAcceptingFriendRequests((prevRequests) => [...prevRequests, friendId]);
       await acceptFriendRequest({ access: token, formData: { sender: friendId,action:'accept' } });
       console.log(`Accepted friend request from ${friendId}`);
-      refetchFriendStatuses();
+      refetchallUsersData();
     } catch (error: any) {
       console.log(`Failed to accept friend request from ${friendId}: ${error.message}`);
     } finally {
@@ -301,14 +302,13 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
       setRejectingFriendRequests((prevRequests) => [...prevRequests, friendId]);
       await rejectFriendRequest({ access: token, formData: { sender: friendId,action:'reject' } });
       console.log(`Rejected friend request from ${friendId}`);
-      refetchFriendStatuses();
+      refetchallUsersData();
     } catch (error: any) {
       console.log(`Failed to reject friend request from ${friendId}: ${error.message}`);
     } finally {
       setRejectingFriendRequests((prevRequests) => prevRequests.filter((id) => id !== friendId));
     }
   };
-
   if (!isAllUsersDataSuccess) {
     return null;
   }
@@ -319,20 +319,21 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
 
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {allUsers.map((curElem: any) => {
-          const friendStatus = friendStatuses.find((friend: any) => friend.friend_id === curElem.id);
+          // const friendStatus = friendStatuses.find((friend: any) => friend.friend_id === curElem.id);
+          // console.log(friendStatus)
           const isSendingFriendRequest = sendingRequests.includes(curElem.id);
           const isCancelingFriendRequest = cancelingRequests.includes(curElem.id);
           const isAcceptingFriendRequest = acceptingFriendRequests.includes(curElem.id);
           const isRejectingFriendRequest = rejectingFriendRequests.includes(curElem.id);
-          const isReceiverProfile = curElem.id === session?.user.id; // Check if it's the receiver's profile
-          const isSenderProfile = curElem.id !== session?.user.id; // Check if it's the sender's profile
           const image = "http://223.235.84.152:8000" + curElem.image
+          const friend=  curElem.friend_status
+          console.log(friend)
           return (
             <div key={curElem.id} className="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
                       <Link href={`/${curElem.id}`}>
                 <div className="relative">
                   {/* <Image className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} /> */}
-                  <Image className="w-full h-full object-cover" src={image} alt={curElem?.name} width={238} height={248}  />
+                  <Image className="w-full h-full object-cover" src={image} alt={curElem.name} width={238} height={248}  />
  
                 </div>
               </Link>
@@ -352,21 +353,21 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
 
                       <span className="text-sm font-medium mr-1">Compatibility:</span>
                       {/* <span className="text-sm">{curElem.Compatibility}</span> */}
-                {curElem.Compatibility === 0 && (
+                {curElem.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
                   
                 )}
-                {curElem.Compatibility === 3 && (
+                {curElem.compatibility === 3 && (
                   <span className="text-yellow-500">⭐⭐⭐</span>
                   
                 )}
-                   {curElem.Compatibility === 4 && (
+                   {curElem.compatibility === 4 && (
                   <span className="text-yellow-500">⭐⭐⭐⭐</span>
                   
                   )}
                   
                   
-                  {curElem.Compatibility === 5 && (
+                  {curElem.compatibility === 5 && (
                     <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
                     
                     )}
@@ -375,7 +376,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
                   
  
 
-                    {friendStatus?.friend_status === 'Friend Request Received' && friendStatus?.friend_status !== 'Friend Request Received '  && friendStatus?.friend_status !== 'We Are Friends' && friendStatus?.friend_status !== 'Friend Request Sent' && friendStatus?.friend_status !== 'Friend Request Not Sent' && (
+                    {curElem.friend_status === 'Friend Request Received'&& (
                       <div className="flex space-x-2 mt-3">
                         <button
                           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
@@ -397,7 +398,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
    
 
 
-                    {friendStatus?.friend_status === 'Pending' && friendStatus?.friend_status !== 'Friend Request Received' && friendStatus?.friend_status !== 'We Are Friends'  && friendStatus?.friend_status !== 'Friend Request Not Sent' &&(
+                    {curElem.friend_status === 'Pending' &&(
                       <button
                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
                         onClick={() => handleCancelFriendRequest(curElem.id)}
@@ -407,7 +408,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
                       </button>
                     )}
 
-                    {friendStatus?.friend_status === 'Friend Request Not Sent' && friendStatus?.friend_status !== 'We Are Friends' &&  friendStatus?.friend_status !== 'Pending' && friendStatus?.friend_status !== 'Friend Request Sent' &&(
+                    {curElem.friend_status === 'Friend Request Not Sent'  &&(
                       <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
                         onClick={() => handleSendFriendRequest(curElem.id)}
@@ -417,7 +418,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
                       </button>
                     )}
 
-                    {friendStatus?.friend_status === 'We Are Friends' && friendStatus?.friend_status !== 'Friend Request Not Sent'  &&  friendStatus?.friend_status !== 'Pending' && friendStatus?.friend_status !== 'Friend Request Sent' && (
+                    {curElem.friend_status === 'We Are Friends'  && (
                       <span className="text-green-500 font-bold mt-3">We Are Friends</span>
                     )}
                   </>
