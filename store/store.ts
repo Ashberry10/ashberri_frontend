@@ -49,6 +49,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { authApi } from '../pages/api/authApi';
 import { friendApi } from '../pages/api/friendApi';
+import { postApi } from '../pages/api/postApi';
 
 import  authReducer  from "../pages/api/state/authSlice";
 import  userReducer  from "../pages/api/state/userSlice";
@@ -62,13 +63,15 @@ export const store = configureStore({
     user_model: modelReducer,
     [authApi.reducerPath]: authApi.reducer,
     [friendApi.reducerPath]: friendApi.reducer,
+    [postApi.reducerPath]: postApi.reducer,
 
   },
 
   // middleware is also created for us, which will allow us to take advantage of caching, invalidation, polling, and the other features of RTK Query.
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authApi.middleware)
-    .concat(friendApi.middleware), 
+    .concat(friendApi.middleware)
+    .concat(postApi.middleware), 
 })
 
 // It will enable to refetch the data on certain events, such as refetchOnFocus and refetchOnReconnect.

@@ -22,6 +22,7 @@ import 'daisyui/dist/full.css'
 
 import  {useRouter} from "next/navigation";
 import Layout from "../components/Layout";
+import CreatePostForm from "../components/CreatePostForm";
 import Login from "@/pages/Login";
 import SignUp from "@/pages/SignUp";
 interface IProps {
@@ -39,7 +40,9 @@ function MyApp({ Component, pageProps}: AppProps) {
       <Login/>
       <Layout>
         
+            <CreatePostForm />
             <Component {...pageProps} />
+            
           </Layout> 
       </ChakraProvider>
      </Provider>
