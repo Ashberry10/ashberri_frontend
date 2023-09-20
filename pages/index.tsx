@@ -163,6 +163,8 @@
 import { useGetUserProfileQuery } from '../pages/api/authApi';
 import { useAppSelector } from '../store/hooks';
 import { signIn, signOut, useSession } from "next-auth/react";
+import CreatePostForm from "../components/CreatePostForm";
+
 const Index = () => {
   const {data:session} = useSession();
   const token:any= session?.user.accessToken;
@@ -173,6 +175,7 @@ const Index = () => {
 
   return (
     <>
+    <CreatePostForm />
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-md">
         <h1 className="text-3xl font-bold mb-4">Welcome to the Homepage!</h1>
