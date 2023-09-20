@@ -180,10 +180,7 @@ const Login = ({ searchParams }: IProps) => {
 
 
 
-{/* <button className="bg-green-600 hover:bg-green-700 text-white my-2 py-3 px-4 mx-auto rounded-md font-bold w-fit" type="button"
-            onClick={() => setShowModal(true)}
-          >Create New Account</button>
-               */}
+
               
 
               

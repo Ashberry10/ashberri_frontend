@@ -9,19 +9,30 @@ import { useState, FormEvent, ChangeEvent } from 'react';
 import { useGetUserProfileQuery } from "./api/authApi";
 import Image from 'next/image';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import LoadingIcon from "./LoadingIcon";
 
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useRouter } from 'next/router';
 import { Listbox } from '@headlessui/react';
 const EditYourProfile = () => {
+  const router = useRouter();
     
   const genderOptions = [
     { value: 'male', label: 'Male' },
     { value: 'female', label: 'Female' },
     { value: 'other', label: 'Other' },
   ];
+
+  const [isDirty, setIsDirty] = useState(false); 
   const [profileImage, setProfileImage] = useState<string | null>(null); // Add this line
+  const { data: session } = useSession();
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  const token: any = session?.user.accessToken;
+
+  const { data, error, isSuccess, refetch: refetchProfileUsersData   } = useGetUserProfileQuery(token);
+
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -32,6 +43,7 @@ const EditYourProfile = () => {
     file: null,
   });
 
+  const [isLoading, setIsLoading] = useState(false); // Add the isLoading state
 
   let buttonClasses = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded center' ;
 
@@ -41,23 +53,24 @@ const EditYourProfile = () => {
       ...prevValues,
       [name]: value,
     }));
+    setIsDirty(true);
   };
-  const router = useRouter();
   
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e?.target.files?.[0] || null;
     setValues((prevValues) => ({
       ...prevValues,
-      file: file as null,
+      file: file as null,  
       
       handleUpload
+
     }));
+    setIsDirty(true);
    // Render selected image as a placeholder
    if (file) {
     const imageUrl = URL.createObjectURL(file);
     setProfileImage(imageUrl);
   }
-
 
 
 
@@ -74,10 +87,7 @@ const EditYourProfile = () => {
   });
 
   const [updateUserMutation] = useUpdateUserMutation();
-  const { data: session } = useSession();
-  const token: any = session?.user.accessToken;
 
-  const { data, error, isLoading, isSuccess } = useGetUserProfileQuery(token || '');
   const userProfile = data?.user_profile;
   
   const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
@@ -86,8 +96,10 @@ const EditYourProfile = () => {
       ...prevValues,
       [name]: value,
     }));
+    setIsDirty(true);
   };
-  const handleUpload = async () => {
+  const handleUpload = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()// Prevent default form submission behavior
     const { name, day, file, email, year, month, gender } = values;
     const formData = new FormData();
     if (name) formData.append('name', name);
@@ -101,6 +113,7 @@ const EditYourProfile = () => {
 
 
     try {
+      setIsLoading(true); 
       const response = await updateUserMutation({
         access: token,
         formData: formData,
@@ -109,12 +122,23 @@ const EditYourProfile = () => {
       if (response) {
         console.log('Successfully uploaded');
         // window.location.reload(); // Reload the page after successful upload
-      } else {
+             // Check if any changes were made before showing success message
+
+      if (isDirty) {
+        setSuccessMessage('Changes successfully saved.');
+      }
+      refetchProfileUsersData();
+    } else {
+    
         console.log('Failed uploading');
       }
     } catch (error) {
       console.error('Error while transferring to API:', error);
-    }
+    
+  } finally {
+    setIsLoading(false); // Set isLoading back to false when authentication finishes
+    setIsDirty(false); 
+  }
 
     // Clear the file input
     setValues((prevValues) => ({
@@ -123,6 +147,11 @@ const EditYourProfile = () => {
     }));
   };
 
+
+
+
+
+  
 
 
 
@@ -164,7 +193,7 @@ const EditYourProfile = () => {
     }
   }, [userProfile, isSuccess]);
 
-  
+
 
   return (
     // <div className=" bg-gray-100  flex flex-col justify-center sm:py-12">
@@ -261,6 +290,9 @@ const EditYourProfile = () => {
                   </div>
                 </div>
               </div>
+
+              
+              
               <div className="flex items-center">
                 <div className="flex flex-col w-full">
                   <label className="mr-2 font-semibold">Name</label>
@@ -268,7 +300,7 @@ const EditYourProfile = () => {
                     className="text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                     type="text"
                     name="name"
-                    placeholder={userData.name || ''}
+                    placeholder={userData.name }
                     value={values.name}
                     onChange={handleInputChange}
                   />
@@ -281,12 +313,18 @@ const EditYourProfile = () => {
                     className="text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                     type="email"
                     name="email"
-                    placeholder={userData.email || ''}
+                    placeholder={userData.email }
                     value={values.email}
                     onChange={handleInputChange}
                   />
                 </div>
               </div>
+
+
+
+
+
+              
       <div className="mt-6">
                  <div className="flex items-center mb-2">
                    <label htmlFor="birthday" className="mr-2 font-semibold">Birthday</label>
@@ -427,11 +465,16 @@ const EditYourProfile = () => {
          <div className="flex justify-center items-center ">
       <button
         onClick={handleUpload}
-        className={buttonClasses}
-      >
-        {isLoading ? 'Saving...' : 'Save Changes'}
-      </button>
+        className={`${buttonClasses} ${isDirty ? '' : 'opacity-50 cursor-not-allowed'}`}
+        disabled={!isDirty} // Disable the button if no changes were made
+      > 
+
+        {isLoading ? <LoadingIcon/> : 'Save Change' }
+       </button>
     </div>
+
+
+
 
 
 
