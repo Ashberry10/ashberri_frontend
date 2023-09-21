@@ -225,6 +225,7 @@ import Link from "next/dist/client/link";
 import LoadingPage from "./LoadingPage";
 import LoadingIcon from "./LoadingIcon";
 import Image from "next/image";
+import { BASE_URL } from "@/api_constants";
 interface FriendProps {
   name: string;
   avatarUrl: string;
@@ -325,7 +326,7 @@ export default function AllUser({ name, avatarUrl }: FriendProps) {
           const isCancelingFriendRequest = cancelingRequests.includes(curElem.id);
           const isAcceptingFriendRequest = acceptingFriendRequests.includes(curElem.id);
           const isRejectingFriendRequest = rejectingFriendRequests.includes(curElem.id);
-          const image = "http://223.235.84.152:8000" + curElem.image
+          const image = BASE_URL+ curElem.image
           const friend=  curElem.friend_status
           console.log(friend)
           return (

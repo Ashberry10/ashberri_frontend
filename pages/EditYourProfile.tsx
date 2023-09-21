@@ -10,6 +10,7 @@ import { useGetUserProfileQuery } from "./api/authApi";
 import Image from 'next/image';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import LoadingIcon from "./LoadingIcon";
+import { BASE_URL } from '@/api_constants';
 
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
@@ -187,7 +188,7 @@ const EditYourProfile = () => {
       });
 
       if (userProfile.file) {
-        const imageUrl = "http://223.235.84.152:8000" + userProfile.file;
+        const imageUrl = BASE_URL + userProfile.file;
         setProfileImage(imageUrl);
       }
     }
