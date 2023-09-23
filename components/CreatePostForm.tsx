@@ -1,45 +1,61 @@
-import React, { useState } from 'react';
-import { useSession } from "next-auth/react";
+import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useSession } from 'next-auth/react';
 import {
-  useSendCreatePostRequestMutation
-} from "../pages/api/postApi";
+  useSendCreatePostRequestMutation,
 
-
-
+} from '../pages/api/postApi';
 
 function CreatePostForm() {
   const { data: session, status } = useSession();
-  const token: any = session?.user.accessToken;
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState(null);
-  const [responseMessage, setResponseMessage] = useState('');
+  const token: string | undefined = session?.user.accessToken;
+  const [content, setContent] = useState<string>('');
+  const [image, setImage] = useState<File | null>(null);
+  const [responseMessage, setResponseMessage] = useState<string>('');
 
-  const[sendCreatePostRequest, { isLoading, isError }] = useSendCreatePostRequestMutation();
+  const [sendCreatePostRequest, { isLoading, isError }] =
+    useSendCreatePostRequestMutation();
 
-
-  const handleSubmit = async(e) =>{
-    console.log("clicked")
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
     const formData = new FormData();
-formData.append('content', content);
-formData.append('image', image); 
+    formData.append('content', content);
+    if (image) {
+      formData.append('image', image);
+    }
 
     const post = {
-      "content":content,
-      "image":image,
-    }
-    
-    try{
-      console.log(post)
-      const response = await sendCreatePostRequest({ access: token, formData});
-      console.log("post created")
-      console.log(response)
+      content: content,
+      image: image,
+    };
 
-    }catch (error) {
+    try {
+      if (token) {
+        const response= await sendCreatePostRequest({
+          access: token,
+          formData,
+        });
+        console.log('post created');
+        console.log(response);
+      } else {
+        // Handle the case where there's no token
+        setResponseMessage('Access token not available');
+      }
+    } catch (error) {
       console.error('Error:', error);
       setResponseMessage('An error occurred');
     }
-  }
+  };
+
+  const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+  };
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setImage(e.target.files[0]);
+    }
+  };
 
   return (
     <div>
@@ -51,7 +67,7 @@ formData.append('image', image);
             id="content"
             name="content"
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={handleContentChange}
             required
           />
         </div>
@@ -62,7 +78,7 @@ formData.append('image', image);
             id="image"
             name="image"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={handleImageChange}
             required
           />
         </div>
@@ -77,6 +93,3 @@ formData.append('image', image);
 }
 
 export default CreatePostForm;
-
-
-

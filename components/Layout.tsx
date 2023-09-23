@@ -1,7 +1,7 @@
 import React from 'react';
 import { signIn, signOut, useSession } from "next-auth/react";
 
-import Sidebar from "./layout.tsx/Sidebar"
+import Sidebar from "./layout/Sidebar"
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const {data:session, status} = useSession()
