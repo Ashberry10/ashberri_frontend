@@ -89,6 +89,7 @@ import {
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import LoadingIcon from "./LoadingIcon";
+import { BASE_URL } from "@/api_constants";
 
 
 interface UserData {
@@ -208,7 +209,7 @@ export default function MyData() {
             <li key={user.id} className="mb-2">
               <Image
                 className="w-full h-full object-cover"
-                src={"http://223.235.84.152:8000" + user?.image}
+                src={BASE_URL + user?.image}
                 alt={user?.profileName}
                 width={238}
                 height={248}

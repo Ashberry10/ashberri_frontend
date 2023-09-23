@@ -5,7 +5,6 @@ import { useSession } from 'next-auth/react';
 import { useGetUserProfileQuery } from '../pages/api/authApi';
 import LoadingPage from './LoadingPage';
  import Image from 'next/image';
-
 import {
   useAcceptFriendRequestMutation,
   useGetAllUserFriendRequestQuery,
@@ -14,6 +13,7 @@ import {
 
 } from './api/friendApi';
 import { useRouter } from 'next/router'
+import { BASE_URL } from '@/api_constants';
 interface FriendRequest {
   id: number;
   sender_name: string;
@@ -95,8 +95,10 @@ const Profile: React.FC<IProps> = ({ searchParams }) => {
   const userFriends =friends?.friend
   // console.log(userFriends)
 
-console.log(friendrequest)
-  var profileImage = "http://223.235.84.152:8000" + userProfile.file;
+  // var profileImage = "http://localhost:8000" + userProfile.file;
+  var profileImage = BASE_URL + userProfile.file;
+
+
   console.log(profileImage)
 //  var friendImage = "http://223.235.84.152:8000/media/" + userFriends.image;
 //  console.log(friendImage)
