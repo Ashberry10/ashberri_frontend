@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { signIn, signOut, useSession } from "next-auth/react";
 import { BASE_URL } from '@/api_constants';
 
 export const postApi = createApi({
@@ -23,8 +22,18 @@ export const postApi = createApi({
             }),
         }),
 
+        getAllPost: builder.query({
+            query: (access) => ({
+                url: '/',
+                method: 'GET',
+                headers: {
+                'authorization': `Bearer ${access}`,
+            },
+            }),
+        }),
+
     }),
 
 });
 
-export const { useSendCreatePostRequestMutation } = postApi;
+export const { useSendCreatePostRequestMutation, useGetAllPostQuery } = postApi;
