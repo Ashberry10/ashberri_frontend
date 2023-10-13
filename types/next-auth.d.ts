@@ -1,3 +1,4 @@
+import { defineServerComponent } from 'next/server';
 
 import NextAuth from "next-auth";
 
