@@ -3,7 +3,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useAppSelector } from "./../store/hooks";
+import { useAppSelector } from "../store/hooks";
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { useGetUserProfileQuery,useUpdateUserMutation } from "@/app/store/slices/authApi";
 import Image from 'next/image';

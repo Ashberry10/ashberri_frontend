@@ -2,27 +2,24 @@
 
 
 import React from 'react'
-import ProfileInfo from '../components/ProfileInfo';
-import FriendRequest from '../components/FriendRequest';
-import YourFriends from '../components/YourFriends';
-import { useSession } from 'next-auth/react';
+import ViewProfileInfo from '../components/ViewProfileInfo';
+import ViewFriendRequest from '../components/ViewFriendRequest';
+import ViewYourFriends from '../components/ViewYourFriends';
 
 function page() {
-  const df = "sdfsd"
-  console.log(df);
 
   return (
     <>
 <div>
     <div className="max-w-lg mx-auto p-4">
     <div className="bg-white shadow-md p-4 rounded-md">
-    <ProfileInfo/>
+    <ViewProfileInfo/>
         <hr className="my-4" />
         <div className="mb-4">
 
-    <FriendRequest/>
+    <ViewFriendRequest/>
           <h3 className="text-lg font-bold mb-2">Friends</h3>
-  <YourFriends/>
+  <ViewYourFriends/>
 
 
 

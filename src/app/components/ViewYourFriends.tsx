@@ -10,6 +10,7 @@ import {
   useGetAllUserFriendRequestQuery,
   useGetAllUserFriendsQuery,  
   useRejectFriendRequestMutation,
+  useUnFriendMutation
 
 } from '@/app/store/slices/friendApi';
 import { useRouter } from 'next/navigation'
@@ -20,6 +21,7 @@ interface Friends{
     name: string;
     compatibility: number;
     image:string
+    sender_id:number
   }
   
 
@@ -31,13 +33,24 @@ const YourFriends = () => {
         required: true,
       });
     const token: any = session?.user.accessToken;
-    const [acceptFriendRequest] = useAcceptFriendRequestMutation();
-    const { data:profileData, error, isLoading,refetch: refetchProfileUsersData  } = useGetUserProfileQuery(token || '');
-    const [rejectFriendRequest] = useRejectFriendRequestMutation();
+    const [unfriend] = useUnFriendMutation();
   
-    const { data:friendrequest} = useGetAllUserFriendRequestQuery(token);
-    const { data:friends } = useGetAllUserFriendsQuery(token);
-    
+    const { data:friendrequest,refetch: refetchFriendRequest} = useGetAllUserFriendRequestQuery(token);
+
+    const { data:friends,refetch: refetchYourFriends } = useGetAllUserFriendsQuery(token);
+    const unFriend = async (friendId: number) => {
+      try {
+        const response = await unfriend({ access: token, formData: { receiver: friendId }});
+        refetchYourFriends()
+        // refetchFriendRequest()
+        
+        console.log("Your Friend is unfriend  successfull")
+        // Handle success, e.g., show a success message or update the UI.
+      } catch (error) {
+        console.log("some error")
+        // Handle error, e.g., display an error message.
+      }
+    };
   const userFriends =friends?.friend
     
   console.log(userFriends);
@@ -48,11 +61,11 @@ const YourFriends = () => {
                         userFriends.map((friends: Friends) => (
 
                           <div key={friends.id} className="mb-2">
-                            <Image className="w-12 h-12 rounded-full" src={BASE_URL+ "/media/" + friends.image} alt={friends?.name} width={48} height={48} />
-    <p>
+                            <div>
 
+                            <Image className="w-12 h-12 rounded-full" src={BASE_URL+ "/media/" + friends.image} alt={friends.name} width={48} height={48} />
                 {friends.name} = 
-                {friends.compatibility === 0 && (
+                 {friends.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
                   
                 )}
@@ -69,11 +82,18 @@ const YourFriends = () => {
                   {friends.compatibility === 5 && (
                     <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
                     
-                    )}
-                    </p>
+                    )} 
+                         <button
+      className="bg-red-500 ml-10 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full focus:outline-none"
+      onClick={() => unFriend(friends.sender_id)}
+    >
+      Unfriend
+    </button> 
+                    </div>
                             </div>
   
         ))} 
+
 
 
 

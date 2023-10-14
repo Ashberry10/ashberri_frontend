@@ -14,13 +14,12 @@ import { BASE_URL } from '../../../api_constants'
 
 import { Fragment } from 'react';
 import { useRouter } from 'next/router';
-import EditForm from '../components/EditForm';
+import EditProfileForm from '../components/EditProfileForm';
 const EditYourProfile = () => {
     
  
 
   return (
-    // <div className=" bg-gray-100  flex flex-col justify-center sm:py-12">
     <div className=" bg-gray-100  flex flex-col justify-center h-screen no-scrollbar pb-24" >
 
       <div className="relative  sm:max-w-xl sm:mx-auto">
@@ -45,7 +44,7 @@ const EditYourProfile = () => {
               </div>
               <h2 className="text-3xl font-bold text-gray-700">Edit Profile</h2>
             </div>
-           <EditForm/>
+           <EditProfileForm/>
           </div>
         </div>
       </div>

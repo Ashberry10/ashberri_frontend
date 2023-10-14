@@ -37,13 +37,21 @@ function FriendRequest() {
         const { data:profileData, error, isLoading,refetch: refetchProfileUsersData  } = useGetUserProfileQuery(token || '');
         const [rejectFriendRequest] = useRejectFriendRequestMutation();
       
-        const { data:friendrequest} = useGetAllUserFriendRequestQuery(token);
-        const { data:friends } = useGetAllUserFriendsQuery(token);
-      
+        const { data:friendrequest,refetch: refetchFriendRequest} = useGetAllUserFriendRequestQuery(token);
         
+        const { data:friends,refetch: refetchYourFriends } = useGetAllUserFriendsQuery(token);
+
+      
+        const [friendRequests, setFriendRequests] = useState([]);
+
+  
+      
+ 
         const handleAcceptFriendRequest = async (friendId: number) => {
           try {
             const response = await acceptFriendRequest({ access: token, formData: { sender: friendId,action:'accept' }});
+            refetchYourFriends()
+            refetchFriendRequest()
             // Handle success, e.g., show a success message or update the UI.
           } catch (error) {
             // Handle error, e.g., display an error message.
@@ -53,6 +61,8 @@ function FriendRequest() {
         const handleRejectFriendRequest = async (friendId: number) => {
           try {
             const response = await rejectFriendRequest({ access: token, formData: { sender: friendId,action:'reject'  }});
+            refetchYourFriends()
+            refetchFriendRequest()
             // Handle success, e.g., show a success message or update the UI.
           } catch (error) {
             // Handle error, e.g., display an error message.
@@ -63,6 +73,7 @@ function FriendRequest() {
         useEffect(() => {
          if (error) {
            console.error('Failed to fetch user profile:', error);
+           
           }
         }, [error]);
       
@@ -88,9 +99,6 @@ function FriendRequest() {
     
   return (
     <div>
-
-
-
 <h3 className="text-lg font-bold mb-2">Total Friend Request:         {userProfileTotalFriendrequest ?  (userProfileTotalFriendrequest) : (   "No friend request" ) 
 }</h3>
                       {userProfileFriendrequest &&
