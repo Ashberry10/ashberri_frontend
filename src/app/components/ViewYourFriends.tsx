@@ -42,7 +42,7 @@ const YourFriends = () => {
       try {
         const response = await unfriend({ access: token, formData: { receiver: friendId }});
         refetchYourFriends()
-        // refetchFriendRequest()
+        refetchFriendRequest()
         
         console.log("Your Friend is unfriend  successfull")
         // Handle success, e.g., show a success message or update the UI.
