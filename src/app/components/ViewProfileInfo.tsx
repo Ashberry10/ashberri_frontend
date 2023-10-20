@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useGetUserProfileQuery } from '@/app/store/slices/authApi';
 import LoadingPage from "@/app/components/LoadingPage"
-
- import Image from 'next/image';
+import Image from 'next/image';
 import {
   useAcceptFriendRequestMutation,
   useGetAllUserFriendRequestQuery,
