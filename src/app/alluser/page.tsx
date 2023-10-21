@@ -128,7 +128,7 @@ const { data: session, status } = useSession({
     <>
       <h1 className="font-bold text-2xl mb-4">Friends</h1>
 
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4  sm:grid-cols-3 lg:grid-cols-4">
         {allUsers.map((curElem: any) => {
           // const friendStatus = friendStatuses.find((friend: any) => friend.friend_id === curElem.id);
           // console.log(friendStatus)
@@ -137,41 +137,49 @@ const { data: session, status } = useSession({
           const isAcceptingFriendRequest = acceptingFriendRequests.includes(curElem.id);
           const isRejectingFriendRequest = rejectingFriendRequests.includes(curElem.id);
           const image = BASE_URL+ curElem.image
+          const imageWidth = 238;
+          const imageHeight = 248;
           const friend=  curElem.friend_status
           console.log(friend)
           return (
-            <div key={curElem.id} className="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+            <div key={curElem.id} className="bg-gray-100 rounded shadow-lg overflow-hidden">
                       {/* <Link href={`/${curElem.id}`}> */}
                 <Link href={`/alluser/${curElem.id}`}>
 
                 <div className="relative">
                   {/* <Image className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} /> */}
-                  <Image className="w-full h-full object-cover" src={image} alt={curElem.name} width={238} height={248}  />
+                  {/* <img className="w-full h-full object-cover" src={image} alt={curElem.name} width={imageWidth}
+            height={imageHeight}  /> */}
+
+
+
+
+<img className="h-44 w-44 rounded " src={image} alt={curElem.name}
+
+
+             />
  
                 </div>
               </Link>
 
               <div className="px-4 py-3">
               <p className="text-sm text-gray-500">{curElem.status}</p>
-                {/* <Link href={`/${curElem.id}`}> */}
-                <Link href={`/alluser/${curElem.id}`}>
-
-
-
-                <div className="flex items-center mt-2">
-                  <span className="text-sm">{curElem.ProfileName}</span>
-                </div>  </Link>
                 {curElem.Compatibility !== 'Self' && (
                   <>
-            {/* <Link href={`/${curElem.id}`}> */}
                 <Link href={`/alluser/${curElem.id}`}>
                           
 
                     <div className="flex items-center mt-1">
 
+                <Link href={`/alluser/${curElem.id}`}>
 
-                      <span className="text-sm font-medium mr-1">Compatibility:</span>
-                      {/* <span className="text-sm">{curElem.Compatibility}</span> */}
+
+
+                <div className="flex items-center mt-2 ">
+                  <span className="text-sm mr-1">{curElem.ProfileName}</span>
+                </div>  </Link>
+
+                     
                 {curElem.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
                   
@@ -198,7 +206,7 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Friend Request Received'&& (
                       <div className="flex space-x-2 mt-3">
                         <button
-                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-green-500 hover:bg-green-700 text-white font-bold  rounded"
                           onClick={() => handleAcceptFriendRequest(curElem.id)}
                           disabled={isAcceptingFriendRequest}
                         >
@@ -218,27 +226,33 @@ const { data: session, status } = useSession({
 
 
                     {curElem.friend_status === 'Pending' &&(
+                       <div className="flex justify-center items-center">
                       <button
-                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
+                        className="bg-red-500 hover:bg-red-700 text-white font-bold  rounded mt-2 w-full "
                         onClick={() => handleCancelFriendRequest(curElem.id)}
                         disabled={isCancelingFriendRequest}
                       >
-                        {isCancelingFriendRequest ? <LoadingIcon/> : "Cancel Friend Request"}
+                        {isCancelingFriendRequest ? <LoadingIcon/> : "Cancel"}
                       </button>
+                      </div>
                     )}
 
                     {curElem.friend_status === 'Friend Request Not Sent'  &&(
+                      <div className="flex justify-center items-center">
                       <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded mt-2 w-full "
                         onClick={() => handleSendFriendRequest(curElem.id)}
                         disabled={isSendingFriendRequest}
                       >
-                        {isSendingFriendRequest ? <LoadingIcon/> : "Send Friend Request"}
+                        {isSendingFriendRequest ? <LoadingIcon/> : " Add Friend "}
                       </button>
+                      </div>
                     )}
 
                     {curElem.friend_status === 'We Are Friends'  && (
-                      <span className="text-green-500 font-bold mt-3">We Are Friends</span>
+                      <div className="flex justify-center items-center">
+                      <span className="text-green-500 font-bold mt-1">We Are Friends</span>
+                      </div>
                     )}
                   </>
                 )}
