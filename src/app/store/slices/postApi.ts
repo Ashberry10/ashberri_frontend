@@ -23,8 +23,18 @@ export const postApi = createApi({
             }),
         }),
 
+        getAllPost: builder.query({
+            query: (access) => ({
+                url: '/',
+                method: 'GET',
+                headers: {
+                'authorization': `Bearer ${access}`,
+            },
+            }),
+        }),
+
     }),
 
 });
 
-export const { useSendCreatePostRequestMutation } = postApi;
+export const { useSendCreatePostRequestMutation, useGetAllPostQuery } = postApi;

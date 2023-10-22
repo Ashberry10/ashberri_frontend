@@ -3,7 +3,7 @@ import { useGetUserProfileQuery } from '../app/store/slices/authApi';
 import { useAppSelector } from '../app/store/hooks';
 import { signIn, signOut, useSession } from "next-auth/react";
 import CreatePostForm from './components/CreatePostForm';
-
+import PostList from './components/post/PostList';
 
 
 const Index = () => {
@@ -22,9 +22,7 @@ const Index = () => {
 
   return (
     <>
-    <CreatePostForm />
-
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center bg-gray-100">
       <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-md">
         <h1 className="text-3xl font-bold mb-4">Welcome to the Homepage!</h1>
         <p className="text-lg">
@@ -33,7 +31,8 @@ const Index = () => {
       </div>
       
     </div>
-    {/* <Login/> */}
+    <CreatePostForm />
+    <PostList/>
     </>
   );
 };
