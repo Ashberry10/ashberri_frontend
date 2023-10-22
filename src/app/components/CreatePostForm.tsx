@@ -5,6 +5,20 @@ import {
 
 } from '@/app/store/slices/postApi';
 
+const FormContainer = {
+  backgroundColor: "#BCB4F4",
+}
+
+const FormHeader = {
+  fontSize: "24px",
+}
+
+const Button = {
+  backgroundColor: "#007BFF",
+  padding: "10px",
+  borderRadius: "5px",
+}
+
 function CreatePostForm() {
   const { data: session, status } = useSession();
   const token: string | undefined = session?.user.accessToken;
@@ -58,8 +72,8 @@ function CreatePostForm() {
   };
 
   return (
-    <div>
-      <h2>Create a Post</h2>
+    <div style={FormContainer}>
+      <h2 style={FormHeader}>Create a Post</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="content">Content:</label>
@@ -82,7 +96,7 @@ function CreatePostForm() {
             required
           />
         </div>
-        <button type="submit">Create Post</button>
+        <button type="submit" style={Button}>Create Post</button>
       </form>
 
       {isLoading && <p>Creating post...</p>}
