@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useGetAllPostQuery } from '@/app/store/slices/postApi';
 import { useGetAllUserIdQuery } from '@/app/store/slices/authApi';
+import { BASE_URL } from '../../../../api_constants';
 
 const postContainer = {
     margin: "20px",
@@ -75,7 +76,8 @@ export default function PostList() {
     return <div>Error fetching posts.</div>;
   }
 
-  const customPrefixURL = 'http://localhost:8000/';
+
+  const customPrefixURL = BASE_URL;
 
   var isLiked = false;
 
