@@ -206,18 +206,18 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Friend Request Received'&& (
                       <div className="flex space-x-2 mt-3">
                         <button
-                          className="bg-green-500 hover:bg-green-700 text-white font-bold  rounded"
+                          className="bg-green-500 hover:bg-green-700 text-white font-bold mt-1 w-full rounded"
                           onClick={() => handleAcceptFriendRequest(curElem.id)}
                           disabled={isAcceptingFriendRequest}
                         >
-                          {isAcceptingFriendRequest ? <LoadingIcon/> : "Accept Friend Request"}
+                          {isAcceptingFriendRequest ? <LoadingIcon/> : "Accept"}
                         </button>
                         <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold mt-1 w-full rounded"
                           onClick={() => handleRejectFriendRequest(curElem.id)}
                           disabled={isRejectingFriendRequest}
                         >
-                          {isRejectingFriendRequest ? <LoadingIcon/> : "Reject Friend Request"}
+                          {isRejectingFriendRequest ? <LoadingIcon/> : "Reject"}
                         </button>
                       </div>
                     )}

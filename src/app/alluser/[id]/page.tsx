@@ -140,32 +140,84 @@ const Page = (props: Props) => {
   }, [userdata, isSuccess]);
 
   return (
-    <div className="flex items-center mb-4">
-      {/* <h1 className="text-2xl font-bold mb-4"></h1> */}
+    <div>
   
-      {/* <ul className="bg-white shadow-md p-4 rounded-md"> */}
       <ul>
         {users.map((user) => {
 
     const isSendingFriendRequest = sendingRequests.includes(user.id);
     const isCancelingFriendRequest = cancelingRequests.includes(user.id);
-
+console.log(user.friendStatus)
           return (
-            <li key={user.id} className="mb-2">
+            <li key={user.id} >
+              <div className="flex mt-10 ml-10 items-center ">
               <img
-                className="w-40 h-40 rounded-full"
+                className="  w-40 h-40 rounded-full"
                 src={BASE_URL + user?.image}
                 alt={user?.profileName}
                 // width={238}
                 // height={248}
               />
-              <div className="mr-50 mb-40">
-              <h2 className="text-lg font-bold">{user.profileName}</h2>
-              <p className="text-gray-500">{user.friendStatus}</p>
+            <div className="ml-28 mb-16">
+              <h2 className="text-lg font-bold pb-3 ">{user.profileName}
 
+              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+              {user?.friend_status === 'Friend Request Received' &&  (
+
+
+<div>
+  <button
+    className="bg-green-500 hover:bg-green-600 text-white font-bold px-4 rounded "
+    onClick={() => handleAcceptFriendRequest()}
+  >
+    Accept
+  </button>
+  &nbsp;&nbsp;&nbsp;
+  <button
+    className="bg-red-500 hover:bg-red-600 text-white font-semibold  px-4 rounded "
+    onClick={() => handleRejectFriendRequest()}
+  >
+    Reject
+  </button>
+</div>
+)}
+
+{user.friend_status === 'We Are Friends' && (
+<span className="text-green-500 font-bold mt-3">We Are Friends</span>
+)} 
+
+{user.friend_status === 'Pending' &&(
+  <button
+    className="bg-red-500 hover:bg-red-700 text-white font-bold  px-4 rounded "
+    onClick={() => handleCancelFriendRequest()}
+    disabled={isCancelingFriendRequest}
+  >
+    {isCancelingFriendRequest ? <LoadingIcon/> : "Cancel"}
+  </button>
+)}
+
+
+{user.friend_status === 'Friend Request Not Sent' &&(
+<button
+className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4  rounded focus:outline-none"
+    onClick={() => handleSendFriendRequest()}
+    disabled={isSendingFriendRequest}
+
+  >
+    {isSendingFriendRequest ? <LoadingIcon/> : "Add Friend"}
+  </button>
+)}
+              
+              
+             
+              </h2>
+
+
+              
+              {/* <p className="text-gray-500">{user.friendStatus}</p> */}
+      
                 
-  
-                {/* <span className="text-sm font-medium mr-1">Compatibility:</span> */}
+
                 {user.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
                 )}
@@ -178,61 +230,15 @@ const Page = (props: Props) => {
                 {user.compatibility === 5 && (
                   <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
                 )}
-                <br />
-
+    
            
-
-               {user?.friend_status === 'Friend Request Received' &&  (
-
-
-                    <div>
-                      <button
-                        className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded center"
-                        onClick={() => handleAcceptFriendRequest()}
-                      >
-                        Accept
-                      </button>
-                      <button
-                        className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded center"
-                        onClick={() => handleRejectFriendRequest()}
-                      >
-                        Reject
-                      </button>
-                    </div>
-                  )}
-
-                  {user.friend_status === 'We Are Friends' && (
-                    <span className="text-green-500 font-bold mt-3">We Are Friends</span>
-                  )} 
-
-                  {user.friend_status === 'Pending' &&(
-                      <button
-                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
-                        onClick={() => handleCancelFriendRequest()}
-                        disabled={isCancelingFriendRequest}
-                      >
-                        {isCancelingFriendRequest ? <LoadingIcon/> : "Cancel Friend Request"}
-                      </button>
-                    )}
-
-
-                {user.friend_status === 'Friend Request Not Sent' &&(
-                 <button
-                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded focus:outline-none"
-                        onClick={() => handleSendFriendRequest()}
-                        disabled={isSendingFriendRequest}
-
-                      >
-                        {isSendingFriendRequest ? <LoadingIcon/> : "Add Friend"}
-                      </button>
-                    )}
-
               
             </div>
+  </div>
           </li>
         );
       })}
-    </ul>
+  </ul>
   </div>
 );
 
