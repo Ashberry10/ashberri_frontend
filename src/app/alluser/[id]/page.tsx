@@ -235,6 +235,9 @@ className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4  rounded focu
               
             </div>
   </div>
+
+ 
+  <hr className="my-10" />
           </li>
         );
       })}
