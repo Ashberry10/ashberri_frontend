@@ -61,15 +61,16 @@ const ProfileInfo = () => {
     <div>
     
     <div className="flex items-center mb-4">
-        <Image className="w-12 h-12 rounded-full" src={profileImage} alt={userProfile?.name} width={48} height={48} />
-        <div className="ml-4">
+        <img className="w-40 h-40 rounded-full" src={profileImage} alt={userProfile?.name}  />
+        <div className="ml-28 mb-20">
           <h2 className="text-lg font-bold">{userProfile?.name}</h2>
           <p className="text-gray-500">{userProfile?.email}</p>
-        </div>
+          </div>
           <button
-            className="ml-auto text-blue-500 font-bold outline-none focus:outline-none"
+                     className="bg-gray-200  hover:bg-gray-300 mb-28 px-2 text-gray-950 font-semibold  rounded focus:outline-none"
+
             onClick={() => router.push('/edityourprofile')}
-          >
+            >
             Edit Profile
           </button>
         </div>

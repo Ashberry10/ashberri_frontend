@@ -115,8 +115,6 @@ function EditForm() {
         if (gender) formData.append('gender', gender);
         file && formData.append('file', file);
         
-    
-    
         try {    
           setIsLoading(true); 
           const response = await updateUserMutation({
@@ -230,7 +228,7 @@ function EditForm() {
     />
     {/* <span className=" pl-10">{profileImage ? 'Change' : 'Select a file'}</span> */}
     <span
-      className="bg-gray-500 ml-10 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full focus:outline-none"
+      className="bg-gray-500 ml-10 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full "
     >
       {profileImage ? 'Change' : 'Select a file'}
     </span>

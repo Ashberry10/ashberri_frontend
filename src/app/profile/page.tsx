@@ -11,8 +11,8 @@ function page() {
   return (
     <>
 <div>
-    <div className="max-w-lg mx-auto p-4">
-    <div className="bg-white shadow-md p-4 rounded-md">
+    <div className="  p-4">
+    <div className="bg-white  p-4 rounded-md">
     <ViewProfileInfo/>
         <hr className="my-4" />
         <div className="mb-4">

@@ -140,10 +140,11 @@ const Page = (props: Props) => {
   }, [userdata, isSuccess]);
 
   return (
-    <div className="max-w-lg mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4"></h1>
+    <div className="flex items-center mb-4">
+      {/* <h1 className="text-2xl font-bold mb-4"></h1> */}
   
-      <ul className="bg-white shadow-md p-4 rounded-md">
+      {/* <ul className="bg-white shadow-md p-4 rounded-md"> */}
+      <ul>
         {users.map((user) => {
 
     const isSendingFriendRequest = sendingRequests.includes(user.id);
@@ -151,20 +152,20 @@ const Page = (props: Props) => {
 
           return (
             <li key={user.id} className="mb-2">
-              <Image
-                className="w-full h-full object-cover"
+              <img
+                className="w-40 h-40 rounded-full"
                 src={BASE_URL + user?.image}
                 alt={user?.profileName}
-                width={238}
-                height={248}
+                // width={238}
+                // height={248}
               />
-              <div className="flex items-center mt-1">
-                <h1 className="text-2xl font-bold mb-4">{user.profileName}</h1>
-                <h1 className="text-2xl font-bold mb-4">{user.friendStatus}</h1>
+              <div className="mr-50 mb-40">
+              <h2 className="text-lg font-bold">{user.profileName}</h2>
+              <p className="text-gray-500">{user.friendStatus}</p>
 
                 
   
-                <span className="text-sm font-medium mr-1">Compatibility:</span>
+                {/* <span className="text-sm font-medium mr-1">Compatibility:</span> */}
                 {user.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
                 )}
@@ -217,12 +218,12 @@ const Page = (props: Props) => {
 
                 {user.friend_status === 'Friend Request Not Sent' &&(
                  <button
-                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 w-full"
+                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded focus:outline-none"
                         onClick={() => handleSendFriendRequest()}
                         disabled={isSendingFriendRequest}
 
                       >
-                        {isSendingFriendRequest ? <LoadingIcon/> : "Send Friend Request"}
+                        {isSendingFriendRequest ? <LoadingIcon/> : "Add Friend"}
                       </button>
                     )}
 
