@@ -1,93 +1,74 @@
 "use client"
+import React from 'react';
 import { FaUser } from 'react-icons/fa';
-import { HiUsers} from 'react-icons/hi';
-import {HiMiniUsers} from 'react-icons/hi2'
-import {AiFillHome} from 'react-icons/ai'
+import { HiUsers } from 'react-icons/hi';
+import { HiMiniUsers } from 'react-icons/hi2';
+import { AiFillHome } from 'react-icons/ai';
 import { useGetUserProfileQuery } from '@/app/store/slices/authApi';
 import { BASE_URL } from '@/../api_constants';
 import Link from 'next/link';
 import Image from 'next/image';
-
-import {IoLogOutSharp } from 'react-icons/io5'
-import { signIn, signOut, useSession } from "next-auth/react";
+import { IoLogOutSharp } from 'react-icons/io5';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation'
 
 const Sidebar = () => {
+  const router = useRouter();
   const { data: session, status } = useSession();
-  const token: any = session?.user.accessToken;
+  const token = session?.user.accessToken;
 
-  const { data:profileData, error, isLoading,refetch: refetchProfileUsersData  } = useGetUserProfileQuery(token || '');
-
-
+  const { data: profileData, error, isLoading, refetch: refetchProfileUsersData } = useGetUserProfileQuery(token || '');
 
   const userProfile = profileData?.user_profile;
-
   const profileImage = BASE_URL + userProfile?.file;
-
-  // const profileImage = userProfile?.file ? BASE_URL + userProfile.file : null;
 
   return (
     <div className="col-span-1 h-full pr-4 md:pr-6">
       <div className="flex flex-col items-end">
         <div className="space-y-2 lg:w-[230px]">
-          <div className="flex-shrink-0">
-            <Link className="font-bold text-xl" href="/">
+          <div className="flex-shrink-0 mt-10">
+            <Link className="font-bold text-2xl pl-7 " href="/">
               Ashberri
             </Link>
           </div>
 
           <div className="relative lg:flex items-row gap-4 p-4 rounded-full hover:bg-opacity-10 cursor-pointer items-center">
             <div className="hidden md:block">
-              <div className="mt-4 space-y-4">
+              <div className="mt-4 space-y-4 ">
                 <Link
-                  className="flex items-center text-gray-700  px-3 py-2 rounded-md text-s font-medium"
+                  className="hover:scale-110 flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200"
                   href="/"
                 >
-                  <AiFillHome className="mr-2 text-xl w-6 h-6"/>
-              
+                  <AiFillHome className="mr-2 text-xl w-6 h-6 transition-transform transform hover:scale-110" />
                   Home
-
                 </Link>
 
-           
+
+
+
+
                 <Link
-                  className="flex items-center text-gray-700  px-3 py-2 rounded-md text-s font-medium"
+                  className=" hover:scale-110  flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200"
                   href="/alluser"
                 >
-                  <HiMiniUsers className="mr-2 text-xl w-6 h-6"/>
-              
+                  <HiMiniUsers className="mr-2 text-xl w-6 h-6 transition-transform transform hover:scale-110" />
                   All Users
                 </Link>
 
-
-                <Link
-                 className="flex items-center text-gray-700  px-3 py-2 rounded-md text-s font-medium"
-                  href="/profile"
-                >
-                  {/* <FaUser className="mr-2 h-5 w-5 " /> */}
-
-                  {/* <Image className="w-12 h-12 rounded-full" src={profileImage} alt={userProfile?.name} width={48} height={48} /> */}
-                  <img
-      className="h-8 w-8 rounded-full mr-2"
-      src={profileImage}
-      alt="Profile"
-    />
-                  
-                  
+                <Link className=" hover:scale-110  flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200" href="/profile">
+                  <img className="h-8 w-8 rounded-full mr-2 transition-transform transform hover:scale-110" src={profileImage} alt="Profile" />
                   Profile
                 </Link>
 
-
-
-
-
                 <div className="ml-auto flex gap-2">
                   {session?.user ? (
-                    <>
-                      <button  className="flex items-center text-gray-700  px-3 py-2 rounded-md text-s font-medium" onClick={() => signOut()}>
+                    <button
+                      className="flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200"
+                      onClick={() => signOut()}
+                    >
                       <p className="text-sky-600">{session.user.name}</p>
-                      <IoLogOutSharp  className="mr-2 h-5 w-5 " /> Sign Out
-                      </button>
-                    </>
+                      <IoLogOutSharp className="mr-2 h-5 w-5 transition-transform transform hover:scale-110" /> Sign Out
+                    </button>
                   ) : (
                     <button className="text-green-600" onClick={() => signIn()}>
                       Sign In

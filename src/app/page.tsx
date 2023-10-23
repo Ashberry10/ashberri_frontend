@@ -22,7 +22,7 @@ const Index = () => {
 
   return (
     <>
-    <div className="flex items-center justify-center bg-gray-100">
+    <div className="mt-10 flex items-center justify-center bg-gray-100">
       <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-md">
         <h1 className="text-3xl font-bold mb-4">Welcome to the Homepage!</h1>
         <p className="text-lg">

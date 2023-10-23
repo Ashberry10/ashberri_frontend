@@ -126,7 +126,7 @@ const { data: session, status } = useSession({
 
   return (
     <>
-      <h1 className="font-bold text-2xl mb-4">Friends</h1>
+      <h1 className=" mt-10 font-bold text-2xl mb-4">People you may know</h1>
 
       <div className="grid gap-4  sm:grid-cols-3 lg:grid-cols-4">
         {allUsers.map((curElem: any) => {

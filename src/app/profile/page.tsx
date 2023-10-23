@@ -11,7 +11,7 @@ function page() {
   return (
     <>
 <div>
-    <div className="  p-4">
+    <div className="mt-7">
     <div className="bg-white  p-4 rounded-md">
     <ViewProfileInfo/>
         <hr className="my-4" />
