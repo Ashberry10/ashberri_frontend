@@ -16,9 +16,9 @@ const Index = () => {
   if(status === "loading") {
     return <></>
   }
-  const { data, error, isLoading } = useGetUserProfileQuery(token || '');
+  // const { data, error, isLoading } = useGetUserProfileQuery(token || '');
 
-  const userProfile = data?.user_profile;
+  const userProfile = session?.user;
 
   return (
     <>
