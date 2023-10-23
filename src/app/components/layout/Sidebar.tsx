@@ -18,7 +18,7 @@ const Sidebar = () => {
   const token = session?.user.accessToken;
 
   const { data: profileData, error, isLoading, refetch: refetchProfileUsersData } = useGetUserProfileQuery(token || '');
-
+console.log('my first commit')
   const userProfile = profileData?.user_profile;
   const profileImage = BASE_URL + userProfile?.file;
 
