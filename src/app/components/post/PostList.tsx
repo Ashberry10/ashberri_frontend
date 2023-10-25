@@ -76,9 +76,6 @@ export default function PostList() {
     return <div>Error fetching posts.</div>;
   }
 
-
-  const customPrefixURL = BASE_URL;
-
   var isLiked = false;
 
   return (
@@ -89,7 +86,7 @@ export default function PostList() {
           <li style={postContainer} key={post.id}>
             <h3>{post.user_name}</h3> {/* Display user name instead of user_id */}
             {/* <h3>{post.user_id}</h3> */}
-            {post.image && (<img src={`${customPrefixURL}${post.image}`} alt={`Post by ${post.user_id}`} />)}
+            {post.image && (<img src={`${BASE_URL}${post.image}`} alt={`Post by ${post.user_id}`} />)}
             <p>{post.content}</p>
             <button>
               {isLiked ? 'Unlike' : 'Like'}
