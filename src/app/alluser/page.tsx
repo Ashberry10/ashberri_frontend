@@ -30,7 +30,7 @@ interface FriendProps {
 
 // ... (other imports)
 
-export default function AllUser({ name, avatarUrl }: FriendProps) {
+export default function AllUser() {
 //   const { data: session, status } = useSession();
 const { data: session, status } = useSession({
   required: true,

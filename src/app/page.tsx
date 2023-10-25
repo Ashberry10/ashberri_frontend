@@ -16,9 +16,9 @@ const Index = () => {
   if(status === "loading") {
     return <></>
   }
-  const { data, error, isLoading } = useGetUserProfileQuery(token || '');
+  // const { data, error, isLoading } = useGetUserProfileQuery(token);
 
-  const userProfile = data?.user_profile;
+  // const userProfile = data?.user_profile;
 
   return (
     <>
@@ -26,7 +26,9 @@ const Index = () => {
       <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-md">
         <h1 className="text-3xl font-bold mb-4">Welcome to the Homepage!</h1>
         <p className="text-lg">
-          Hello, {userProfile?.name}! This is a nice-looking homepage created using React.
+          {/* Hello, {userProfile?.name}! This is a nice-looking homepage created using React. */}
+          Hello This is a nice-looking homepage created using React.
+
         </p>
       </div>
       
