@@ -5,6 +5,13 @@ import { useGetAllPostQuery } from '@/app/store/slices/postApi';
 import { useGetAllUserIdQuery } from '@/app/store/slices/authApi';
 import { BASE_URL } from '../../../../api_constants';
 
+
+// Define a type for the post
+type Post = {
+  id: number;
+  user_name: string; // Add other properties as needed
+};
+
 const postContainer = {
     margin: "20px",
     padding: "20px",
@@ -25,7 +32,7 @@ const postContainer = {
 export default function PostList() {
   const {data: session} = useSession();
   const token = session?.user?.accessToken;
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]); 
   const [isLoading, setIsLoading] = useState(true);
   
   const {data: getAllPost, isError} = useGetAllPostQuery(token);
