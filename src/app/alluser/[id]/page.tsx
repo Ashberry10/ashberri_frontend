@@ -56,7 +56,9 @@ const Page = (props: Props) => {
   const id = props.params.id;
   console.log(id)
   console.log("first")
-  const { data: session } = useSession();
+  const { data: session, status } = useSession({
+    required: true,
+  });
   const token = session?.user.accessToken;
   const { data: userdata, isSuccess , refetch: refetchuserdata } = useUserPredictByIdQuery({ access: token, id: id });
   // const { data: friendStatusesData, refetch: refetchFriendStatuses } = useGetAllUserFriendStatusQuery(token);

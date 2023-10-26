@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { useGetUserProfileQuery } from '@/app/store/slices/authApi';
 import LoadingPage from "@/app/components/LoadingPage"
 import Image from 'next/image';
@@ -12,8 +11,11 @@ import {
   useRejectFriendRequestMutation,
 
 } from '@/app/store/slices/friendApi';
+import { IoLogOutSharp } from 'react-icons/io5';
 import { useRouter } from 'next/navigation'
 import { BASE_URL } from '../../../api_constants';
+import { signIn, signOut, useSession } from 'next-auth/react';
+
 const ProfileInfo = () => {
 
     const router = useRouter();
@@ -35,11 +37,7 @@ const ProfileInfo = () => {
          }
        }, [error]);
      
-       // if(friendrequest?.total_friend_requests==0)
-       // {
-       //   return<div>No Friend Request Found</div>
-       // }
-       
+  
        if (isLoading) {
          return <div><LoadingPage /></div>;
        }
@@ -54,7 +52,9 @@ const ProfileInfo = () => {
     const userProfileTotalFriendrequest = friendrequest?.total_friend_requests
     const userFriends =friends?.friend
     // console.log(userFriends)
-  
+    const handleSignOut = () => {
+      signOut();
+    };
     var profileImage = BASE_URL + userProfile.file;
   
   return (
@@ -73,6 +73,15 @@ const ProfileInfo = () => {
             >
             Edit Profile
           </button>
+
+          <button
+                     className="ml-5 bg-gray-200  hover:bg-gray-300 mb-28 mr-30 px-2 text-gray-950 font-semibold  rounded focus:outline-none"
+ onClick={handleSignOut}
+            >
+            {/* <IoLogOutSharp className="mr-4 text-xl w-6 h-6 transition-transform transform hover:scale-105" />  */}
+            Log Out
+            </button>
+       
         </div>
     </div>
   )

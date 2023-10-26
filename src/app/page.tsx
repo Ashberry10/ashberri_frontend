@@ -12,7 +12,7 @@ const Index = () => {
     required: true,
   });
   const token:any= session?.user.accessToken;
-
+  const userName = session?.user?.name || "Guest"; 
   if(status === "loading") {
     return <></>
   }
@@ -26,8 +26,7 @@ const Index = () => {
       <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-md">
         <h1 className="text-3xl font-bold mb-4">Welcome to the Homepage!</h1>
         <p className="text-lg">
-          {/* Hello, {userProfile?.name}! This is a nice-looking homepage created using React. */}
-          Hello This is a nice-looking homepage created using React.
+          Hello, {userName}! This is a nice-looking homepage created using React.
 
         </p>
       </div>

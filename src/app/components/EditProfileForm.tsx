@@ -25,7 +25,9 @@ function EditForm() {
     
       const [isDirty, setIsDirty] = useState(false); 
       const [profileImage, setProfileImage] = useState<string | null>(null); // Add this line
-      const { data: session } = useSession();
+      const { data: session, status } = useSession({
+        required: true,
+      });
       const [successMessage, setSuccessMessage] = useState<string | null>(null);
     
       const token: any = session?.user.accessToken;

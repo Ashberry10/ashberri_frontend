@@ -93,7 +93,6 @@
 
 
 
-
 "use client"
 import Sidelink from './Sidelink'
 import React from 'react';
@@ -109,7 +108,7 @@ import Image from 'next/image';
 import { IoLogOutSharp } from 'react-icons/io5';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
-
+import dynamic from "next/dynamic";
 
 
 interface NavbarProps {}
@@ -122,7 +121,9 @@ const Navbar: React.FC<NavbarProps> = () => {
 
   const userProfile = profileData?.user_profile;
   const profileImage = BASE_URL + userProfile?.file;
-  
+  const handleSignOut = () => {
+    signOut();
+  };
   const userName = session?.user?.name || "Guest"; 
   return (
     <nav>
@@ -151,9 +152,7 @@ const Navbar: React.FC<NavbarProps> = () => {
 
 
 
-        <li>
-          <Sidelink className="mr-2  " activeClasses="text-gray-900 text-decoration-line: underline font-bold " text = {userName} href="/login" icon={<IoLogOutSharp className="mr-4 text-xl w-6 h-6 transition-transform transform hover:scale-105" />} />
-        </li>
+    
       
 
                  </div>
@@ -167,3 +166,4 @@ const Navbar: React.FC<NavbarProps> = () => {
 };
 
 export default Navbar;
+// export default dynamic (() => Promise.resolve(Navbar), {ssr: false})
