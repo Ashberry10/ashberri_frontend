@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 // import React from 'react';
 // import { FaUser } from 'react-icons/fa';
 // import { HiUsers } from 'react-icons/hi';
@@ -41,23 +41,23 @@
 //             <div className="hidden md:block">
 //               <div className="mt-4 space-y-4 ">
 //                 <Link
-//                   className={`hover:scale-110 flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200 ${isLinkActive('/')}`}
+//                   className={`hover:scale-105 flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200 ${isLinkActive('/')}`}
 //                   href="/"
 //                 >
-//                   <AiFillHome className="mr-2 text-xl w-6 h-6 transition-transform transform hover:scale-110" />
+//                   <AiFillHome className="mr-2 text-xl w-6 h-6 transition-transform transform hover:scale-105" />
 //                   Home
 //                 </Link>
 
 //                 <Link
-//                   className={`hover:scale-110 flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200 ${isLinkActive('/alluser')}`}
+//                   className={`hover:scale-105 flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200 ${isLinkActive('/alluser')}`}
 //                   href="/alluser"
 //                 >
-//                   <HiMiniUsers className="mr-2 text-xl w-6 h-6 transition-transform transform hover:scale-110" />
+//                   <HiMiniUsers className="mr-2 text-xl w-6 h-6 transition-transform transform hover:scale-105" />
 //                   All Users
 //                 </Link>
 
-//                 <Link className={`hover:scale-110 flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200 ${isLinkActive('/profile')}`} href="/profile">
-//                   <img className="h-8 w-8 rounded-full mr-2 transition-transform transform hover:scale-110" src={profileImage} alt="Profile" />
+//                 <Link className={`hover:scale-105 flex items-center text-gray-700 px-3 py-2 rounded-md text-s font-medium hover:bg-gray-200 ${isLinkActive('/profile')}`} href="/profile">
+//                   <img className="h-8 w-8 rounded-full mr-2 transition-transform transform hover:scale-105" src={profileImage} alt="Profile" />
 //                   Profile
 //                 </Link>
 
@@ -68,7 +68,7 @@
 //                       onClick={() => signOut()}
 //                     >
 //                       <p className="text-sky-600">{session.user.name}</p>
-//                       <IoLogOutSharp className="mr-2 h-5 w-5 transition-transform transform hover:scale-110" /> Sign Out
+//                       <IoLogOutSharp className="mr-2 h-5 w-5 transition-transform transform hover:scale-105" /> Sign Out
 //                     </button>
 //                   ) : (
 //                     <button className="text-green-600" onClick={() => signIn()}>
@@ -94,7 +94,8 @@
 
 
 
-
+"use client"
+import Sidelink from './Sidelink'
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import { FaHome, FaUser } from 'react-icons/fa'; // Import the icons you want to use
@@ -107,41 +108,27 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { IoLogOutSharp } from 'react-icons/io5';
 import { signIn, signOut, useSession } from 'next-auth/react';
-interface NavlinkProps {
-  href: string;
-  text: string;
-  activeClasses: string;
-  className: string;
-  icon: React.ReactNode; // Use React.ReactNode for the icon prop
-}
 
-const Navlink: React.FC<NavlinkProps> = ({ href, text, activeClasses, className, icon }) => {
-  const path = usePathname();
-  const isActive = path === href;
 
-  const iconClass = isActive ? 'text-black' : '';
 
-  return (
-    <Link href={href}>
-      <div>
-        <div className={`flex items text-gray-700 hover:scale-110 ${isActive ? activeClasses : ''} ${className}`}>
-          {icon}
-          
-          <span>{text}</span>
-        </div>
-      </div>
-    </Link>
-  );
-};
 
 interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = () => {
+    const { data: session, status } = useSession();
+  const token = session?.user.accessToken;
+
+  const { data: profileData, error, isLoading, refetch: refetchProfileUsersData } = useGetUserProfileQuery(token || '');
+
+  const userProfile = profileData?.user_profile;
+  const profileImage = BASE_URL + userProfile?.file;
+  
+  const userName = session?.user?.name || "Guest"; 
   return (
     <nav>
       <ul>
-       <div className="mt-4 space-y-4 ">
-           <div className="flex-shrink-0 mt-10">
+       <div className=" space-y-9 ">
+        <div className="flex-shrink-0 mt-10 ml-2">
        <Link className="font-bold text-2xl " href="/">
          Ashberri
        </Link>
@@ -150,12 +137,29 @@ const Navbar: React.FC<NavbarProps> = () => {
         
         
         <li>
-          <Navlink className="uppercase" activeClasses="text-decoration-line: underline  " text="Home" href="/" icon={<AiFillHome   className="mr-2 text-xl w-6 h-6 transition-transform transform hover:scale-110" />} />
+          <Sidelink className="mr-2" activeClasses="text-gray-900 text-decoration-line: underline font-bold" text="Home" href="/" icon={<AiFillHome   className="mr-4 text-xl w-6 h-6 transition-transform transform hover:scale-105" />} />
         </li>
+
         <li>
-          <Navlink className="uppercase" activeClasses=" text-decoration-line: underline " text="Profile" href="/profile" icon={<FaUser className="mr-2 text-xl w-6 h-6 transition-transform transform hover:scale-110"  />} />
+          <Sidelink className="mr-2" activeClasses="text-gray-900 text-decoration-line: underline font-bold" text="Users" href="/alluser" icon={<HiMiniUsers className="mr-4 text-xl w-6 h-6 transition-transform transform hover:scale-105" />} />
         </li>
-        </div>
+
+        <li>
+          <Sidelink className="mr-2" activeClasses="text-gray-900 text-decoration-line: underline font-bold " text="Profile" href="/profile" icon={<img className="rounded-full mr-4 text-xl w-6 h-6 transition-transform transform hover:scale-105" src={profileImage} alt="Profile" />} />
+        </li>
+
+
+
+
+        <li>
+          <Sidelink className="mr-2  " activeClasses="text-gray-900 text-decoration-line: underline font-bold " text = {userName} href="/login" icon={<IoLogOutSharp className="mr-4 text-xl w-6 h-6 transition-transform transform hover:scale-105" />} />
+        </li>
+      
+
+                 </div>
+        
+        
+        
       </ul>
       
     </nav>
