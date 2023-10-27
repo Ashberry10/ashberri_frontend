@@ -6,7 +6,7 @@ import {
 } from '@/app/store/slices/postApi';
 
 const FormContainer = {
-  backgroundColor: "#BCB4F4",
+  backgroundColor: "gray",
 }
 
 const FormHeader = {

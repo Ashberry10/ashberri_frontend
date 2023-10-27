@@ -185,7 +185,7 @@ console.log(user.friendStatus)
 )}
 
 {user.friend_status === 'We Are Friends' && (
-<span className="text-green-500 font-bold mt-3">We Are Friends</span>
+<span className="text-green-500 font-bold mt-3">Friends</span>
 )} 
 
 {user.friend_status === 'Pending' &&(
@@ -221,7 +221,7 @@ className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4  rounded focu
                 
 
                 {user.compatibility === 0 && (
-                  <span className="text-yellow-500">Not Friend</span>
+                  <span className="text-yellow-500">⭐⭐</span>
                 )}
                 {user.compatibility === 3 && (
                   <span className="text-yellow-500">⭐⭐⭐</span>

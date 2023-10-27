@@ -128,7 +128,7 @@ const { data: session, status } = useSession({
     <>
       <h1 className=" mt-10 font-bold text-2xl mb-4">People you may know</h1>
 
-      <div className="grid gap-4  sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid gap-3 mx-auto sm:grid-cols-4 lg:grid-cols-5">
         {allUsers.map((curElem: any) => {
           // const friendStatus = friendStatuses.find((friend: any) => friend.friend_id === curElem.id);
           // console.log(friendStatus)
@@ -142,11 +142,11 @@ const { data: session, status } = useSession({
           const friend=  curElem.friend_status
           console.log(friend)
           return (
-            <div key={curElem.id} className="bg-gray-100 rounded shadow-lg overflow-hidden">
+            <div key={curElem.id} className="bg-gray-100 rounded  overflow-hidden">
                       {/* <Link href={`/${curElem.id}`}> */}
                 <Link href={`/alluser/${curElem.id}`}>
 
-                <div className="relative">
+                <div className="">
                   {/* <Image className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} /> */}
                   {/* <img className="w-full h-full object-cover" src={image} alt={curElem.name} width={imageWidth}
             height={imageHeight}  /> */}
@@ -154,7 +154,7 @@ const { data: session, status } = useSession({
 
 
 
-<img className="h-44 w-44 rounded " src={image} alt={curElem.name}
+<img className="h-44 w-48 mx-auto rounded " src={image} alt={curElem.name}
 
 
              />
@@ -176,12 +176,12 @@ const { data: session, status } = useSession({
 
 
                 <div className="flex items-center mt-2 ">
-                  <span className="text-sm mr-1">{curElem.ProfileName}</span>
+                  <span className="text-sm mr-1 font-bold">{curElem.ProfileName}</span>
                 </div>  </Link>
 
-                     
+                &nbsp; 
                 {curElem.compatibility === 0 && (
-                  <span className="text-yellow-500">Not Friend</span>
+                  <span className="text-yellow-500">⭐⭐</span>
                   
                 )}
                 {curElem.compatibility === 3 && (
@@ -252,7 +252,7 @@ const { data: session, status } = useSession({
 
                     {curElem.friend_status === 'We Are Friends'  && (
                       <div className="flex justify-center items-center">
-                      <span className="text-green-500 font-bold mt-1">We Are Friends</span>
+                      <span className="text-sky-500   rounded  font-bold mt-2">Friends</span>
                       </div>
                     )}
                   </>
