@@ -128,7 +128,7 @@ const { data: session, status } = useSession({
     <>
       <h1 className=" mt-10 font-bold text-2xl mb-4">People you may know</h1>
 
-      <div className="grid gap-3 mx-auto sm:grid-cols-4 lg:grid-cols-5">
+      <div className="grid gap-3 mx-auto sm:grid-cols-3 lg:grid-cols-4">
         {allUsers.map((curElem: any) => {
           // const friendStatus = friendStatuses.find((friend: any) => friend.friend_id === curElem.id);
           // console.log(friendStatus)

@@ -163,65 +163,112 @@
 
 
 
-// import React from 'react'
-// import Sidebar from "./layout/Sidebar"
+
+
+
+
+// import React from 'react';
+// import Sidebar from "./layout/Sidebar";
 
 // const Layout = ({ children }: { children: React.ReactNode }) => {
 //   return (
 //     <div>
-//            <div className="h-screen ">
-//        <div className="h-full px-4 ">
-//          <div className="grid grid-cols-4  h-full ">
-//            <Sidebar />
-//            <div 
-//              className="
-//                col-span-3
-//                lg:col-span-2
-              
+//       <div className=" h-screen ">
+       
+//           <div className="h-full grid lg:grid-cols-3 grid-cols-4">
+//             <div       className="
+//            w-40
+//            lg:w-80     
+//            h-full
+//                 border-x-[1px]
+//               "
+//             >
+//               <Sidebar />
+//               </div>
+//             <div
+//               className="
 
-//                border-x-[1px] 
-            
-//            ">
-//                          {children}
-//            </div>
-//          </div>
+             
+//               "
+//             >
+//               {children}
+//             </div>
+//           </div>
+       
 //       </div>
-//      </div>
-      
 //     </div>
-//   )
-// }
+//   );
+// };
 
-// export default Layout
-
-
+// export default Layout;
 
 
+// import React from 'react';
+// import Sidebar from "./layout/Sidebar";
 
-import React from 'react';
-import Sidebar from "./layout/Sidebar";
+// const Layout = ({ children }: { children: React.ReactNode }) => {
+//   return (
+//     <div>
+//       <div className="h-full ">
+//         <div className=" h-full ">
+//           <div className="grid   lg:grid-cols-3  md:grid-cols-4  h-full">
+//           <div       className="
+             
+//             lg:w-80     
+//             h-full
+//                  border-x-[1px]
+//                "
+//              >
+            
+//               <Sidebar /></div>
+//             <div
+//               className="
+           
+//               "
+//             >
+//               {children}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Layout;
+
+import React from 'react'
+import Sidebar from "./layout/Sidebar"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <div className="h-screen lg:mr-96 ">
-        <div className=" h-full  lg:mr-96 ">
-          <div className="grid   lg:grid-cols-3  grid-cols-4  h-full">
-              <Sidebar />
-            <div
-              className="
-                col-span-3
-                lg:col-span-2
-                border-x-[1px]
-              "
-            >
-              {children}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+           <div className="h-screen ">
+       <div className="h-full  ">
+         <div className="grid grid-cols-4  h-full ">
+                      <div       className="
+           w-40
+            lg:w-80              
+                  border-x-[1px]
+               "
+             >
+           <Sidebar />
+           </div>
+           <div 
+             className="
+               col-span-3
+               lg:col-span-2
 
-export default Layout;
+            
+           ">
+                         {children}
+           </div>
+         </div>
+      </div>
+     </div>
+      
+    </div>
+  )
+}
+
+export default Layout
