@@ -22,8 +22,8 @@ const Index = () => {
 
   return (
     <>
-    <div className="mt-10 flex items-center justify-center bg-gray-100">
-      <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-md">
+    <div className="mt-10  flex items-center justify-center bg-gray-100">
+      <div className="bg-white rounded-md">
         <h1 className="text-3xl font-bold mb-4">Welcome to the Homepage!</h1>
         <p className="text-lg">
           Hello, {userName}! This is a nice-looking homepage created using React.
@@ -32,8 +32,10 @@ const Index = () => {
       </div>
       
     </div>
+    <div className="sm:mr-7">
     <CreatePostForm />
     <PostList/>
+    </div>
     </>
   );
 };

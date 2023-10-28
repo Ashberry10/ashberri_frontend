@@ -128,7 +128,7 @@ const { data: session, status } = useSession({
     <>
       <h1 className=" mt-10 font-bold text-2xl mb-4">People you may know</h1>
 
-      <div className="grid gap-3 mx-auto sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid gap-3 mx-auto sm:grid-cols-4 sm:pr-10   lg:grid-cols-5 xs:grid-cols-1  ">
         {allUsers.map((curElem: any) => {
           // const friendStatus = friendStatuses.find((friend: any) => friend.friend_id === curElem.id);
           // console.log(friendStatus)
@@ -154,7 +154,7 @@ const { data: session, status } = useSession({
 
 
 
-<img className="h-44 w-48 mx-auto rounded " src={image} alt={curElem.name}
+<img className="lg:h-44 w-44 sm:h-40 mx-auto rounded " src={image} alt={curElem.name}
 
 
              />
@@ -162,7 +162,7 @@ const { data: session, status } = useSession({
                 </div>
               </Link>
 
-              <div className="px-4 py-3">
+              <div className="px-4 py-3 sm:p-2">
               <p className="text-sm text-gray-500">{curElem.status}</p>
                 {curElem.Compatibility !== 'Self' && (
                   <>
