@@ -84,7 +84,7 @@ const YourFriends = () => {
                     
                     )} 
                          <button
-      className="bg-red-500 ml-10 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full focus:outline-none"
+      className="bg-red-400 ml-10 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-full focus:outline-none"
       onClick={() => unFriend(friends.sender_id)}
     >
       Unfriend

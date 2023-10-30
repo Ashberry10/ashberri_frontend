@@ -18,6 +18,7 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
+        '2xs':'300px',
         'xs': '480px',
         'sm': '640px',
         'md': '768px',

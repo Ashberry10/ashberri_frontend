@@ -147,13 +147,13 @@ function FriendRequest() {
                 
                     <div className="flex space-x-2 ">
                         <button
-                          className="bg-green-500 hover:bg-green-700 text-white font-bold  mt-2 w-32 rounded"
+                          className="bg-green-500 hover:bg-green-600 text-white font-bold  mt-2 w-32 rounded"
           onClick={() => handleAcceptFriendRequest(friendRequest.sender)}
         >
           Accept
         </button>
         <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold mt-2 w-32   rounded"
+                          className="bg-red-400 hover:bg-red-500 text-white font-bold mt-2 w-32   rounded"
           onClick={() => handleRejectFriendRequest(friendRequest.sender)}
         >
           Reject

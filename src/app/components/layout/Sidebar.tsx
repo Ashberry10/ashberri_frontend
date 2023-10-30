@@ -125,10 +125,11 @@ const Navbar: React.FC<NavbarProps> = () => {
     signOut();
   };
   const userName = session?.user?.name || "Guest"; 
+
   return (
     <nav>
       <ul>
-       <div className="space-y-9  fixed pl-3">
+       <div className=" space-y-9  fixed pl-3">
         <div className="flex-shrink-0 mt-10 ml-2">
        <Link className="font-bold text-2xl   " href="/">
          Ashberri
@@ -138,15 +139,15 @@ const Navbar: React.FC<NavbarProps> = () => {
         
         
         <li>
-          <Sidelink className="mr-3" activeClasses="text-gray-900 text-decoration-line: underline font-bold" text="Home" href="/" icon={<AiFillHome   className="mr-4 text-xl w-6 h-6 transition-transform transform" />} />
+          <Sidelink className="mr-3" activeClasses="text-sky-400 text-decoration-line: underline font-bold" text="Home" href="/" icon={<AiFillHome   className="mr-4 text-xl w-6 h-6 transition-transform transform" />} />
         </li>
 
         <li>
-          <Sidelink className="mr-3" activeClasses="text-gray-900 text-decoration-line: underline font-bold" text="Users" href="/alluser" icon={<HiMiniUsers className="mr-4 text-xl w-6 h-6 transition-transform transform" />} />
+          <Sidelink className="mr-3" activeClasses="text-sky-400 text-decoration-line: underline font-bold" text="Users" href="/alluser" icon={<HiMiniUsers className="mr-4 text-xl w-6 h-6 transition-transform transform" />} />
         </li>
 
         <li>
-          <Sidelink className="mr-3" activeClasses="text-gray-900 text-decoration-line: underline font-bold " text="Profile" href="/profile" icon={<img className="rounded-full mr-4 text-xl w-6 h-6 transition-transform transform" src={profileImage} alt="Profile" />} />
+          <Sidelink className="mr-3" activeClasses="text-sky-400 text-decoration-line: underline font-bold " text={"Profile"} href="/profile" icon={<img className="rounded-full mr-4 text-xl w-6 h-6 transition-transform transform" src={profileImage} alt="Profile" />} />
         </li>
 
 

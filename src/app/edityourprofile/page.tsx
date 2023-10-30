@@ -311,7 +311,7 @@ export default EditYourProfile;
 //           <div>
 //             <button
 //               onClick={handleUpload}
-//               className="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md"
+//               className="btn bg-sky-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md"
 //             >
 //               Update
 //             </button>

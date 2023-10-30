@@ -282,26 +282,26 @@
 
 
 
-import React from 'react';
-import Sidebar from "./layout/Sidebar";
+// import React from 'react';
+// import Sidebar from "./layout/Sidebar";
 
-const Layout = () => {
-  return (
-    <div className="xs:hidden sm:block">
-      <div className="h-screen">
-        <div className="h-full">
-          <div className="grid grid-cols-4 h-full">
-            <div className="w-40 lg:w-80 border-x-[1px]">
-              <Sidebar />
-            </div>
-            <div className="col-span-3 lg:col-span-2">
-              {/* Content */}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+// const Layout = () => {
+//   return (
+//     <div className="xs:hidden sm:block">
+//       <div className="h-screen">
+//         <div className="h-full">
+//           <div className="grid grid-cols-4 h-full">
+//             <div className="w-40 lg:w-80 border-x-[1px]">
+//               <Sidebar />
+//             </div>
+//             <div className="col-span-3 lg:col-span-2">
+//               {/* Content */}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
-export default Layout;
+// export default Layout;

@@ -206,14 +206,14 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Friend Request Received'&& (
                       <div className="flex space-x-2 ">
                         <button
-                          className="bg-green-500 hover:bg-green-700 text-white font-bold  mt-2  w-full rounded"
+                          className="bg-green-500 hover:bg-green-600 text-white font-bold  mt-2  w-full rounded"
                           onClick={() => handleAcceptFriendRequest(curElem.id)}
                           disabled={isAcceptingFriendRequest}
                         >
                           {isAcceptingFriendRequest ? <LoadingIcon/> : "Accept"}
                         </button>
                         <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold mt-2 w-full rounded"
+                          className="bg-red-400 hover:bg-red-500 text-white font-bold mt-2 w-full rounded"
                           onClick={() => handleRejectFriendRequest(curElem.id)}
                           disabled={isRejectingFriendRequest}
                         >
@@ -229,7 +229,7 @@ const { data: session, status } = useSession({
                        <div className="flex justify-center items-center">
                       <button
                         
-                        className="bg-red-500 hover:bg-red-700 text-white font-bold  rounded mt-2 w-full "
+                        className="bg-red-400 hover:bg-red-500 text-white font-bold  rounded mt-2 w-full "
                         onClick={() => handleCancelFriendRequest(curElem.id)}
                         disabled={isCancelingFriendRequest}
                       >
@@ -241,11 +241,11 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Friend Request Not Sent'  &&(
                       <div className="flex justify-center items-center">
                       <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded mt-2 w-full "
+                        className="bg-sky-400 hover:bg-sky-600 text-white font-bold  rounded mt-2 w-full "
                         onClick={() => handleSendFriendRequest(curElem.id)}
                         disabled={isSendingFriendRequest}
                       >
-                        {isSendingFriendRequest ? <LoadingIcon/> : " Add Friend "}
+                        {isSendingFriendRequest ? <LoadingIcon/> : " Add friend "}
                       </button>
                       </div>
                     )}

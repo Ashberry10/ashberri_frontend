@@ -161,7 +161,7 @@ export default page
 //           <p className="text-gray-500">{userProfile?.email}</p>
 //         </div>
 //           <button
-//             className="ml-auto text-blue-500 font-bold outline-none focus:outline-none"
+//             className="ml-auto text-sky-400 font-bold outline-none focus:outline-none"
 //             onClick={() => router.push('/edityourprofile')}
 //           >
 //             Edit Profile

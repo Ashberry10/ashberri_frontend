@@ -9,7 +9,7 @@ import NextAuthSessionProvider from "./providers/sessionProvider";
 import SessionProvider from './components/SessionProvider';
 import { getServerSession } from "next-auth";
 // import {SessionProvider} from "next-auth/react";
-import Layout from './components/Layout';
+// import Layout from './components/Layout';
 import Sidebar from './components/layout/Sidebar';
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,10 +30,10 @@ export default async function RootLayout({
       <SessionProvider session={session}>
       <Providers >
         {/* layout */}
-          <div className="xs:hidden sm:block ">
+          <div className=" ">
             <div className="h-screen  ">
         <div className="h-full  ">
-          <div className="grid grid-cols-4  h-full ">
+          <div className="sm:grid sm:grid-cols-4  h-full ">
                        <div className="
             w-40
              lg:w-80              
@@ -44,7 +44,7 @@ export default async function RootLayout({
             </div>
             <div 
               className="
-                col-span-3
+                sm:col-span-3
                 lg:col-span-2
             ">
 

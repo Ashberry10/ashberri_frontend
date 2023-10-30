@@ -162,7 +162,6 @@ console.log(user.friendStatus)
               />
             <div className="ml-28 mb-16">
               <h2 className="text-lg font-bold pb-3 ">{user.profileName}
-
               &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
               {user?.friend_status === 'Friend Request Received' &&  (
 
@@ -176,7 +175,7 @@ console.log(user.friendStatus)
   </button>
   &nbsp;&nbsp;&nbsp;
   <button
-    className="bg-red-500 hover:bg-red-600 text-white font-semibold  px-4 rounded "
+    className="bg-red-400 hover:bg-red-500 text-white font-semibold  px-4 rounded "
     onClick={() => handleRejectFriendRequest()}
   >
     Reject
@@ -190,7 +189,7 @@ console.log(user.friendStatus)
 
 {user.friend_status === 'Pending' &&(
   <button
-    className="bg-red-500 hover:bg-red-700 text-white font-bold  px-4 rounded "
+    className="bg-red-400 hover:bg-red-500 text-white font-bold  px-4 rounded "
     onClick={() => handleCancelFriendRequest()}
     disabled={isCancelingFriendRequest}
   >
@@ -201,7 +200,7 @@ console.log(user.friendStatus)
 
 {user.friend_status === 'Friend Request Not Sent' &&(
 <button
-className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4  rounded focus:outline-none"
+className="bg-sky-400  hover:bg-sky-600 text-white font-bold px-4  rounded focus:outline-none"
     onClick={() => handleSendFriendRequest()}
     disabled={isSendingFriendRequest}
 

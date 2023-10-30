@@ -52,7 +52,7 @@ function EditForm() {
       
       const [isLoading, setIsLoading] = useState(false); // Add the isLoading state
     
-      let buttonClasses = 'bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded center' ;
+      let buttonClasses = 'bg-sky-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded center' ;
     
       const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
