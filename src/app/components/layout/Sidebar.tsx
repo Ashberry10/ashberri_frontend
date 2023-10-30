@@ -132,7 +132,7 @@ const Navbar: React.FC<NavbarProps> = () => {
        <div className=" space-y-9  fixed pl-3">
         <div className="flex-shrink-0 mt-10 ml-2">
        <Link className="font-bold text-2xl   " href="/">
-         Ashberri
+         Frindcafe
        </Link>
      </div>
         

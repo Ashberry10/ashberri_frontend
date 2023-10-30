@@ -168,14 +168,14 @@ console.log(user.friendStatus)
 
 <div>
   <button
-    className="bg-green-500 hover:bg-green-600 text-white font-bold px-4 rounded "
+    className="bg-green-300 hover:bg-green-400 text-gray-900 font-bold px-4 rounded "
     onClick={() => handleAcceptFriendRequest()}
   >
     Accept
   </button>
   &nbsp;&nbsp;&nbsp;
   <button
-    className="bg-red-400 hover:bg-red-500 text-white font-semibold  px-4 rounded "
+    className="bg-red-300 hover:bg-red-400 text-gray-900 font-semibold  px-4 rounded "
     onClick={() => handleRejectFriendRequest()}
   >
     Reject
@@ -184,12 +184,12 @@ console.log(user.friendStatus)
 )}
 
 {user.friend_status === 'We Are Friends' && (
-<span className="text-green-500 font-bold mt-3">Friends</span>
+<span className="text-gray-900  p-1 font-bold mt-3">Friends</span>
 )} 
 
 {user.friend_status === 'Pending' &&(
   <button
-    className="bg-red-400 hover:bg-red-500 text-white font-bold  px-4 rounded "
+    className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-bold ml-20 w-40 p-1 rounded "
     onClick={() => handleCancelFriendRequest()}
     disabled={isCancelingFriendRequest}
   >
@@ -200,7 +200,8 @@ console.log(user.friendStatus)
 
 {user.friend_status === 'Friend Request Not Sent' &&(
 <button
-className="bg-sky-400  hover:bg-sky-600 text-white font-bold px-4  rounded focus:outline-none"
+className="bg-sky-200 hover:bg-sky-300 text-gray-900 font-bold ml-20 w-40 p-1 rounded focus:outline-none"
+
     onClick={() => handleSendFriendRequest()}
     disabled={isSendingFriendRequest}
 

@@ -39,10 +39,7 @@ const { data: session, status } = useSession({
   const token: any = session?.user.accessToken;
 
 
-//   const token: string | null = session?.user?.accessToken ?? null;
   const { data: allUsersData, isSuccess: isAllUsersDataSuccess, refetch: refetchallUsersData} = useAllUserPredictQuery(token);
-  // const { data: userdata, isSuccess , refetch: refetchuserdata } = useUserPredictByIdQuery({ access: token, id: id });
-  // const { data: friendStatusesData, refetch: refetchFriendStatuses } = useGetAllUserFriendStatusQuery(token);
   const [sendingRequests, setSendingRequests] = useState<string[]>([]);
   const [cancelingRequests, setCancelingRequests] = useState<string[]>([]);
   const [acceptingFriendRequests, setAcceptingFriendRequests] = useState<string[]>([]);
@@ -142,7 +139,7 @@ const { data: session, status } = useSession({
           const friend=  curElem.friend_status
           console.log(friend)
           return (
-            <div key={curElem.id} className="bg-gray-100 rounded  overflow-hidden">
+            <div key={curElem.id} className="shadow-md rounded  overflow-hidden">
                       {/* <Link href={`/${curElem.id}`}> */}
                 <Link href={`/alluser/${curElem.id}`}>
 
@@ -206,14 +203,14 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Friend Request Received'&& (
                       <div className="flex space-x-2 ">
                         <button
-                          className="bg-green-500 hover:bg-green-600 text-white font-bold  mt-2  w-full rounded"
+                          className="bg-green-300 hover:bg-green-400 text-gray-900 p-1 font-bold  mt-2  w-full rounded"
                           onClick={() => handleAcceptFriendRequest(curElem.id)}
                           disabled={isAcceptingFriendRequest}
                         >
                           {isAcceptingFriendRequest ? <LoadingIcon/> : "Accept"}
                         </button>
                         <button
-                          className="bg-red-400 hover:bg-red-500 text-white font-bold mt-2 w-full rounded"
+                          className="bg-red-300 hover:bg-red-400 text-gray-900  font-bold mt-2 w-full rounded"
                           onClick={() => handleRejectFriendRequest(curElem.id)}
                           disabled={isRejectingFriendRequest}
                         >
@@ -228,8 +225,10 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Pending' &&(
                        <div className="flex justify-center items-center">
                       <button
-                        
-                        className="bg-red-400 hover:bg-red-500 text-white font-bold  rounded mt-2 w-full "
+                         
+                        className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-bold  p-1 rounded mt-2 w-full "
+                   
+
                         onClick={() => handleCancelFriendRequest(curElem.id)}
                         disabled={isCancelingFriendRequest}
                       >
@@ -241,7 +240,7 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Friend Request Not Sent'  &&(
                       <div className="flex justify-center items-center">
                       <button
-                        className="bg-sky-400 hover:bg-sky-600 text-white font-bold  rounded mt-2 w-full "
+                        className="bg-sky-200 hover:bg-sky-300 text-gray-900 font-bold  rounded mt-2 p-1 w-full "
                         onClick={() => handleSendFriendRequest(curElem.id)}
                         disabled={isSendingFriendRequest}
                       >
@@ -252,7 +251,7 @@ const { data: session, status } = useSession({
 
                     {curElem.friend_status === 'We Are Friends'  && (
                       <div className="flex justify-center items-center">
-                      <span className="text-sky-500   rounded  font-bold mt-2">Friends</span>
+                      <span className="text-gray-900   rounded  font-bold p-1 mt-2">Friends</span>
                       </div>
                     )}
                   </>
