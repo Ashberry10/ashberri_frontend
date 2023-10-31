@@ -35,9 +35,8 @@ export default async function RootLayout({
         <div className="h-full  ">
           <div className="sm:grid sm:grid-cols-4  h-full ">
                        <div className="
-            w-40
-             lg:w-80              
-                   border-x-[1px]
+           
+             
                 "
               >
             <Sidebar />
@@ -48,9 +47,9 @@ export default async function RootLayout({
                 lg:col-span-2
             ">
 
-      {children}
-
-
+<div className="bg-gray-50 h-full pl-10 shadow-xl">
+                        {children}
+                      </div>
 
           </div>
           </div>

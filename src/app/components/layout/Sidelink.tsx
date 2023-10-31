@@ -21,7 +21,7 @@ const Sidelink: React.FC<NavlinkProps> = ({ href, text, activeClasses, className
   return (
     <Link href={href}>
       <div>
-        <div className={`hover:bg-gray-200 rounded-md lg:pr-48 pr-10 pl-2 py-2 flex items text-gray-700 hover:scale-105 ${isActive ? activeClasses : ''} ${className}`}>
+        <div className={`hover:bg-gray-100 rounded-md lg:pr-48 sm:pr-28 pl-2 py-2 flex items text-gray-700 hover:scale-105 ${isActive ? activeClasses : ''} ${className}`}>
           {icon}
           
           <span>{text}</span>

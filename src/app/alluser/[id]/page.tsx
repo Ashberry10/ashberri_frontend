@@ -152,15 +152,15 @@ const Page = (props: Props) => {
 console.log(user.friendStatus)
           return (
             <li key={user.id} >
-              <div className="flex mt-10 ml-10 items-center ">
+              <div className="flex mt-20 ml-10 items-center ">
               <img
-                className="  w-40 h-40 rounded-full"
+                className=" mt-5 w-40 h-40 rounded-full"
                 src={BASE_URL + user?.image}
                 alt={user?.profileName}
                 // width={238}
                 // height={248}
               />
-            <div className="ml-28 mb-16">
+            <div className="ml-28 ">
               <h2 className="text-lg font-bold pb-3 ">{user.profileName}
               &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
               {user?.friend_status === 'Friend Request Received' &&  (
@@ -168,14 +168,14 @@ console.log(user.friendStatus)
 
 <div>
   <button
-    className="bg-green-300 hover:bg-green-400 text-gray-900 font-bold px-4 rounded "
+    className="bg-green-300 hover:bg-green-400 text-gray-800 font-bold px-4 rounded "
     onClick={() => handleAcceptFriendRequest()}
   >
     Accept
   </button>
   &nbsp;&nbsp;&nbsp;
   <button
-    className="bg-red-300 hover:bg-red-400 text-gray-900 font-semibold  px-4 rounded "
+    className="bg-red-300 hover:bg-red-400 text-gray-800 font-semibold  px-4 rounded "
     onClick={() => handleRejectFriendRequest()}
   >
     Reject
@@ -184,12 +184,12 @@ console.log(user.friendStatus)
 )}
 
 {user.friend_status === 'We Are Friends' && (
-<span className="text-gray-900  p-1 font-bold mt-3">Friends</span>
+<span className="text-gray-800  p-1 font-bold mt-3">Friends</span>
 )} 
 
 {user.friend_status === 'Pending' &&(
   <button
-    className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-bold ml-20 w-40 p-1 rounded "
+    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold ml-20 w-40 p-1 rounded "
     onClick={() => handleCancelFriendRequest()}
     disabled={isCancelingFriendRequest}
   >
@@ -200,7 +200,7 @@ console.log(user.friendStatus)
 
 {user.friend_status === 'Friend Request Not Sent' &&(
 <button
-className="bg-sky-200 hover:bg-sky-300 text-gray-900 font-bold ml-20 w-40 p-1 rounded focus:outline-none"
+className="bg-sky-200 hover:bg-sky-300 text-gray-800 font-bold ml-20 w-40 p-1 rounded focus:outline-none"
 
     onClick={() => handleSendFriendRequest()}
     disabled={isSendingFriendRequest}

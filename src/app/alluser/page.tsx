@@ -123,9 +123,9 @@ const { data: session, status } = useSession({
 
   return (
     <>
-      <h1 className=" mt-10 font-bold text-2xl mb-4">People you may know</h1>
+      <h1 className=" mt-20 pt-5 font-bold text-2xl ">People you may know</h1>
 
-      <div className="grid gap-3 mx-auto sm:grid-cols-4 sm:pr-10   lg:grid-cols-5 xs:grid-cols-1  ">
+      <div className="pt-5 w-full grid gap-3 mx-auto sm:grid-cols-4 sm:pr-10   lg:grid-cols-5 xs:grid-cols-1  ">
         {allUsers.map((curElem: any) => {
           // const friendStatus = friendStatuses.find((friend: any) => friend.friend_id === curElem.id);
           // console.log(friendStatus)
@@ -139,7 +139,7 @@ const { data: session, status } = useSession({
           const friend=  curElem.friend_status
           console.log(friend)
           return (
-            <div key={curElem.id} className="shadow-md rounded  overflow-hidden">
+            <div key={curElem.id} className="shadow-md rounded  overflow-hidden bg-white">
                       {/* <Link href={`/${curElem.id}`}> */}
                 <Link href={`/alluser/${curElem.id}`}>
 
@@ -151,7 +151,7 @@ const { data: session, status } = useSession({
 
 
 
-<img className="lg:h-44 w-44 sm:h-40 mx-auto rounded " src={image} alt={curElem.name}
+<img className="lg:h-40 lg:w-44 sm:w-40 sm:h-40 mx-auto rounded " src={image} alt={curElem.name}
 
 
              />
@@ -159,26 +159,27 @@ const { data: session, status } = useSession({
                 </div>
               </Link>
 
-              <div className="px-4 py-3 sm:p-2">
+              <div className="px-4 sm:p-2">
               <p className="text-sm text-gray-500">{curElem.status}</p>
                 {curElem.Compatibility !== 'Self' && (
                   <>
                 <Link href={`/alluser/${curElem.id}`}>
                           
 
-                    <div className="flex items-center mt-1">
+                    <div className="flex items-center mt">
 
                 <Link href={`/alluser/${curElem.id}`}>
 
 
 
-                <div className="flex items-center mt-2 ">
+                <div className="flex items-center">
                   <span className="text-sm mr-1 font-bold">{curElem.ProfileName}</span>
                 </div>  </Link>
-
-                &nbsp; 
+                </div>
+               
+<div></div>
                 {curElem.compatibility === 0 && (
-                  <span className="text-yellow-500">⭐⭐</span>
+                  <span className="text-yellow-500 ">⭐⭐</span>
                   
                 )}
                 {curElem.compatibility === 3 && (
@@ -195,7 +196,7 @@ const { data: session, status } = useSession({
                     <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
                     
                     )}
-                    </div>
+                   
                   </Link>
                   
  
@@ -203,14 +204,14 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Friend Request Received'&& (
                       <div className="flex space-x-2 ">
                         <button
-                          className="bg-green-300 hover:bg-green-400 text-gray-900 p-1 font-bold  mt-2  w-full rounded"
+                          className="bg-green-300 hover:bg-green-400 text-gray-800 p-1 font-semibold  mt-2  w-full rounded"
                           onClick={() => handleAcceptFriendRequest(curElem.id)}
                           disabled={isAcceptingFriendRequest}
                         >
                           {isAcceptingFriendRequest ? <LoadingIcon/> : "Accept"}
                         </button>
                         <button
-                          className="bg-red-300 hover:bg-red-400 text-gray-900  font-bold mt-2 w-full rounded"
+                          className="bg-red-300 hover:bg-red-400 text-gray-800  font-semibold mt-2 w-full rounded"
                           onClick={() => handleRejectFriendRequest(curElem.id)}
                           disabled={isRejectingFriendRequest}
                         >
@@ -226,7 +227,7 @@ const { data: session, status } = useSession({
                        <div className="flex justify-center items-center">
                       <button
                          
-                        className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-bold  p-1 rounded mt-2 w-full "
+                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold  p-1 rounded mt-2 w-full "
                    
 
                         onClick={() => handleCancelFriendRequest(curElem.id)}
@@ -240,7 +241,7 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Friend Request Not Sent'  &&(
                       <div className="flex justify-center items-center">
                       <button
-                        className="bg-sky-200 hover:bg-sky-300 text-gray-900 font-bold  rounded mt-2 p-1 w-full "
+                        className="bg-sky-200 hover:bg-sky-300 text-gray-800 font-semibold  rounded mt-2 p-1 w-full "
                         onClick={() => handleSendFriendRequest(curElem.id)}
                         disabled={isSendingFriendRequest}
                       >
@@ -251,7 +252,7 @@ const { data: session, status } = useSession({
 
                     {curElem.friend_status === 'We Are Friends'  && (
                       <div className="flex justify-center items-center">
-                      <span className="text-gray-900   rounded  font-bold p-1 mt-2">Friends</span>
+                      <span className="text-gray-800   rounded  font-bold p-1 mt-2">Friends</span>
                       </div>
                     )}
                   </>

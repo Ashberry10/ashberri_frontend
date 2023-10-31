@@ -22,7 +22,7 @@ const Index = () => {
 
   return (
     <>
-    <div className="mt-10  flex items-center justify-center bg-gray-100">
+    <div className="mt-20  flex items-center justify-center ">
       <div className="bg-white rounded-md">
         <h1 className="text-3xl font-bold mb-4">Welcome to the Homepage!</h1>
         <p className="text-lg">
