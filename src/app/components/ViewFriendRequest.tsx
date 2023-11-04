@@ -18,8 +18,8 @@ interface FriendRequest {
     name: string;
     compatibility: number;
     image:string,
-    sender:number,
-    sender_name:string
+    sender_id:number,
+    
     status:string
   }
   
@@ -121,10 +121,10 @@ function FriendRequest() {
                       {userProfileFriendrequest &&
                         userProfileFriendrequest.map((friendRequest: FriendRequest) => (
                           <div key={friendRequest.id} className="mb-2">
-                            {/* <Image className="w-12 h-12 rounded-full" src={BASE_URL+ "/media/" + friendRequest.image} alt={friendRequest?.sender_name} width={48} height={48} /> */}
+                            <Image className="w-12 h-12 rounded-full" src={BASE_URL+ "/media/" + friendRequest.image} alt={friendRequest?.name} width={48} height={48} />
 
                   <p>
-                {friendRequest.sender_name} = 
+                {friendRequest.name} = 
                 {friendRequest.compatibility === 0 && (
                   <span className="text-yellow-500">Not Friend</span>
                   
@@ -148,13 +148,13 @@ function FriendRequest() {
                     <div className="flex space-x-2 ">
                         <button
                           className="bg-green-500 hover:bg-green-600 text-white font-bold  mt-2 w-32 rounded"
-          onClick={() => handleAcceptFriendRequest(friendRequest.sender)}
+          onClick={() => handleAcceptFriendRequest(friendRequest.sender_id)}
         >
           Accept
         </button>
         <button
                           className="bg-red-400 hover:bg-red-500 text-white font-bold mt-2 w-32   rounded"
-          onClick={() => handleRejectFriendRequest(friendRequest.sender)}
+          onClick={() => handleRejectFriendRequest(friendRequest.sender_id)}
         >
           Reject
         </button>

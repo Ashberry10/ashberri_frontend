@@ -241,7 +241,7 @@ const { data: session, status } = useSession({
                     {curElem.friend_status === 'Friend Request Not Sent'  &&(
                       <div className="flex justify-center items-center">
                       <button
-                        className="bg-sky-200 hover:bg-sky-300 text-gray-800 font-semibold  rounded mt-2 p-1 w-full "
+                        className="bg-violet-200 hover:bg-violet-300 text-gray-800 font-semibold  rounded mt-2 p-1 w-full "
                         onClick={() => handleSendFriendRequest(curElem.id)}
                         disabled={isSendingFriendRequest}
                       >

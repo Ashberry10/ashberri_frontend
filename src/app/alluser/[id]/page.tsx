@@ -200,7 +200,7 @@ console.log(user.friendStatus)
 
 {user.friend_status === 'Friend Request Not Sent' &&(
 <button
-className="bg-sky-200 hover:bg-sky-300 text-gray-800 font-bold ml-20 w-40 p-1 rounded focus:outline-none"
+className="bg-violet-200 hover:bg-violet-300 text-gray-800 font-bold ml-20 w-40 p-1 rounded focus:outline-none"
 
     onClick={() => handleSendFriendRequest()}
     disabled={isSendingFriendRequest}

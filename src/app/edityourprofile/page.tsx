@@ -20,7 +20,7 @@ const EditYourProfile = () => {
  
 
   return (
-    <div className=" bg-gray-100  flex flex-col justify-center h-screen no-scrollbar pb-24" >
+    <div className="mt-20    flex flex-col justify-center h-screen no-scrollbar pb-32" >
 
       <div className="relative  sm:max-w-xl sm:mx-auto">
         <div className="relative  bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">

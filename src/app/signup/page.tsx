@@ -71,7 +71,7 @@ const { data: session } = useSession()  //from next-auth to the user session
  {/* {session?.user ? (null) :( */}
 
       <body
-        className="bg-gray-100">
+        className="bg-violet-200">
    
         <div
           className="justify-center  xs:mb-32 items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"

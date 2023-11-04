@@ -95,7 +95,7 @@ const Login = ({ searchParams }: IProps) => {
     <div>
       {/* {session?.user ? (null) :( */}
       <body
-        className="bg-gray-100 h-screen  ">
+        className="bg-violet-200 h-screen  ">
 
         <div>
           <h1 className='black text-5xl flex  justify-center pt-7 phone:text-1xl'>ashberri</h1><br />
