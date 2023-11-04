@@ -152,7 +152,13 @@ const Navbar: React.FC<NavbarProps> = () => {
 
 
 
-
+        <button
+                     className="ml-5 bg-gray-200  hover:bg-gray-300   px-2 text-gray-950 font-semibold  rounded focus:outline-none"
+ onClick={handleSignOut}
+            >
+            {/* <IoLogOutSharp className="mr-4 text-xl w-6 h-6 transition-transform transform hover:scale-105" />  */}
+            Log Out
+            </button>
     
       
 
