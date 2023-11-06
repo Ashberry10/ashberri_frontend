@@ -13,6 +13,7 @@ import {
 } from '@/app/store/slices/friendApi';
 import { useRouter } from 'next/navigation'
 import { BASE_URL } from '../../../api_constants';
+import Link from 'next/link';
 interface FriendRequest {
     id: number;
     name: string;
@@ -121,6 +122,7 @@ function FriendRequest() {
                       {userProfileFriendrequest &&
                         userProfileFriendrequest.map((friendRequest: FriendRequest) => (
                           <div key={friendRequest.id} className="mb-2">
+                                 <Link href={`/${friendRequest.sender_id}`}>
                             <Image className="w-12 h-12 rounded-full" src={BASE_URL+ "/media/" + friendRequest.image} alt={friendRequest?.name} width={48} height={48} />
 
                   <p>
@@ -144,6 +146,7 @@ function FriendRequest() {
                     
                     )}
                     </p>
+                    </Link>
                 
                     <div className="flex space-x-2 ">
                         <button

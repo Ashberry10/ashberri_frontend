@@ -15,13 +15,14 @@ import {
 } from '@/app/store/slices/friendApi';
 import { useRouter } from 'next/navigation'
 import { BASE_URL } from '../../../api_constants';
-
+import Link from 'next/link';
 interface Friends{
     id: number;
     name: string;
     compatibility: number;
     image:string
     sender_id:number
+    user_id:number
   }
   
 
@@ -63,6 +64,7 @@ const YourFriends = () => {
                           <div key={friends.id} className="mb-2">
                             <div>
 
+                            <Link href={`/${friends.user_id}`}>
                             <Image className="w-12 h-12 rounded-full" src={BASE_URL+ "/media/" + friends.image} alt={friends.name} width={48} height={48} />
                 {friends.name} = 
                  {friends.compatibility === 0 && (
@@ -83,6 +85,8 @@ const YourFriends = () => {
                     <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
                     
                     )} 
+                      </Link>
+
                          <button
       className="bg-red-400 ml-10 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-full focus:outline-none"
       onClick={() => unFriend(friends.sender_id)}

@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import LoadingIcon from "@/app/components/LoadingIcon"
 
-import { BASE_URL } from '../../../../api_constants'
+import { BASE_URL } from '../../../api_constants'
 
 
 

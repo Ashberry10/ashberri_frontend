@@ -141,7 +141,7 @@ const { data: session, status } = useSession({
           return (
             <div key={curElem.id} className="shadow-md rounded  overflow-hidden bg-white">
                       {/* <Link href={`/${curElem.id}`}> */}
-                <Link href={`/alluser/${curElem.id}`}>
+                <Link href={`/${curElem.id}`}>
 
                 <div className="">
                   {/* <Image className="w-full h-56 object-cover" src={curElem.avatarUrl} alt={curElem.name} /> */}
