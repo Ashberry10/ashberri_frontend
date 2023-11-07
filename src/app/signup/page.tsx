@@ -2,6 +2,7 @@
 
 "use client"
 
+import dynamic from "next/dynamic";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -381,7 +382,8 @@ required
 
   );
 };
-export default SignUp
+export default dynamic(() => Promise.resolve(SignUp), { ssr: false })
+
 
 
 
