@@ -72,7 +72,7 @@ const { data: session } = useSession()  //from next-auth to the user session
  {/* {session?.user ? (null) :( */}
 
       <body
-        className="bg-violet-200">
+        className="bg-white">
    
         <div
           className="justify-center  xs:mb-32 items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
@@ -86,8 +86,6 @@ const { data: session } = useSession()  //from next-auth to the user session
 
     
               </div>
-
-
 
               <Formik
                 initialValues={initialValues}

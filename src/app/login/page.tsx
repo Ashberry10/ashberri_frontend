@@ -95,11 +95,11 @@ const Login = ({ searchParams }: IProps) => {
     <div>
      
       <body
-        className="bg-violet-200 h-screen  ">
+        className="bg-white h-screen  ">
 
         <div>
           <h1 className='black text-5xl flex  justify-center pt-7 phone:text-1xl'>ashberri</h1><br />
-          <p className='text-gray-600 text-xl flex justify-center '>ashberri help to find people who </p> <p className='text-gray-600 text-xl flex justify-center '>are highly compatible...</p><br />
+          <p className='text-gray-600 text-xl flex justify-center '>help to find people who </p> <p className='text-gray-600 text-xl flex justify-center '>are highly compatible...</p><br />
         </div>
 
         <div className="justify-center flex ">
