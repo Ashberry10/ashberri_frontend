@@ -164,47 +164,99 @@ const { data: session, status } = useSession({
              />
  
                 </div>
-              </Link>
 
+              </Link>
               <div className="px-4 sm:p-2">
               <p className="text-sm text-gray-500">{curElem.status}</p>
                 {curElem.Compatibility !== 'Self' && (
-                  <>
-                <Link href={`/alluser/${curElem.id}`}>
+                  <   >
+                {/* <Link href={`/alluser/${curElem.id}`}> */}
                           
 
                     <div className="flex items-center mt">
 
-                <Link href={`/alluser/${curElem.id}`}>
+                {/* <Link href={`/alluser/${curElem.id}`}> */}
 
 
 
                 <div className="flex items-center">
                   <span className="text-sm mr-1 font-bold">{curElem.ProfileName}</span>
-                </div>  </Link>
+                </div>  
+                {/* </Link> */}
                 </div>
                
-<div></div>
+
                 {curElem.compatibility === 0 && (
-                  <span className="text-yellow-500 ">⭐⭐</span>
+                  
+
+
+
+<div className="w-full rounded mb-1 mt-1 bg-neutral-200 dark:bg-neutral-600">
+  <div
+    className="bg-primary rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-red-400"
+
+
+style={{ width: '20%' }}>
+    20%
+  </div>
+</div>
                   
                 )}
                 {curElem.compatibility === 3 && (
-                  <span className="text-yellow-500">⭐⭐⭐</span>
+                  // <span className="text-yellow-500">⭐⭐⭐</span>
+
+
+
+
+<div className="w-full rounded  mb-1 mt-1 bg-neutral-200 dark:bg-neutral-600">
+  <div
+    className="bg-primary rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-yellow-400"
+
+
+style={{ width: '50%' }}>
+    50%
+  </div>
+</div>
+           
                   
                 )}
                    {curElem.compatibility === 4 && (
-                  <span className="text-yellow-500">⭐⭐⭐⭐</span>
+                  // <span className="text-yellow-500">⭐⭐⭐⭐</span>
+                  <div className="w-full rounded mb-1 mt-1 bg-neutral-200 dark:bg-neutral-600">
+  <div
+    className="bg-primary rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-green-300"
+
+
+style={{ width: '80%' }}>
+    80%
+  </div>
+</div>
                   
                   )}
                   
                   
                   {curElem.compatibility === 5 && (
-                    <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+                    <div className="w-full rounded  mb-1 mt-1 bg-neutral-200 dark:bg-neutral-600">
+                    <div
+                      className="bg-primary rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-green-500"
+                  
+                  
+                  style={{ width: '100%' }}>
+                      100%
+                    </div>
+                  </div>
                     
                     )}
                    
-                  </Link>
+
+
+
+
+
+
+
+                   
+                  {/* </Link> */}
                   
  
 
