@@ -149,7 +149,7 @@ const Page = (props: Props) => {
 
     const isSendingFriendRequest = sendingRequests.includes(user.id);
     const isCancelingFriendRequest = cancelingRequests.includes(user.id);
-console.log(user.friendStatus)
+    console.log(user.friendStatus)
           return (
             <li key={user.id} >
               <div className="flex mt-20 ml-10 items-center ">
@@ -184,12 +184,12 @@ console.log(user.friendStatus)
 )}
 
 {user.friend_status === 'We Are Friends' && (
-<span className="text-gray-800  p-1 font-bold mt-3">Friends</span>
+<span className="text-gray-800  p-1 font-bold ml-32">Friends</span>
 )} 
 
 {user.friend_status === 'Pending' &&(
   <button
-    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold ml-20 w-40 p-1 rounded "
+    className="bg-gray-200 hover:bg-gray-300 text-gray-800  w-32 ml-32 font-medium rounded "
     onClick={() => handleCancelFriendRequest()}
     disabled={isCancelingFriendRequest}
   >
@@ -200,7 +200,7 @@ console.log(user.friendStatus)
 
 {user.friend_status === 'Friend Request Not Sent' &&(
 <button
-className="bg-violet-200 hover:bg-violet-300 text-gray-800 font-bold ml-20 w-40 p-1 rounded focus:outline-none"
+className="bg-violet-200 hover:bg-violet-300 text-gray-800  w-32 ml-32 font-medium rounded "
 
     onClick={() => handleSendFriendRequest()}
     disabled={isSendingFriendRequest}
@@ -221,16 +221,56 @@ className="bg-violet-200 hover:bg-violet-300 text-gray-800 font-bold ml-20 w-40 
                 
 
                 {user.compatibility === 0 && (
-                  <span className="text-yellow-500">⭐⭐</span>
+                      <div>   <h1 className='text-xs font-medium ml-32'>&nbsp;&nbsp;20% </h1>
+                      <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                      <div
+                        className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                    
+                    
+                    style={{ width: '20%' }}>
+                      
+                      </div>
+                    </div>
+                    </div>
                 )}
                 {user.compatibility === 3 && (
-                  <span className="text-yellow-500">⭐⭐⭐</span>
+                        <div>   <h1 className='text-xs font-medium ml-32'>&nbsp;&nbsp;50% </h1>
+                        <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                        <div
+                          className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                      
+                      
+                      style={{ width: '50%' }}>
+                        
+                        </div>
+                      </div>
+                      </div>
                 )}
                 {user.compatibility === 4 && (
-                  <span className="text-yellow-500">⭐⭐⭐⭐</span>
+                    <div>   <h1 className='text-xs font-medium ml-32'>&nbsp;&nbsp;80% </h1>
+                    <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                    <div
+                      className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                  
+                  
+                  style={{ width: '80%' }}>
+                    
+                    </div>
+                  </div>
+                  </div>
                 )}
                 {user.compatibility === 5 && (
-                  <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+                 <div>   <h1 className='text-xs font-medium ml-32'>100% </h1>
+                  <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                  <div
+                    className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                
+                
+                style={{ width: '100%' }}>
+                  
+                  </div>
+                </div>
+                </div>
                 )}
     
            
