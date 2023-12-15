@@ -126,23 +126,65 @@ function FriendRequest() {
                             <Image className="w-12 h-12 rounded-full" src={BASE_URL+ "/media/" + friendRequest.image} alt={friendRequest?.name} width={48} height={48} />
 
                   <p>
-                {friendRequest.name} = 
+                {friendRequest.name} 
                 {friendRequest.compatibility === 0 && (
-                  <span className="text-yellow-500">Not Friend</span>
+                  <div>   <h1 className='text-xs font-medium ml-32'>&nbsp;&nbsp;20% </h1>
+                  <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                  <div
+                    className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                
+                
+                style={{ width: '20%' }}>
                   
+         </div>
+              
+                </div>
+                </div>
                 )}
                 {friendRequest.compatibility === 3 && (
-                  <span className="text-yellow-500">⭐⭐⭐</span>
+                  <div>   <h1 className='text-xs font-medium ml-32'>&nbsp;&nbsp;50% </h1>
+                  <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                  <div
+                    className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                
+                
+                style={{ width: '50%' }}>
                   
+         </div>
+              
+                </div>
+                </div>  
                 )}
                    {friendRequest.compatibility === 4 && (
-                  <span className="text-yellow-500">⭐⭐⭐⭐</span>
+            <div>   <h1 className='text-xs font-medium ml-32'>&nbsp;&nbsp;80% </h1>
+            <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+            <div
+              className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+          
+          
+          style={{ width: '80%' }}>
+            
+   </div>
+        
+          </div>
+          </div>
                   
                   )}
                   
                   
                   {friendRequest.compatibility === 5 && (
-                    <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+                   <div>   <h1 className='text-xs font-medium ml-32'>100% </h1>
+                   <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                   <div
+                     className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                 
+                 
+                 style={{ width: '100%' }}>
+                   
+          </div>
+               
+                 </div>
+                 </div>
                     
                     )}
                     </p>

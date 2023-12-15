@@ -66,29 +66,70 @@ const YourFriends = () => {
 
                             <Link href={`/${friends.user_id}`}>
                             <Image className="w-12 h-12 rounded-full" src={BASE_URL+ "/media/" + friends.image} alt={friends.name} width={48} height={48} />
-                {friends.name} = 
+                {friends.name} 
                  {friends.compatibility === 0 && (
-                  <span className="text-yellow-500">Not Friend</span>
+                  <div>   <h1 className='text-xs font-medium ml-32'>&nbsp;&nbsp;20% </h1>
+                  <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                  <div
+                    className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                
+                
+                style={{ width: '20%' }}>
                   
+         </div>
+              
+                </div>
+                </div>
                 )}
                 {friends.compatibility === 3 && (
-                  <span className="text-yellow-500">⭐⭐⭐</span>
+                  <div>   <h1 className='text-xs font-medium ml-32'>&nbsp;&nbsp;50% </h1>
+                  <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                  <div
+                    className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                
+                
+                style={{ width: '50%' }}>
                   
+         </div>
+              
+                </div>
+                </div>  
                 )}
                    {friends.compatibility === 4 && (
-                  <span className="text-yellow-500">⭐⭐⭐⭐</span>
+                  <div>   <h1 className='text-xs font-medium ml-32'>&nbsp;&nbsp;80% </h1>
+                  <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                  <div
+                    className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                
+                
+                style={{ width: '80%' }}>
+                  
+         </div>
+              
+                </div>
+                </div> 
                   
                   )}
                   
                   
                   {friends.compatibility === 5 && (
-                    <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+                    <div>   <h1 className='text-xs font-medium ml-32'>100% </h1>
+                    <div className="w-40 h-2 rounded bg-neutral-200 dark:bg-neutral-600">
+                    <div
+                      className="bg-primary h-2 rounded p-0.2 text-center text-xs font-medium leading-none text-primary-100 bg-violet-400"
+                  
+                  
+                  style={{ width: '100%' }}>
                     
+           </div>
+                
+                  </div>
+                  </div> 
                     )} 
                       </Link>
 
                          <button
-      className="bg-red-400 ml-10 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-full focus:outline-none"
+      className="bg-red-400 ml-10 hover:bg-red-500 text-white font-semibold py-2 px-4 mt-2 rounded-full focus:outline-none"
       onClick={() => unFriend(friends.sender_id)}
     >
       Unfriend
