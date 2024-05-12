@@ -2,7 +2,7 @@
 import { useGetUserProfileQuery } from '../app/store/slices/authApi';
 import { useAppSelector } from '../app/store/hooks';
 import { signIn, signOut, useSession } from "next-auth/react";
-import CreatePostForm from './components/CreatePostForm';
+import CreatePostForm from './components/post/CreatePostForm';
 import PostList from './components/post/PostList';
 
 

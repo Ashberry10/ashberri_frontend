@@ -1,18 +1,13 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useSession } from 'next-auth/react';
-import {
-  useSendCreatePostRequestMutation,
-
-} from '@/app/store/slices/postApi';
+import { useSendCreatePostRequestMutation, } from '@/app/store/slices/postApi';
 
 const FormContainer = {
   backgroundColor: "gray",
 }
-
 const FormHeader = {
   fontSize: "24px",
 }
-
 const Button = {
   backgroundColor: "#007BFF",
   padding: "10px",
