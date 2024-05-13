@@ -23,18 +23,13 @@ const Index = () => {
   return (
     <>
     <div className="mt-20  flex items-center justify-center ">
-      <div className="bg-white rounded-md">
-        <h1 className="text-3xl font-bold mb-4">Welcome to the Homepage!</h1>
         <p className="text-lg">
-          Hello, {userName}! This is a nice-looking homepage created using Nextjs 13.
-
+          {userName}
         </p>
-      </div>
-      
     </div>
     <div className="sm:mr-7">
     <CreatePostForm />
-    <PostList/>
+    {/* <PostList/> */}
     </div>
     </>
   );

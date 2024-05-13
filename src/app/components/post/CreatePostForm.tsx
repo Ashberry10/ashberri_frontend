@@ -1,9 +1,17 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useSession } from 'next-auth/react';
-import { useSendCreatePostRequestMutation, } from '@/app/store/slices/postApi';
+import { useSendCreatePostRequestMutation } from '@/app/store/slices/postApi';
 
 const FormContainer = {
-  backgroundColor: "gray",
+  backgroundColor: "#E6E6FA",
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '10px',
+  margin: 'auto',
+  maxWidth: '500px',
+  width: '100%',
 }
 const FormHeader = {
   fontSize: "24px",
@@ -15,7 +23,7 @@ const Button = {
 }
 
 function CreatePostForm() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const token: string | undefined = session?.user.accessToken;
   const [content, setContent] = useState<string>('');
   const [image, setImage] = useState<File | null>(null);
@@ -33,21 +41,14 @@ function CreatePostForm() {
       formData.append('image', image);
     }
 
-    const post = {
-      content: content,
-      image: image,
-    };
-
     try {
       if (token) {
-        const response= await sendCreatePostRequest({
+        await sendCreatePostRequest({
           access: token,
           formData,
         });
         console.log('post created');
-        console.log(response);
       } else {
-        // Handle the case where there's no token
         setResponseMessage('Access token not available');
       }
     } catch (error) {
@@ -68,20 +69,27 @@ function CreatePostForm() {
 
   return (
     <div style={FormContainer}>
-      <h2 style={FormHeader}>Create a Post</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="content">Content:</label>
+      <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+        <div style={{ marginBottom: '10px' }}>
+          <label htmlFor="content" style={{ marginRight: '10px' }}>What's on your mind?</label>
           <textarea
             id="content"
             name="content"
             value={content}
             onChange={handleContentChange}
             required
+            style={{
+              width: '100%',
+              height: '100px',
+              padding: '12px 20px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              boxSizing: 'border-box',
+              resize: 'none',
+            }}
           />
         </div>
-        <div>
-          <label htmlFor="image">Image:</label>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           <input
             type="file"
             id="image"
@@ -89,9 +97,24 @@ function CreatePostForm() {
             accept="image/*"
             onChange={handleImageChange}
             required
+            style={{
+              marginBottom: '10px', // Adjust for responsive layout
+            }}
           />
+          <button 
+            type="submit" 
+            style={{
+              backgroundColor: '#4CAF50',
+              color: 'white',
+              padding: '10px 15px',
+              border: 'none',
+              cursor: 'pointer',
+              borderRadius: '4px',
+            }}
+          >
+            Post
+          </button>
         </div>
-        <button type="submit" style={Button}>Create Post</button>
       </form>
 
       {isLoading && <p>Creating post...</p>}
