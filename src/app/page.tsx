@@ -29,7 +29,7 @@ const Index = () => {
     </div>
     <div className="sm:mr-7">
     <CreatePostForm />
-    {/* <PostList/> */}
+    <PostList/>
     </div>
     </>
   );
